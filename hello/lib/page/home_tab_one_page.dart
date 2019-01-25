@@ -1,18 +1,14 @@
 import 'dart:io';
-import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:hello/bean/home_banner.dart';
 import 'package:hello/page/a_page.dart';
 import 'package:hello/page/box_test_page.dart';
 import 'package:hello/page/web_view_page.dart';
-import 'package:hello/utils/constant.dart';
-import 'package:hello/utils/http/net_connection.dart';
 import 'package:hello/utils/map_utils.dart';
-import 'package:hello/view/toast.dart';
 import 'package:hello/view/banner/carousel_slider.dart';
 import 'package:hello/view/banner/indicator_util.dart';
-import 'package:dio/dio.dart';
+import 'package:hello/view/toast.dart';
 
 class HomeTabOnePage extends StatefulWidget {
   @override
@@ -222,18 +218,6 @@ class _HomeTabOnePageState extends State<HomeTabOnePage> {
               child: Text('测试页面跳转'),
             ),
           ),
-          Container(
-            //FlatButton(它会跟随Container的尺寸属性适应)
-            width: MediaQuery.of(context).size.width,
-            padding: const EdgeInsets.fromLTRB(20.0, 0, 20.0, 0),
-            child: RaisedButton(
-              onPressed: () {
-                getData();
-              },
-              //RaisedButton无法设置大小所以可以用控件把它撑大=》但是不能设置外边距
-              child: Text('测试HTTP请求'),
-            ),
-          ),
         ],
       ),
     );
@@ -266,24 +250,5 @@ class _HomeTabOnePageState extends State<HomeTabOnePage> {
     listData.add(homeBanner);
   }
 
-  //测试http
-  getData() {
-    //转成json格式
-    String string = json.encode({"userName": "15660010019", "password":"AA123456"});
-    NetConnection.getInstance().post(
-      Constant.TEST_REGISTER,
-          (data) {
-        //UserDetail userDetail = UserDetail.fromJson(data);
-        //var name = userDetail.username;
-        setState(() {
-          print("+++++++++++返回成功：" + data.toString());
-        });
-      },
-      errorCallBack: (Function errorCallBack, String error) {
-        print("+++++++++++返回失败：" + error);
-      },
-      formData: FormData.from({'data':string}),
-    );
-  }
 }
 

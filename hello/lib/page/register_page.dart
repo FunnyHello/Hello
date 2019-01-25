@@ -1,16 +1,21 @@
+import 'dart:convert';
+
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
-import 'package:hello/page/register_page.dart';
+import 'package:hello/utils/constant.dart';
+import 'package:hello/utils/http/net_connection.dart';
+import 'package:hello/utils/text_utils.dart';
 import 'package:hello/view/toast.dart';
 
-class LoginPage extends StatefulWidget {
+class RegisterPage extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
     // TODO: implement createState
-    return _LoginPageState();
+    return _RegisterPageState();
   }
 }
 
-class _LoginPageState extends State<LoginPage> {
+class _RegisterPageState extends State<RegisterPage> {
   var leftRightPadding = 30.0;
   var topBottomPadding = 4.0;
   var textTips = new TextStyle(fontSize: 16.0, color: Colors.black);
@@ -24,7 +29,7 @@ class _LoginPageState extends State<LoginPage> {
     // TODO: implement build
     return new Scaffold(
       appBar: new AppBar(
-        title: new Text("登录", style: new TextStyle(color: Colors.white)),
+        title: new Text("注册", style: new TextStyle(color: Colors.white)),
         iconTheme: new IconThemeData(color: Colors.white),
       ),
       body: initView(),
@@ -65,43 +70,48 @@ class _LoginPageState extends State<LoginPage> {
             elevation: 6.0,
             child: new FlatButton(
                 onPressed: () {
-                  Toast.toast(context, _userNameController.text + "登陆了");
+                  Toast.toast(context,"注册了");
+                  register();
                 },
                 child: new Padding(
                   padding: new EdgeInsets.all(10.0),
                   child: new Text(
-                    '登录',
+                    '马上注册',
                     style: new TextStyle(color: Colors.white, fontSize: 16.0),
-                  ),
-                )),
-          ),
-        ),
-        new Container(
-          width: 360.0,
-          margin: new EdgeInsets.fromLTRB(10.0, 10.0, 10.0, 0.0),
-          padding: new EdgeInsets.fromLTRB(leftRightPadding, topBottomPadding,
-              leftRightPadding, topBottomPadding),
-          child: new Card(
-            color: Colors.green,
-            elevation: 6.0,
-            child: new FlatButton(
-                onPressed: () {
-                  Toast.toast(context,"点击注册");
-                  Navigator.of(context)
-                      .push(MaterialPageRoute(builder: (BuildContext context) {
-                    return RegisterPage();
-                  }));
-                },
-                child: Padding(
-                  padding: EdgeInsets.all(10.0),
-                  child: Text(
-                    '注册',
-                    style: TextStyle(color: Colors.white, fontSize: 16.0),
                   ),
                 )),
           ),
         )
       ],
+    );
+  }
+
+  register() {
+    if(TextUtils.isEmpty(_userNameController.text)){
+      Toast.toast(context,"用户名不能为空");
+      return;
+    }
+    if(TextUtils.isEmpty(_userPassController.text)){
+      Toast.toast(context,"密码不能为空");
+      return;
+    }
+    String string = json.encode({"userName": _userNameController.text, "password":_userPassController.text});
+    NetConnection.getInstance().post(
+      Constant.TEST_REGISTER,
+          (data) {
+        //UserDetail userDetail = UserDetail.fromJson(data);
+        //var name = userDetail.username;
+        setState(() {
+          print("+++++++++++返回成功：" + data.toString());
+          Toast.toast(context,"请求成功");
+          //销毁当前页面
+          Navigator.pop(context);
+        });
+      },
+      errorCallBack: (Function errorCallBack, String error) {
+        print("+++++++++++返回失败：" + error);
+      },
+      formData: FormData.from({'data':string}),
     );
   }
 }
