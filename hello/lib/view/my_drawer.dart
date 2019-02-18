@@ -1,11 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:hello/page/login_page.dart';
 import 'package:hello/page/release_dynamics_page.dart';
-import 'package:hello/utils/cache_utils.dart';
-import 'package:hello/utils/constant.dart';
-import 'package:hello/utils/text_utils.dart';
-import 'package:hello/view/toast.dart';
 import 'package:barcode_scan/barcode_scan.dart';
+import 'package:hello/utils/toast_util.dart';
 
 class MyDrawer extends StatelessWidget {
   // 菜单文本前面的图标大小
@@ -126,7 +123,7 @@ class MyDrawer extends StatelessWidget {
                   ],
                 ),
                 onTap: () {
-                  Toast.toast(context, "假装去登陆");
+                  ToastUtil.showMsg("假装去登陆");
                   Navigator.of(context).push(
                       new MaterialPageRoute(builder: (BuildContext context) {
                     return new LoginPage();
@@ -178,7 +175,7 @@ class MyDrawer extends StatelessWidget {
         switch (index) {
           case 0:
             // 动态
-            Toast.toast(context, "点击了动态");
+            ToastUtil.showMsg("点击了动态");
             //点击后收起侧边栏(要在跳转之前执行)
             Navigator.of(context).pop();
             Navigator.of(context)
@@ -192,14 +189,14 @@ class MyDrawer extends StatelessWidget {
             break;
           case 1:
             // 扫码
-            Toast.toast(context, "你为什么会扫码？");
+            ToastUtil.showMsg("你为什么会扫码?");
             //点击后收起侧边栏
             Navigator.of(context).pop();
             scan(context);
             break;
           case 2:
             // 关于
-            Toast.toast(context, "点击了关于");
+            ToastUtil.showMsg("点击了关于");
             //点击后收起侧边栏
             Navigator.of(context).pop();
 //            Navigator.of(context).push(new MaterialPageRoute(builder: (ctx) {
@@ -208,7 +205,8 @@ class MyDrawer extends StatelessWidget {
             break;
           case 3:
             // 设置
-            Toast.toast(context, "点击了设置");
+            ToastUtil.showMsg("点击了设置");
+
             //点击后收起侧边栏
             Navigator.of(context).pop();
 //            Navigator.of(context).push(new MaterialPageRoute(builder: (ctx) {
@@ -223,7 +221,7 @@ class MyDrawer extends StatelessWidget {
   Future scan(BuildContext context) async {
     try {
       String barcode = await BarcodeScanner.scan();
-      Toast.toast(context, "扫了" + barcode);
+      ToastUtil.showMsg("扫了");
       print(barcode);
     } on Exception catch (e) {
       print(e);

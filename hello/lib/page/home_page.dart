@@ -5,7 +5,7 @@ import 'package:hello/page/home_tab_one_page.dart';
 import 'package:hello/page/home_tab_three_page.dart';
 import 'package:hello/page/home_tab_two_page.dart';
 import 'package:hello/page/personal_center_page.dart';
-import 'package:hello/view/toast.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:hello/view/my_drawer.dart';
 
 /**
@@ -241,7 +241,12 @@ class _HomePageState extends State<HomePage> {
 
   void _rightOnPressed() {
     //右边按键点击事件
-    Toast.toast(context, "点击了MENU");
+    Fluttertoast.showToast(
+        msg: "点击了MENU",
+        toastLength: Toast.LENGTH_SHORT,
+        gravity: ToastGravity.BOTTOM,
+        timeInSecForIos: 1,
+        fontSize: 16.0);
     Navigator.of(context)
         .push(new MaterialPageRoute(builder: (BuildContext context) {
       return new PersonalCenterPage(

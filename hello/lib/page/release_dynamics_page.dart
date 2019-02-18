@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:hello/utils/cache_utils.dart';
 import 'package:hello/utils/constant.dart';
 import 'package:hello/utils/text_utils.dart';
-import 'package:hello/view/toast.dart';
+import 'package:hello/utils/toast_util.dart';
 import 'package:image_picker/image_picker.dart';
 
 class ReleaseDynamicsPage extends StatefulWidget {
@@ -182,7 +182,7 @@ class _ReleaseDynamicsPageState extends State<ReleaseDynamicsPage> {
                       if (!TextUtils.isEmpty(onValue)) {
 
                       } else {
-                        Toast.toast(context, "冇登陆");
+                        ToastUtil.showMsg("冇登陆");
                       }
                     });
                   });

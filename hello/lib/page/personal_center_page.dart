@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:hello/view/toast.dart';
+import 'package:hello/utils/toast_util.dart';
 
 class PersonalCenterPage extends StatefulWidget {
   final String id;
@@ -310,7 +310,7 @@ class _PersonalCenterPageState extends State<PersonalCenterPage> {
               //触摸事件（包裹需要交互的控件）
               child: Image.asset('images/fuchsia.jpg'),
               onTap: () {
-                Toast.toast(context, "点击了卡片" + i.toString());
+                ToastUtil.showMsg("点击了卡片" + i.toString());
               },
             ),
             new Container(
@@ -322,14 +322,14 @@ class _PersonalCenterPageState extends State<PersonalCenterPage> {
                         new GestureDetector(
                           child: Image.asset('images/icon.png'),
                           onTap: () {
-                            Toast.toast(context, "点击了图片" + i.toString());
+                            ToastUtil.showMsg("点击了图片" + i.toString());
                           },
                         ),
 
                         new GestureDetector(
                           child: Text("滑稽" + i.toString()),
                           onTap: () {
-                            Toast.toast(context, "点击了滑稽" + i.toString());
+                            ToastUtil.showMsg("点击了滑稽" + i.toString());
                           },
                         ),
 

@@ -1,15 +1,13 @@
 import 'dart:convert';
 import 'dart:io';
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:hello/bean/movie.dart';
 import 'package:hello/page/movie_detail_page.dart';
 import 'package:hello/utils/constant.dart';
-
-import 'package:hello/view/toast.dart';
 import 'package:flutter_easyrefresh/easy_refresh.dart';
 import 'package:dio/dio.dart';
+import 'package:hello/utils/toast_util.dart';
 
 
 class HomeTabTwoPage extends StatefulWidget {
@@ -65,10 +63,10 @@ class _HomeTabTwoPageState extends State<HomeTabTwoPage> {
         children: buildMovieItems(),
       ),
       onRefresh: () async {
-        Toast.toast(context, "下拉");
+        ToastUtil.showMsg("下拉");
       },
       loadMore: () async {
-        Toast.toast(context, "上拉");
+        ToastUtil.showMsg("上拉");
       },
     );
   }

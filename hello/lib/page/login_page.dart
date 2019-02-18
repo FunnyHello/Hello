@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hello/page/register_page.dart';
-import 'package:hello/view/toast.dart';
+import 'package:hello/utils/toast_util.dart';
 
 class LoginPage extends StatefulWidget {
   @override
@@ -65,7 +65,7 @@ class _LoginPageState extends State<LoginPage> {
             elevation: 6.0,
             child: new FlatButton(
                 onPressed: () {
-                  Toast.toast(context, _userNameController.text + "登陆了");
+                  ToastUtil.showMsg(_userNameController.text + "登陆了");
                 },
                 child: new Padding(
                   padding: new EdgeInsets.all(10.0),
@@ -86,7 +86,7 @@ class _LoginPageState extends State<LoginPage> {
             elevation: 6.0,
             child: new FlatButton(
                 onPressed: () {
-                  Toast.toast(context,"点击注册");
+                  ToastUtil.showMsg("点击注册");
                   Navigator.of(context)
                       .push(MaterialPageRoute(builder: (BuildContext context) {
                     return RegisterPage();

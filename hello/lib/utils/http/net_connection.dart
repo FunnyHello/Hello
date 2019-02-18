@@ -3,6 +3,7 @@ import 'package:dio/dio.dart';
 class NetConnection {
   static final String GET = "get";
   static final String POST = "post";
+  static final String SERVER = "http://10.10.10.229:8080/";
 
   Dio dio;
   static NetConnection _instance;
@@ -39,6 +40,8 @@ class NetConnection {
       Function errorCallBack,
       {FormData formData}) async {
     try {
+      //拼接服务器地址
+      url = SERVER + url;
       Response response;
       _addStartHttpInterceptor(dio); //添加请求之前的拦截器
       print("+++++++++++请求参数：" + formData.toString());
@@ -51,11 +54,12 @@ class NetConnection {
       } else if (method == POST) {
         if (formData != null && formData.isNotEmpty) {
           response = await dio.post(url, data: formData);
-        }  else {
+        } else {
           response = await dio.post(url);
         }
       }
       if (successCallBack != null) {
+        print("+++++++++++返回参数：" + response.data.toString());
         successCallBack(response.data.toString());
       } else {
         _error(errorCallBack, "");
@@ -66,6 +70,7 @@ class NetConnection {
   }
 
   _error(Function errorCallBack, String error) {
+    print("+++++++++++返回失败");
     if (errorCallBack != null) {
       errorCallBack(errorCallBack, error);
     }

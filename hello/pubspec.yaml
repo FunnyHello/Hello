@@ -38,8 +38,8 @@ dependencies:
   qr_flutter: ^1.1.5
   # 下拉刷新，上拉加载https://github.com/xuelongqy/flutter_easyrefresh
   flutter_easyrefresh: ^1.1.0
-#  # toast工具（代码里自己已经实现了效果这里就不用了）
-#  fluttertoast: ^2.2.6
+  # toast工具
+  fluttertoast: ^2.2.6
 # # 轮播图
 # flutter_swiper: ^1.0.6
 

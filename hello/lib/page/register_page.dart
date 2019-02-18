@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:hello/utils/constant.dart';
 import 'package:hello/utils/http/net_connection.dart';
 import 'package:hello/utils/text_utils.dart';
-import 'package:hello/view/toast.dart';
+import 'package:hello/utils/toast_util.dart';
 
 class RegisterPage extends StatefulWidget {
   @override
@@ -70,7 +70,7 @@ class _RegisterPageState extends State<RegisterPage> {
             elevation: 6.0,
             child: new FlatButton(
                 onPressed: () {
-                  Toast.toast(context,"注册了");
+                  ToastUtil.showMsg("注册了");
                   register();
                 },
                 child: new Padding(
@@ -88,11 +88,11 @@ class _RegisterPageState extends State<RegisterPage> {
 
   register() {
     if(TextUtils.isEmpty(_userNameController.text)){
-      Toast.toast(context,"用户名不能为空");
+      ToastUtil.showMsg("用户名不能为空");
       return;
     }
     if(TextUtils.isEmpty(_userPassController.text)){
-      Toast.toast(context,"密码不能为空");
+      ToastUtil.showMsg("密码不能为空");
       return;
     }
     String string = json.encode({"userName": _userNameController.text, "password":_userPassController.text});
@@ -102,14 +102,12 @@ class _RegisterPageState extends State<RegisterPage> {
         //UserDetail userDetail = UserDetail.fromJson(data);
         //var name = userDetail.username;
         setState(() {
-          print("+++++++++++返回成功：" + data.toString());
-          Toast.toast(context,"请求成功");
+          ToastUtil.showMsg("请求成功");
           //销毁当前页面
           Navigator.pop(context);
         });
       },
       errorCallBack: (Function errorCallBack, String error) {
-        print("+++++++++++返回失败：" + error);
       },
       formData: FormData.from({'data':string}),
     );

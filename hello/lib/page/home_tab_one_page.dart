@@ -5,10 +5,12 @@ import 'package:hello/bean/home_banner.dart';
 import 'package:hello/page/a_page.dart';
 import 'package:hello/page/box_test_page.dart';
 import 'package:hello/page/web_view_page.dart';
+import 'package:hello/utils/constant.dart';
+import 'package:hello/utils/http/net_connection.dart';
 import 'package:hello/utils/map_utils.dart';
+import 'package:hello/utils/toast_util.dart';
 import 'package:hello/view/banner/carousel_slider.dart';
 import 'package:hello/view/banner/indicator_util.dart';
-import 'package:hello/view/toast.dart';
 
 class HomeTabOnePage extends StatefulWidget {
   @override
@@ -88,9 +90,7 @@ class _HomeTabOnePageState extends State<HomeTabOnePage> {
                                   fit: BoxFit.cover,
                                 ),
                                 onTap: () {
-                                  Toast.toast(
-                                      context, "点击了图片" + index.toString());
-
+                                  ToastUtil.showMsg("点击了图片" + index.toString());
                                   Navigator.of(context).push(
                                       new MaterialPageRoute(
                                           builder: (BuildContext context) {
@@ -149,7 +149,7 @@ class _HomeTabOnePageState extends State<HomeTabOnePage> {
 //          RaisedButton 和 FlatButton 基于当前Theme和ButtonThem配置一个RawMaterialButton。
 //          Flatbutton最普通，RaisedButton还能配置ButtonTheme，是Flatbutton的一个升级版本，RawMaterialButton是他们两个的升级版本。
               onPressed: () {
-                //点击事件回调（注意这里要实现回调事件背景颜色和文本颜色才会生效）
+                //点击事件回调
                 Navigator.of(context).push(
                     new MaterialPageRoute(builder: (BuildContext context) {
                   return new BoxTestPage();
@@ -193,10 +193,10 @@ class _HomeTabOnePageState extends State<HomeTabOnePage> {
               onPressed: () {
                 if (Platform.isIOS) {
                   //ios相关代码
-                  Toast.toast(context, "这是ios设备");
+                  ToastUtil.showMsg("这是ios设备");
                 } else if (Platform.isAndroid) {
                   //android相关代码
-                  Toast.toast(context, "这是android设备");
+                  ToastUtil.showMsg("这是android设备");
                 }
               },
               //RaisedButton无法设置大小所以可以用控件把它撑大=》但是不能设置外边距
@@ -216,6 +216,19 @@ class _HomeTabOnePageState extends State<HomeTabOnePage> {
               },
               //RaisedButton无法设置大小所以可以用控件把它撑大=》但是不能设置外边距
               child: Text('测试页面跳转'),
+            ),
+          ),
+
+          Container(
+            //FlatButton(它会跟随Container的尺寸属性适应)
+            width: MediaQuery.of(context).size.width,
+            padding: const EdgeInsets.fromLTRB(20.0, 0, 20.0, 0),
+            child: RaisedButton(
+              onPressed: () {
+                turnOnTheLight();
+              },
+              //RaisedButton无法设置大小所以可以用控件把它撑大=》但是不能设置外边距
+              child: Text('开始闪烁'),
             ),
           ),
         ],
@@ -250,5 +263,15 @@ class _HomeTabOnePageState extends State<HomeTabOnePage> {
     listData.add(homeBanner);
   }
 
+  turnOnTheLight() {
+    NetConnection.getInstance().post(
+      Constant.TEST_TURN_ON_THE_LIGHT,
+      (data) {
+        setState(() {
+          ToastUtil.showMsg("请求成功");
+        });
+      },
+      errorCallBack: (Function errorCallBack, String error) {},
+    );
+  }
 }
-
