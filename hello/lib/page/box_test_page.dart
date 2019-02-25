@@ -32,9 +32,7 @@ class _BoxTestPageState extends State<BoxTestPage> {
                     child: Container(
                       color: Colors.red,
                       height: MediaQuery.of(context).size.height,
-//                        child: Center(
                       child: Text('第一个'),
-//                        ),
                     ),
                   ),
                   new PopupMenuDivider(height: 1.0),
