@@ -32,7 +32,7 @@ class _HomeTabThreePageState extends State<HomeTabThreePage> {
       },
     );
 
-    return new Scaffold(
+    return  Scaffold(
       body: qrView,
     );
   }

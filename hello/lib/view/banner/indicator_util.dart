@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
-class IndicatorUtil {
-  static Widget generateIndicatorItem({bool normal = true, double indicatorWidthSize = 8.0,double indicatorHeightSize = 8.0}) {
 
-    return new Container(
+class IndicatorUtil {
+  static Widget generateIndicatorItem(
+      {bool normal = true,
+      double indicatorWidthSize = 8.0,
+      double indicatorHeightSize = 8.0}) {
+    return Container(
       width: indicatorWidthSize,
       height: indicatorHeightSize,
-      decoration: new BoxDecoration(
+      decoration: BoxDecoration(
         //设置形状为圆形
         shape: BoxShape.circle,
         //shape: BoxShape.rectangle,

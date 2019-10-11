@@ -1,4 +1,5 @@
 import 'dart:convert';
+
 class Movie {
   final String title;
   final String average; //这里解析 double 是报错的，不应该啊？！
@@ -20,7 +21,7 @@ class Movie {
   });
 
   static List<Movie> decodeData(String jsonData) {
-    List<Movie> movies = new List<Movie>();
+    List<Movie> movies = List<Movie>();
     var data = json.decode(jsonData);
     var results = data['subjects'];
     for (int i = 0; i < results.length; i++) {
@@ -48,7 +49,7 @@ class Movie {
         c = c + '/' + casts[i]['name'];
       }
     }
-    return new Movie(
+    return Movie(
       title: map['title'],
       average: map['rating']['average'].toString(),
       collectCount: map['collect_count'],

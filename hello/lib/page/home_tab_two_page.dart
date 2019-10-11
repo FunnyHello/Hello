@@ -1,21 +1,16 @@
 import 'dart:convert';
 import 'dart:io';
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:hello/bean/movie.dart';
 import 'package:hello/page/movie_detail_page.dart';
 import 'package:hello/utils/constant.dart';
-
-import 'package:hello/view/toast.dart';
 import 'package:flutter_easyrefresh/easy_refresh.dart';
-import 'package:dio/dio.dart';
-
+import 'package:hello/utils/toast_util.dart';
 
 class HomeTabTwoPage extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
-    // TODO: implement createState
     return _HomeTabTwoPageState();
   }
 }
@@ -23,12 +18,9 @@ class HomeTabTwoPage extends StatefulWidget {
 class _HomeTabTwoPageState extends State<HomeTabTwoPage> {
   List<Movie> movies = [];
 
-  GlobalKey<EasyRefreshState> _easyRefreshKey = new GlobalKey<
-      EasyRefreshState>();
-  GlobalKey<RefreshHeaderState> _headerKey = new GlobalKey<
-      RefreshHeaderState>();
-  GlobalKey<RefreshFooterState> _footerKey = new GlobalKey<
-      RefreshFooterState>();
+  GlobalKey<EasyRefreshState> _easyRefreshKey = GlobalKey<EasyRefreshState>();
+  GlobalKey<RefreshHeaderState> _headerKey = GlobalKey<RefreshHeaderState>();
+  GlobalKey<RefreshFooterState> _footerKey = GlobalKey<RefreshFooterState>();
   bool isShowPullDown = true;
 
   @override
@@ -41,19 +33,17 @@ class _HomeTabTwoPageState extends State<HomeTabTwoPage> {
   Widget build(BuildContext context) {
     var twoContentUi;
     if (movies.isEmpty) {
-      twoContentUi = new Center(
-        child: new CircularProgressIndicator(), //Material Design风格的循环进度条
+      twoContentUi = Center(
+        child: CircularProgressIndicator(), //Material Design风格的循环进度条
       );
     } else {
       twoContentUi = initView();
     }
-
-    // TODO: implement build
     return twoContentUi;
   }
 
   Widget initView() {
-    return new EasyRefresh(
+    return EasyRefresh(
       key: _easyRefreshKey,
       refreshHeader: ClassicsHeader(
         key: _headerKey,
@@ -61,14 +51,14 @@ class _HomeTabTwoPageState extends State<HomeTabTwoPage> {
       refreshFooter: ClassicsFooter(
         key: _footerKey,
       ),
-      child: new ListView(
+      child: ListView(
         children: buildMovieItems(),
       ),
       onRefresh: () async {
-        Toast.toast(context, "下拉");
+        ToastUtil.showMsg("下拉");
       },
       loadMore: () async {
-        Toast.toast(context, "上拉");
+        ToastUtil.showMsg("上拉");
       },
     );
   }
@@ -77,35 +67,35 @@ class _HomeTabTwoPageState extends State<HomeTabTwoPage> {
     List<Widget> widgets = [];
     for (int i = 0; i < movies.length; i++) {
       Movie movie = movies[i];
-      var movieImage = new Padding(
+      var movieImage = Padding(
         padding: const EdgeInsets.only(
           top: 10.0,
           left: 10.0,
           right: 10.0,
           bottom: 10.0,
         ),
-        child: new Image.network(
+        child: Image.network(
           movie.smallImage,
           width: 100.0,
           height: 120.0,
         ),
       );
 
-      var movieMsg = new Column(
+      var movieMsg = Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisSize: MainAxisSize.min,
         children: <Widget>[
-          new Text(
+          Text(
             movie.title,
             textAlign: TextAlign.left,
-            style: new TextStyle(fontWeight: FontWeight.bold, fontSize: 14.0),
+            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 14.0),
           ),
-          new Text('导演：' + movie.director),
-          new Text('主演：' + movie.cast),
-          new Text('评分：' + movie.average),
-          new Text(
+          Text('导演：' + movie.director),
+          Text('主演：' + movie.cast),
+          Text('评分：' + movie.average),
+          Text(
             movie.collectCount.toString() + '人看过',
-            style: new TextStyle(
+            style: TextStyle(
               fontSize: 12.0,
               color: Colors.redAccent,
             ),
@@ -113,28 +103,28 @@ class _HomeTabTwoPageState extends State<HomeTabTwoPage> {
         ],
       );
 
-      var movieItem = new GestureDetector(
+      var movieItem = GestureDetector(
         //点击事件
         //onTap: () => navigateToMovieDetailPage(movie, i),
         onTap: () {
           Navigator.of(context)
-              .push(new MaterialPageRoute(builder: (BuildContext context) {
-            return new MovieDetailPage(movie, imageTag: i);
+              .push(MaterialPageRoute(builder: (BuildContext context) {
+            return MovieDetailPage(movie, imageTag: i);
           }));
         },
         child: new Column(
           children: <Widget>[
-            new Row(
+            Row(
               children: <Widget>[
                 movieImage,
                 //Expanded 均分
-                new Expanded(
+                Expanded(
                   child: movieMsg,
                 ),
                 const Icon(Icons.keyboard_arrow_right),
               ],
             ),
-            new Divider(),
+            Divider(),
           ],
         ),
       );
@@ -153,7 +143,7 @@ class _HomeTabTwoPageState extends State<HomeTabTwoPage> {
 //        movies.addAll(Movie.decodeData(response.data.toString()));
 //      });
 
-    var httpClient = new HttpClient();
+    var httpClient = HttpClient();
     var request = await httpClient.getUrl(Uri.parse(Constant.DOUBAN_MOVIE));
     var response = await request.close();
     if (response.statusCode == HttpStatus.OK) {

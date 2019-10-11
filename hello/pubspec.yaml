@@ -35,9 +35,13 @@ dependencies:
   # 扫码库（功能比较缺失）
   barcode_scan: ^0.0.8
   # 生成二维码
-  qr_flutter: ^1.1.5
+  qr_flutter: ^2.0.0
   # 下拉刷新，上拉加载https://github.com/xuelongqy/flutter_easyrefresh
   flutter_easyrefresh: ^1.1.0
+  # toast工具
+  fluttertoast: ^2.2.6
+  # # 轮播图
+  # flutter_swiper: ^1.0.6
 
 
   #国际化依赖
@@ -95,20 +99,15 @@ flutter:
   assets:
     - images/fuchsia.jpg
     - images/icon.png
-
     - images/icon_news_on.png
     - images/icon_news_off.png
-
     - images/icon_find_on.png
     - images/icon_find_off.png
-
     - images/icon_mine_on.png
     - images/icon_mine_off.png
-
     - images/icon_dynamic_on.png
     - images/icon_dynamic_off.png
-
     - images/icon_arrow_right.png
-
     - images/icon_avatar_default.png
+    - images/icon_splash.png
 

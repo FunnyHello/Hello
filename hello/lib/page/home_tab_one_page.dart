@@ -1,5 +1,4 @@
 import 'dart:io';
-import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:hello/bean/home_banner.dart';
@@ -9,10 +8,9 @@ import 'package:hello/page/web_view_page.dart';
 import 'package:hello/utils/constant.dart';
 import 'package:hello/utils/http/net_connection.dart';
 import 'package:hello/utils/map_utils.dart';
-import 'package:hello/view/toast.dart';
+import 'package:hello/utils/toast_util.dart';
 import 'package:hello/view/banner/carousel_slider.dart';
 import 'package:hello/view/banner/indicator_util.dart';
-import 'package:dio/dio.dart';
 
 class HomeTabOnePage extends StatefulWidget {
   @override
@@ -65,40 +63,36 @@ class _HomeTabOnePageState extends State<HomeTabOnePage> {
       width: double.infinity,
       height: double.infinity,
       color: Colors.cyanAccent,
-      child: new Column(
+      child: Column(
         children: <Widget>[
-          new Stack(
+          Stack(
             //偏移量（可为负数）
             alignment: const Alignment(0, 1),
             children: <Widget>[
-              new Container(
+              Container(
                   width: double.infinity,
                   height: 230,
                   color: Colors.lightBlueAccent,
-                  child: new CarouselSlider(
+                  child: CarouselSlider(
                       items: map<Widget>(listData, (index, i) {
-                        return new Builder(
+                        return Builder(
                           builder: (BuildContext context) {
                             //页面切换时调用
-                            return new Container(
+                            return Container(
                               //宽度撑满
                               width: MediaQuery.of(context).size.width,
-                              margin: new EdgeInsets.symmetric(horizontal: 5.0),
-                              decoration:
-                                  new BoxDecoration(color: Colors.amber),
-                              child: new GestureDetector(
+                              margin: EdgeInsets.symmetric(horizontal: 5.0),
+                              decoration: BoxDecoration(color: Colors.amber),
+                              child: GestureDetector(
                                 child: Image.network(
                                   listData[index].getImage(),
                                   fit: BoxFit.cover,
                                 ),
                                 onTap: () {
-                                  Toast.toast(
-                                      context, "点击了图片" + index.toString());
-
-                                  Navigator.of(context).push(
-                                      new MaterialPageRoute(
-                                          builder: (BuildContext context) {
-                                    return new WebViewPage(
+                                  ToastUtil.showMsg("点击了图片" + index.toString());
+                                  Navigator.of(context).push(MaterialPageRoute(
+                                      builder: (BuildContext context) {
+                                    return WebViewPage(
                                       listData[index].getUrl(),
                                       object: null,
                                     );
@@ -117,7 +111,7 @@ class _HomeTabOnePageState extends State<HomeTabOnePage> {
                       initialPage: currentIndex,
                       height: 230.0,
                       autoPlay: true)),
-              new Container(
+              Container(
                 height: 20.0,
                 width: MediaQuery.of(context).size.width,
                 //背景颜色
@@ -125,7 +119,7 @@ class _HomeTabOnePageState extends State<HomeTabOnePage> {
                 //显示在中间
                 alignment: Alignment.center,
 //                constraints: BoxConstraints.expand(width: 200, height: 20),
-                child: new Row(
+                child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: _renderIndicatorTag(),
                 ),
@@ -153,10 +147,10 @@ class _HomeTabOnePageState extends State<HomeTabOnePage> {
 //          RaisedButton 和 FlatButton 基于当前Theme和ButtonThem配置一个RawMaterialButton。
 //          Flatbutton最普通，RaisedButton还能配置ButtonTheme，是Flatbutton的一个升级版本，RawMaterialButton是他们两个的升级版本。
               onPressed: () {
-                //点击事件回调（注意这里要实现回调事件背景颜色和文本颜色才会生效）
-                Navigator.of(context).push(
-                    new MaterialPageRoute(builder: (BuildContext context) {
-                  return new BoxTestPage();
+                //点击事件回调
+                Navigator.of(context)
+                    .push(MaterialPageRoute(builder: (BuildContext context) {
+                  return BoxTestPage();
                 }));
               },
               //RaisedButton无法设置大小所以可以用控件把它撑大=》但是不能设置外边距
@@ -197,10 +191,10 @@ class _HomeTabOnePageState extends State<HomeTabOnePage> {
               onPressed: () {
                 if (Platform.isIOS) {
                   //ios相关代码
-                  Toast.toast(context, "这是ios设备");
+                  ToastUtil.showMsg("这是ios设备");
                 } else if (Platform.isAndroid) {
                   //android相关代码
-                  Toast.toast(context, "这是android设备");
+                  ToastUtil.showMsg("这是android设备");
                 }
               },
               //RaisedButton无法设置大小所以可以用控件把它撑大=》但是不能设置外边距
@@ -213,8 +207,8 @@ class _HomeTabOnePageState extends State<HomeTabOnePage> {
             padding: const EdgeInsets.fromLTRB(20.0, 0, 20.0, 0),
             child: RaisedButton(
               onPressed: () {
-                Navigator.of(context).push(
-                    new MaterialPageRoute(builder: (BuildContext context) {
+                Navigator.of(context)
+                    .push(MaterialPageRoute(builder: (BuildContext context) {
                   return APage();
                 }));
               },
@@ -222,16 +216,17 @@ class _HomeTabOnePageState extends State<HomeTabOnePage> {
               child: Text('测试页面跳转'),
             ),
           ),
+
           Container(
             //FlatButton(它会跟随Container的尺寸属性适应)
             width: MediaQuery.of(context).size.width,
             padding: const EdgeInsets.fromLTRB(20.0, 0, 20.0, 0),
             child: RaisedButton(
               onPressed: () {
-                getData();
+                turnOnTheLight();
               },
               //RaisedButton无法设置大小所以可以用控件把它撑大=》但是不能设置外边距
-              child: Text('测试HTTP请求'),
+              child: Text('开始闪烁'),
             ),
           ),
         ],
@@ -249,7 +244,7 @@ class _HomeTabOnePageState extends State<HomeTabOnePage> {
           ? IndicatorUtil.generateIndicatorItem(normal: false)
           : IndicatorUtil.generateIndicatorItem(normal: true));
       if (index != len - 1) {
-        indicators.add(new SizedBox(
+        indicators.add(SizedBox(
           width: 10,
         ));
       }
@@ -266,24 +261,15 @@ class _HomeTabOnePageState extends State<HomeTabOnePage> {
     listData.add(homeBanner);
   }
 
-  //测试http
-  getData() {
-    //转成json格式
-    String string = json.encode({"userName": "15660010019", "password":"AA123456"});
+  turnOnTheLight() {
     NetConnection.getInstance().post(
-      Constant.TEST_REGISTER,
-          (data) {
-        //UserDetail userDetail = UserDetail.fromJson(data);
-        //var name = userDetail.username;
+      Constant.TEST_TURN_ON_THE_LIGHT,
+      (data) {
         setState(() {
-          print("+++++++++++返回成功：" + data.toString());
+          ToastUtil.showMsg("请求成功");
         });
       },
-      errorCallBack: (Function errorCallBack, String error) {
-        print("+++++++++++返回失败：" + error);
-      },
-      formData: FormData.from({'data':string}),
+      errorCallBack: (Function errorCallBack, String error) {},
     );
   }
 }
-

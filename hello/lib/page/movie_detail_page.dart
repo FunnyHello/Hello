@@ -19,7 +19,6 @@ class MovieDetailPage extends StatefulWidget {
 
   @override
   State<StatefulWidget> createState() {
-    // TODO: implement createState
     return _MovieDetailPageState();
   }
 
@@ -35,7 +34,7 @@ class _MovieDetailPageState extends State<MovieDetailPage> {
   }
 
   getMovieDetailData() async {
-    var httpClient = new HttpClient();
+    var httpClient =  HttpClient();
     var url = Constant.MOVIE_SUBJECT + widget.movie.movieId;
     var request = await httpClient.getUrl(Uri.parse(url));
     var response = await request.close();
@@ -52,38 +51,38 @@ class _MovieDetailPageState extends State<MovieDetailPage> {
   Widget build(BuildContext context) {
     var content;
     if (movieDetail == null) {
-      content = new Center(
-        child: new CircularProgressIndicator(),
+      content =  Center(
+        child:  CircularProgressIndicator(),
       );
     } else {
       content = setData(movieDetail);
-      new Padding(
+       Padding(
         padding: const EdgeInsets.only(
           top: 10.0,
           left: 10.0,
           right: 10.0,
           bottom: 10.0,
         ),
-        child: new Scrollbar(
+        child:  Scrollbar(
           child: content,
         ),
       );
     }
 
-    return new Scaffold(
-      appBar: new AppBar(
+    return  Scaffold(
+      appBar:  AppBar(
         //注意这里的写法 widget.movie，拿到 MovieDetailPage
-        title: new Text(widget.movie.title),
+        title:  Text(widget.movie.title),
       ),
       body: content,
     );
   }
 
   setData(MovieDetail movieDetail) {
-    var movieImage = new Hero(
+    var movieImage =  Hero(
       tag: widget.imageTag,
-      child: new Center(
-        child: new Image.network(
+      child:  Center(
+        child:  Image.network(
           movieDetail.smallImage,
           width: 120.0,
           height: 140.0,
@@ -91,43 +90,43 @@ class _MovieDetailPageState extends State<MovieDetailPage> {
       ),
     );
 
-    var movieMsg = new Column(
+    var movieMsg =  Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       mainAxisSize: MainAxisSize.min,
       children: <Widget>[
-        new Text(
+         Text(
           movieDetail.title,
           textAlign: TextAlign.left,
-          style: new TextStyle(fontWeight: FontWeight.bold, fontSize: 14.0),
+          style:  TextStyle(fontWeight: FontWeight.bold, fontSize: 14.0),
         ),
-        new Text('导演：' + movieDetail.director),
-        new Text('主演：' + movieDetail.cast),
-        new Text(
+         Text('导演：' + movieDetail.director),
+         Text('主演：' + movieDetail.cast),
+         Text(
           movieDetail.collectCount.toString() + '人看过',
-          style: new TextStyle(
+          style:  TextStyle(
             fontSize: 12.0,
             color: Colors.redAccent,
           ),
         ),
-        new Text('评分：' + movieDetail.average.toString()),
-        new Text(
+         Text('评分：' + movieDetail.average.toString()),
+         Text(
           '剧情简介：' + movieDetail.summary,
-          style: new TextStyle(
+          style:  TextStyle(
             fontSize: 12.0,
             color: Colors.black,
           ),
         ),
       ],
     );
-    return new Padding(
+    return  Padding(
       padding: const EdgeInsets.only(
         top: 10.0,
         left: 10.0,
         right: 10.0,
         bottom: 10.0,
       ),
-      child: new Scrollbar(
-        child: new Column(
+      child:  Scrollbar(
+        child:  Column(
           children: <Widget>[
             movieImage,
             movieMsg,

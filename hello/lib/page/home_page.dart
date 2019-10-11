@@ -5,7 +5,7 @@ import 'package:hello/page/home_tab_one_page.dart';
 import 'package:hello/page/home_tab_three_page.dart';
 import 'package:hello/page/home_tab_two_page.dart';
 import 'package:hello/page/personal_center_page.dart';
-import 'package:hello/view/toast.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:hello/view/my_drawer.dart';
 
 /**
@@ -48,13 +48,14 @@ class _HomePageState extends State<HomePage> {
 
   //首页tab
   int _currentPageIndex = 0;
-  var _pageController = new PageController(initialPage: 0);
+  var _pageController = PageController(initialPage: 0);
 
-  final tabTextStyleNormal = new TextStyle(color: const Color(0xff969696));
-  final tabTextStyleSelected = new TextStyle(color: const Color(0xff63ca6c));
+  final tabTextStyleNormal = TextStyle(color: const Color(0xff969696));
+  final tabTextStyleSelected = TextStyle(color: const Color(0xff63ca6c));
   var appBarTitles = ['资讯', '发现', '我的'];
   var tabImages;
   var _pageList;
+
   //在这里初始化数据
   @override
   void initState() {
@@ -101,7 +102,7 @@ class _HomePageState extends State<HomePage> {
     // appbar 高度
     double _kLeadingWidth = kToolbarHeight;
 
-    return new Scaffold(
+    return Scaffold(
 //      //PreferredSize可以实现自定义appBar
 //      appBar: new MyAppBar(
 //        child: new Container(
@@ -145,15 +146,15 @@ class _HomePageState extends State<HomePage> {
 //        preferredSize: const Size.fromHeight(48.0),
 //      ),
 
-      appBar: new AppBar(
-        title: new Text('这是个首页'),
+      appBar: AppBar(
+        title: Text('这是个首页'),
         actions: <Widget>[
           //标题右边添加menu按钮
 //            new IconButton(
 //                icon: new Icon(Icons.list), onPressed: _rightOnPressed),
         ],
       ),
-      body: new PageView.builder(
+      body: PageView.builder(
 //        //禁止滑动
 //        physics: new NeverScrollableScrollPhysics(),
         //页面切换时调用
@@ -165,9 +166,8 @@ class _HomePageState extends State<HomePage> {
         },
         //设置页数
         itemCount: 3,
-
       ),
-      bottomNavigationBar: new BottomNavigationBar(
+      bottomNavigationBar: BottomNavigationBar(
         items: [
           BottomNavigationBarItem(
 //              //自己定义icon但是颜色会丢失
@@ -180,9 +180,7 @@ class _HomePageState extends State<HomePage> {
 //          title: new Text("我的"),
               icon: getTabIcon(1),
               title: getTabTitle(1)),
-          BottomNavigationBarItem(
-              icon: getTabIcon(2),
-              title: getTabTitle(2)),
+          BottomNavigationBarItem(icon: getTabIcon(2), title: getTabTitle(2)),
         ],
         currentIndex: _currentPageIndex,
         onTap: onTap,
@@ -190,7 +188,7 @@ class _HomePageState extends State<HomePage> {
 //      //右边侧滑抽屉控件
 //      endDrawer: new MyDrawer(),
       //左边侧滑抽屉控件
-      drawer: new MyDrawer(),
+      drawer: MyDrawer(),
     );
   }
 
@@ -203,7 +201,7 @@ class _HomePageState extends State<HomePage> {
   }
 
   Text getTabTitle(int curIndex) {
-    return new Text(appBarTitles[curIndex], style: getTabTextStyle(curIndex));
+    return Text(appBarTitles[curIndex], style: getTabTextStyle(curIndex));
   }
 
   TextStyle getTabTextStyle(int curIndex) {
@@ -214,7 +212,7 @@ class _HomePageState extends State<HomePage> {
   }
 
   Image getTabImage(path) {
-    return new Image.asset(path, width: 20.0, height: 20.0);
+    return Image.asset(path, width: 20.0, height: 20.0);
   }
 
   //++++++++++++++++++++++++
@@ -241,10 +239,15 @@ class _HomePageState extends State<HomePage> {
 
   void _rightOnPressed() {
     //右边按键点击事件
-    Toast.toast(context, "点击了MENU");
+    Fluttertoast.showToast(
+        msg: "点击了MENU",
+        toastLength: Toast.LENGTH_SHORT,
+        gravity: ToastGravity.BOTTOM,
+        timeInSecForIos: 1,
+        fontSize: 16.0);
     Navigator.of(context)
-        .push(new MaterialPageRoute(builder: (BuildContext context) {
-      return new PersonalCenterPage(
+        .push(MaterialPageRoute(builder: (BuildContext context) {
+      return PersonalCenterPage(
         "",
         object: null,
       );

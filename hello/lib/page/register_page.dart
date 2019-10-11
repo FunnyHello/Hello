@@ -1,18 +1,19 @@
+import 'dart:convert';
+
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
-import 'package:hello/page/home_page.dart';
-import 'package:hello/page/register_page.dart';
-import 'package:hello/utils/cache_utils.dart';
 import 'package:hello/utils/constant.dart';
+import 'package:hello/utils/http/net_connection.dart';
 import 'package:hello/utils/toast_util.dart';
 
-class LoginPage extends StatefulWidget {
+class RegisterPage extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
-    return _LoginPageState();
+    return _RegisterPageState();
   }
 }
 
-class _LoginPageState extends State<LoginPage> {
+class _RegisterPageState extends State<RegisterPage> {
   var leftRightPadding = 30.0;
   var topBottomPadding = 4.0;
   var textTips = TextStyle(fontSize: 16.0, color: Colors.black);
@@ -25,7 +26,7 @@ class _LoginPageState extends State<LoginPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("登录", style: TextStyle(color: Colors.white)),
+        title: Text("注册", style: TextStyle(color: Colors.white)),
         iconTheme: IconThemeData(color: Colors.white),
       ),
       body: initView(),
@@ -56,7 +57,7 @@ class _LoginPageState extends State<LoginPage> {
             obscureText: true,
           ),
         ),
-        Container(
+        new Container(
           width: 360.0,
           margin: EdgeInsets.fromLTRB(10.0, 40.0, 10.0, 0.0),
           padding: EdgeInsets.fromLTRB(leftRightPadding, topBottomPadding,
@@ -66,61 +67,48 @@ class _LoginPageState extends State<LoginPage> {
             elevation: 6.0,
             child: FlatButton(
                 onPressed: () {
-                  if (_userNameController.text.isEmpty &&
-                      _userNameController.text.toString().length < 5) {
-                    ToastUtil.showMsg("请输入正确的用户名");
-                    return;
-                  }
-                  if (_userPassController.text.isEmpty &&
-                      _userNameController.text.toString().length < 5) {
-                    ToastUtil.showMsg("请输入正确的用户密码");
-                    return;
-                  }
-
-                  CacheUtils.setString(Constant.LOGIN_TOKEN,
-                      _userNameController.text.toString());
-
-                  Navigator.pushAndRemoveUntil(context, MaterialPageRoute(
-                    builder: (BuildContext context) {
-                      return HomePage();
-                    },
-                  ), (route) => route == null);
+                  ToastUtil.showMsg("注册了");
+                  register();
                 },
                 child: Padding(
                   padding: EdgeInsets.all(10.0),
                   child: Text(
-                    '登录',
-                    style: TextStyle(color: Colors.white, fontSize: 16.0),
-                  ),
-                )),
-          ),
-        ),
-        Container(
-          width: 360.0,
-          margin: EdgeInsets.fromLTRB(10.0, 10.0, 10.0, 0.0),
-          padding: EdgeInsets.fromLTRB(leftRightPadding, topBottomPadding,
-              leftRightPadding, topBottomPadding),
-          child: Card(
-            color: Colors.green,
-            elevation: 6.0,
-            child: FlatButton(
-                onPressed: () {
-                  ToastUtil.showMsg("点击注册");
-                  Navigator.of(context)
-                      .push(MaterialPageRoute(builder: (BuildContext context) {
-                    return RegisterPage();
-                  }));
-                },
-                child: Padding(
-                  padding: EdgeInsets.all(10.0),
-                  child: Text(
-                    '注册',
+                    '马上注册',
                     style: TextStyle(color: Colors.white, fontSize: 16.0),
                   ),
                 )),
           ),
         )
       ],
+    );
+  }
+
+  register() {
+    if (_userNameController.text.isEmpty) {
+      ToastUtil.showMsg("用户名不能为空");
+      return;
+    }
+    if (_userPassController.text.isEmpty) {
+      ToastUtil.showMsg("密码不能为空");
+      return;
+    }
+    String string = json.encode({
+      "userName": _userNameController.text,
+      "password": _userPassController.text
+    });
+    NetConnection.getInstance().post(
+      Constant.TEST_REGISTER,
+      (data) {
+        //UserDetail userDetail = UserDetail.fromJson(data);
+        //var name = userDetail.username;
+        setState(() {
+          ToastUtil.showMsg("请求成功");
+          //销毁当前页面
+          Navigator.pop(context);
+        });
+      },
+      errorCallBack: (Function errorCallBack, String error) {},
+      formData: FormData.from({'data': string}),
     );
   }
 }
