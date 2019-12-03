@@ -11,12 +11,12 @@ class MyAppBar extends StatefulWidget implements PreferredSizeWidget {
   @override
   Size get preferredSize {
     //设置最大高度
-    return Size.fromHeight(50.0);
+    return new Size.fromHeight(50.0);
   }
 
   @override
   State createState() {
-    return MyAppBarState();
+    return new MyAppBarState();
   }
 }
 
@@ -24,7 +24,7 @@ class MyAppBarState extends State<MyAppBar> {
   @override
   Widget build(BuildContext context) {
     //return widget.child;
-    return Container(
+    return new Container(
         //背景颜色
 //        color: Colors.blue,
         //获取主题颜色

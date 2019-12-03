@@ -1,5 +1,3 @@
-import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:hello/page/login_page.dart';
 import 'package:hello/page/release_dynamics_page.dart';
@@ -20,7 +18,7 @@ class MyDrawer extends StatelessWidget {
   var userName;
 
   // 菜单后面的箭头图片
-  var rightArrowIcon = Image.asset(
+  var rightArrowIcon = new Image.asset(
     'images/ic_arrow_right.png',
     width: ARROW_ICON_WIDTH,
     height: ARROW_ICON_WIDTH,
@@ -38,22 +36,22 @@ class MyDrawer extends StatelessWidget {
   ];
 
   // 菜单文本的样式
-  TextStyle menuStyle = TextStyle(
+  TextStyle menuStyle = new TextStyle(
     fontSize: 15.0,
   );
 
   @override
   Widget build(BuildContext context) {
-    return ConstrainedBox(
+    return new ConstrainedBox(
       constraints: const BoxConstraints.expand(width: 304.0),
-      child: Material(
+      child: new Material(
         elevation: 16.0,
-        child: Container(
-          decoration: BoxDecoration(
+        child: new Container(
+          decoration: new BoxDecoration(
             color: const Color(0xFFFFFFFF),
           ),
-          child: Container(
-            child: ListView.builder(
+          child: new Container(
+            child: new ListView.builder(
               itemCount: menuTitles.length * 2 + 1,
               itemBuilder: renderRow,
             ),
@@ -64,24 +62,24 @@ class MyDrawer extends StatelessWidget {
   }
 
   Widget getIconImage(path) {
-    return Padding(
+    return new Padding(
       padding: const EdgeInsets.fromLTRB(2.0, 0.0, 6.0, 0.0),
-      child: Image.asset(path, width: 28.0, height: 28.0),
+      child: new Image.asset(path, width: 28.0, height: 28.0),
     );
   }
 
   Widget renderRow(BuildContext context, int index) {
     if (index == 0) {
       // render cover image
-      return Stack(
+      return new Stack(
         //偏移量（可为负数）
         alignment: const Alignment(0, 0),
         children: <Widget>[
           //背景
-          Container(
+          new Container(
             width: 304.0,
             height: 200.0,
-            child: Image.asset(
+            child: new Image.asset(
               './images/fuchsia.jpg',
               width: 304.0,
               height: 200.0,
@@ -89,46 +87,46 @@ class MyDrawer extends StatelessWidget {
             ),
           ),
           //头像
-          Container(
+          new Container(
             color: Colors.black45,
             width: 304.0,
             height: 200.0,
-            child: Center(
-              child: GestureDetector(
-                child: Column(
+            child: new Center(
+              child: new GestureDetector(
+                child: new Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
                     userAvatar == null
-                        ? Image.asset(
+                        ? new Image.asset(
                             "images/icon_avatar_default.png",
                             width: 60.0,
                           )
-                        : Container(
+                        : new Container(
                             width: 60.0,
                             height: 60.0,
-                            decoration: BoxDecoration(
+                            decoration: new BoxDecoration(
                               shape: BoxShape.circle,
                               color: Colors.transparent,
-                              image: DecorationImage(
-                                  image: NetworkImage(userAvatar),
+                              image: new DecorationImage(
+                                  image: new NetworkImage(userAvatar),
                                   fit: BoxFit.cover),
-                              border: Border.all(
+                              border: new Border.all(
                                 color: Colors.white,
                                 width: 2.0,
                               ),
                             ),
                           ),
-                    Text(
+                    new Text(
                       userName == null ? "点击头像登录" : userName,
-                      style: TextStyle(color: Colors.white, fontSize: 16.0),
+                      style: new TextStyle(color: Colors.white, fontSize: 16.0),
                     ),
                   ],
                 ),
                 onTap: () {
                   ToastUtil.showMsg("假装去登陆");
-                  Navigator.of(context)
-                      .push(MaterialPageRoute(builder: (BuildContext context) {
-                    return LoginPage();
+                  Navigator.of(context).push(
+                      new MaterialPageRoute(builder: (BuildContext context) {
+                    return new LoginPage();
                   }));
                 },
               ),
@@ -147,22 +145,22 @@ class MyDrawer extends StatelessWidget {
     index -= 1;
     // 如果是奇数则渲染分割线
     if (index.isOdd) {
-      return Divider();
+      return new Divider();
     }
     // 偶数，就除2取整，然后渲染菜单item
     index = index ~/ 2;
     // 菜单item组件
-    var listItemContent = Padding(
+    var listItemContent = new Padding(
       // 设置item的外边距
       padding: const EdgeInsets.fromLTRB(10.0, 15.0, 10.0, 15.0),
       // Row组件构成item的一行
-      child: Row(
+      child: new Row(
         children: <Widget>[
           // 菜单item的图标
           getIconImage(menuIcons[index]),
           // 菜单item的文本，需要
-          Expanded(
-              child: Text(
+          new Expanded(
+              child: new Text(
             menuTitles[index],
             style: menuStyle,
           )),
@@ -171,7 +169,7 @@ class MyDrawer extends StatelessWidget {
       ),
     );
 
-    return InkWell(
+    return new InkWell(
       child: listItemContent,
       onTap: () {
         switch (index) {
@@ -181,8 +179,8 @@ class MyDrawer extends StatelessWidget {
             //点击后收起侧边栏(要在跳转之前执行)
             Navigator.of(context).pop();
             Navigator.of(context)
-                .push(MaterialPageRoute(builder: (BuildContext context) {
-              return ReleaseDynamicsPage(
+                .push(new MaterialPageRoute(builder: (BuildContext context) {
+              return new ReleaseDynamicsPage(
                 "",
                 object: null,
               );
@@ -208,6 +206,7 @@ class MyDrawer extends StatelessWidget {
           case 3:
             // 设置
             ToastUtil.showMsg("点击了设置");
+
             //点击后收起侧边栏
             Navigator.of(context).pop();
 //            Navigator.of(context).push(new MaterialPageRoute(builder: (ctx) {
@@ -222,7 +221,7 @@ class MyDrawer extends StatelessWidget {
   Future scan(BuildContext context) async {
     try {
       String barcode = await BarcodeScanner.scan();
-      ToastUtil.showMsg("扫了" + barcode);
+      ToastUtil.showMsg("扫了");
       print(barcode);
     } on Exception catch (e) {
       print(e);

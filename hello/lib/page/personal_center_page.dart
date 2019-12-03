@@ -13,16 +13,19 @@ class PersonalCenterPage extends StatefulWidget {
 
   @override
   State<StatefulWidget> createState() {
+    // TODO: implement createState
     return _PersonalCenterPageState();
   }
+
 }
 
 class _PersonalCenterPageState extends State<PersonalCenterPage> {
   @override
   Widget build(BuildContext context) {
+    // TODO: implement build
     return new Scaffold(
-      appBar: AppBar(
-        title: Text('UI测试'),
+      appBar: new AppBar(
+        title: new Text('UI测试'),
       ),
       /**
        * 居中布局
@@ -48,7 +51,7 @@ class _PersonalCenterPageState extends State<PersonalCenterPage> {
        *  一个Row中装载最多3行文字；可选则在前面或尾部添加图标。
        *  ListTile
        */
-      body: Container(
+      body: new Container(
         color: Colors.cyanAccent, //背景颜色
         /**
          * children可承载多个子控件
@@ -70,7 +73,7 @@ class _PersonalCenterPageState extends State<PersonalCenterPage> {
 
   //显示一个横向ui
   Widget transverseUi() {
-    return Row(
+    return new Row(
       //横向显示控件
 //      mainAxisSize: MainAxisSize.max, //撑满
 //      mainAxisSize: MainAxisSize.min, //包裹
@@ -102,7 +105,7 @@ class _PersonalCenterPageState extends State<PersonalCenterPage> {
   }
 
   Widget portraitUi() {
-    return Column(
+    return new Column(
       //纵向显示控件
 //      mainAxisSize: MainAxisSize.max,//撑满
 //      mainAxisSize: MainAxisSize.min, //包裹
@@ -135,7 +138,7 @@ class _PersonalCenterPageState extends State<PersonalCenterPage> {
   }
 
   Widget portraitWeightUi() {
-    return Column(
+    return new Column(
       //权重ui测试
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -151,10 +154,10 @@ class _PersonalCenterPageState extends State<PersonalCenterPage> {
    * icon , 权重 , icon背景色
    */
   Widget buildImage(String image, {int flex = 1, Color color}) {
-    return Expanded(
-      child: Container(
+    return new Expanded(
+      child: new Container(
         color: color, //背景颜色
-        child: Image.asset(image),
+        child: new Image.asset(image),
       ),
       flex: flex,
     );
@@ -164,23 +167,23 @@ class _PersonalCenterPageState extends State<PersonalCenterPage> {
    *  嵌套ui测试
    */
   Widget nestingUi() {
-    var container = Container(
-      decoration: BoxDecoration(color: Colors.black26),
-      child: Column(
+    var container = new Container(
+      decoration: new BoxDecoration(color: Colors.black26),
+      child: new Column(
         children: <Widget>[
-          Row(
+          new Row(
             children: <Widget>[
               imageExpanded('images/icon.png'),
               imageExpanded('images/icon.png'),
             ],
           ),
-          Row(
+          new Row(
             children: <Widget>[
               imageExpanded('images/icon.png'),
               imageExpanded('images/icon.png'),
             ],
           ),
-          Row(
+          new Row(
             children: <Widget>[
               imageExpanded('images/icon.png'),
               imageExpanded('images/icon.png'),
@@ -195,18 +198,18 @@ class _PersonalCenterPageState extends State<PersonalCenterPage> {
 
   Expanded imageExpanded(String img) {
     //扩展行和列的组件
-    return Expanded(
-        child: Container(
+    return new Expanded(
+        child: new Container(
       //创造一个盒子装饰
-      decoration: BoxDecoration(
+      decoration: new BoxDecoration(
           //盒子边框
-          border: Border.all(width: 10.0, color: Colors.black38),
+          border: new Border.all(width: 10.0, color: Colors.black38),
           //弧角矩阵
           borderRadius: const BorderRadius.all(const Radius.circular(10.0))),
       //外边距
       margin: const EdgeInsets.all(10.0),
       //图片
-      child: Image.asset(img),
+      child: new Image.asset(img),
     ));
   }
 
@@ -230,7 +233,7 @@ class _PersonalCenterPageState extends State<PersonalCenterPage> {
 //    return countGrid;
 
     //自适应宽度
-    return GridView.extent(
+    return new GridView.extent(
       //item的最大宽度
       maxCrossAxisExtent: 150.0,
       //控件外边距
@@ -245,7 +248,7 @@ class _PersonalCenterPageState extends State<PersonalCenterPage> {
   }
 
   List<Container> _buildGridTileList(int count) {
-    return List<Container>.generate(
+    return new List<Container>.generate(
         count,
         (int index) =>
 //        new Container(child: new Image.asset('images/pic${index + 1}.jpg'),));
@@ -254,10 +257,10 @@ class _PersonalCenterPageState extends State<PersonalCenterPage> {
 //      color: Colors.blue, //背景颜色
 //      child: new Image.asset('images/icon.png'),
 //    ),));
-            Container(
+            new Container(
               //背景颜色
               color: Colors.blue,
-              child: Column(
+              child: new Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
                   Image.asset('images/icon.png'),
@@ -278,10 +281,10 @@ class _PersonalCenterPageState extends State<PersonalCenterPage> {
   }
 
   List<Container> listItem(int count) {
-    return List<Container>.generate(
+    return new List<Container>.generate(
         count,
-        (int index) => Container(
-              child: Column(
+        (int index) => new Container(
+              child: new Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
                   Image.asset('images/icon.png'),
@@ -297,33 +300,33 @@ class _PersonalCenterPageState extends State<PersonalCenterPage> {
   List<Widget> listItemCard(int count) {
     List<Widget> list = <Widget>[];
     for (int i = 0; i < count; i++) {
-      list.add(Card(
-        child: Column(
+      list.add(new Card(
+        child: new Column(
           children: <Widget>[
 //            new Image.asset(
 //              'images/fuchsia.jpg',
 //            ),
-            GestureDetector(
+            new GestureDetector(
               //触摸事件（包裹需要交互的控件）
               child: Image.asset('images/fuchsia.jpg'),
               onTap: () {
                 ToastUtil.showMsg("点击了卡片" + i.toString());
               },
             ),
-            Container(
-              child: Row(
+            new Container(
+              child: new Row(
                 children: <Widget>[
-                  Container(
-                    child: Column(
+                  new Container(
+                    child: new Column(
                       children: <Widget>[
-                        GestureDetector(
+                        new GestureDetector(
                           child: Image.asset('images/icon.png'),
                           onTap: () {
                             ToastUtil.showMsg("点击了图片" + i.toString());
                           },
                         ),
 
-                        GestureDetector(
+                        new GestureDetector(
                           child: Text("滑稽" + i.toString()),
                           onTap: () {
                             ToastUtil.showMsg("点击了滑稽" + i.toString());
@@ -350,27 +353,27 @@ class _PersonalCenterPageState extends State<PersonalCenterPage> {
    */
   Widget stackUi() {
     //堆栈布局
-    var stack = Stack(
+    var stack = new Stack(
       //偏移量（可为负数）
       alignment: const Alignment(0.6, 0.6),
       children: <Widget>[
         //圆形控件
-        CircleAvatar(
-          backgroundImage: AssetImage('images/fuchsia.jpg'),
+        new CircleAvatar(
+          backgroundImage: new AssetImage('images/fuchsia.jpg'),
           radius: 100.0,
         ),
-        Container(
-          decoration: BoxDecoration(color: Colors.black45),
-          child: Text(
+        new Container(
+          decoration: new BoxDecoration(color: Colors.black45),
+          child: new Text(
             '这是么比？',
-            style: TextStyle(color: Colors.white70),
+            style: new TextStyle(color: Colors.white70),
           ),
         ),
-        Container(
-          decoration: BoxDecoration(color: Colors.transparent),
+        new Container(
+          decoration: new BoxDecoration(color: Colors.transparent),
           padding: const EdgeInsets.fromLTRB(0.0, 0.0, 100.0, 0.0),
-          child: CircleAvatar(
-            backgroundImage: AssetImage('images/icon.png'),
+          child: new CircleAvatar(
+            backgroundImage: new AssetImage('images/icon.png'),
             backgroundColor: Colors.transparent,
             radius: 10.0,
           ),

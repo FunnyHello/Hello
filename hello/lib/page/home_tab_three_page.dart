@@ -22,17 +22,16 @@ class _HomeTabThreePageState extends State<HomeTabThreePage> {
         child: QrImage(
 //          backgroundColor: Colors.yellow,
           data: "这是个二维码",
-          size: 150,
-          onError: (ex) {
-            print("[QR] ERROR - $ex");
-          },
+          version: QrVersions.auto,
+          size: 320,
+          gapless: false,
         ),
       ),
       onTap: () {
       },
     );
 
-    return  Scaffold(
+    return new Scaffold(
       body: qrView,
     );
   }

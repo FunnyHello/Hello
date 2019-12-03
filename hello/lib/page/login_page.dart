@@ -1,13 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:hello/page/home_page.dart';
 import 'package:hello/page/register_page.dart';
-import 'package:hello/utils/cache_utils.dart';
-import 'package:hello/utils/constant.dart';
 import 'package:hello/utils/toast_util.dart';
 
 class LoginPage extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
+    // TODO: implement createState
     return _LoginPageState();
   }
 }
@@ -15,18 +13,19 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage> {
   var leftRightPadding = 30.0;
   var topBottomPadding = 4.0;
-  var textTips = TextStyle(fontSize: 16.0, color: Colors.black);
-  var hintTips = TextStyle(fontSize: 15.0, color: Colors.black26);
+  var textTips = new TextStyle(fontSize: 16.0, color: Colors.black);
+  var hintTips = new TextStyle(fontSize: 15.0, color: Colors.black26);
 
-  var _userPassController = TextEditingController();
-  var _userNameController = TextEditingController();
+  var _userPassController = new TextEditingController();
+  var _userNameController = new TextEditingController();
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text("登录", style: TextStyle(color: Colors.white)),
-        iconTheme: IconThemeData(color: Colors.white),
+    // TODO: implement build
+    return new Scaffold(
+      appBar: new AppBar(
+        title: new Text("登录", style: new TextStyle(color: Colors.white)),
+        iconTheme: new IconThemeData(color: Colors.white),
       ),
       body: initView(),
     );
@@ -37,73 +36,55 @@ class _LoginPageState extends State<LoginPage> {
       mainAxisSize: MainAxisSize.max,
       mainAxisAlignment: MainAxisAlignment.start,
       children: <Widget>[
-        Padding(
-          padding: EdgeInsets.fromLTRB(
+        new Padding(
+          padding: new EdgeInsets.fromLTRB(
               leftRightPadding, 50.0, leftRightPadding, topBottomPadding),
-          child: TextField(
+          child: new TextField(
             style: hintTips,
             controller: _userNameController,
-            decoration: InputDecoration(hintText: "请输入用户名"),
+            decoration: new InputDecoration(hintText: "请输入用户名"),
           ),
         ),
-        Padding(
-          padding: EdgeInsets.fromLTRB(
+        new Padding(
+          padding: new EdgeInsets.fromLTRB(
               leftRightPadding, 30.0, leftRightPadding, topBottomPadding),
-          child: TextField(
+          child: new TextField(
             style: hintTips,
             controller: _userPassController,
-            decoration: InputDecoration(hintText: "请输入用户密码"),
+            decoration: new InputDecoration(hintText: "请输入用户密码"),
             obscureText: true,
           ),
         ),
-        Container(
+        new Container(
           width: 360.0,
-          margin: EdgeInsets.fromLTRB(10.0, 40.0, 10.0, 0.0),
-          padding: EdgeInsets.fromLTRB(leftRightPadding, topBottomPadding,
+          margin: new EdgeInsets.fromLTRB(10.0, 40.0, 10.0, 0.0),
+          padding: new EdgeInsets.fromLTRB(leftRightPadding, topBottomPadding,
               leftRightPadding, topBottomPadding),
-          child: Card(
+          child: new Card(
             color: Colors.green,
             elevation: 6.0,
-            child: FlatButton(
+            child: new FlatButton(
                 onPressed: () {
-                  if (_userNameController.text.isEmpty &&
-                      _userNameController.text.toString().length < 5) {
-                    ToastUtil.showMsg("请输入正确的用户名");
-                    return;
-                  }
-                  if (_userPassController.text.isEmpty &&
-                      _userNameController.text.toString().length < 5) {
-                    ToastUtil.showMsg("请输入正确的用户密码");
-                    return;
-                  }
-
-                  CacheUtils.setString(Constant.LOGIN_TOKEN,
-                      _userNameController.text.toString());
-
-                  Navigator.pushAndRemoveUntil(context, MaterialPageRoute(
-                    builder: (BuildContext context) {
-                      return HomePage();
-                    },
-                  ), (route) => route == null);
+                  ToastUtil.showMsg(_userNameController.text + "登陆了");
                 },
-                child: Padding(
-                  padding: EdgeInsets.all(10.0),
-                  child: Text(
+                child: new Padding(
+                  padding: new EdgeInsets.all(10.0),
+                  child: new Text(
                     '登录',
-                    style: TextStyle(color: Colors.white, fontSize: 16.0),
+                    style: new TextStyle(color: Colors.white, fontSize: 16.0),
                   ),
                 )),
           ),
         ),
-        Container(
+        new Container(
           width: 360.0,
-          margin: EdgeInsets.fromLTRB(10.0, 10.0, 10.0, 0.0),
-          padding: EdgeInsets.fromLTRB(leftRightPadding, topBottomPadding,
+          margin: new EdgeInsets.fromLTRB(10.0, 10.0, 10.0, 0.0),
+          padding: new EdgeInsets.fromLTRB(leftRightPadding, topBottomPadding,
               leftRightPadding, topBottomPadding),
-          child: Card(
+          child: new Card(
             color: Colors.green,
             elevation: 6.0,
-            child: FlatButton(
+            child: new FlatButton(
                 onPressed: () {
                   ToastUtil.showMsg("点击注册");
                   Navigator.of(context)

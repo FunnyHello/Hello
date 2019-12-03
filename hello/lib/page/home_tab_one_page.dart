@@ -57,42 +57,43 @@ class _HomeTabOnePageState extends State<HomeTabOnePage> {
   }
 
   Widget initView() {
-    //上下拉控件
     return Container(
       //double.infinity为撑满父控件
       width: double.infinity,
       height: double.infinity,
       color: Colors.cyanAccent,
-      child: Column(
+      child: new Column(
         children: <Widget>[
-          Stack(
+          new Stack(
             //偏移量（可为负数）
             alignment: const Alignment(0, 1),
             children: <Widget>[
-              Container(
+              new Container(
                   width: double.infinity,
                   height: 230,
                   color: Colors.lightBlueAccent,
-                  child: CarouselSlider(
+                  child: new CarouselSlider(
                       items: map<Widget>(listData, (index, i) {
-                        return Builder(
+                        return new Builder(
                           builder: (BuildContext context) {
                             //页面切换时调用
-                            return Container(
+                            return new Container(
                               //宽度撑满
                               width: MediaQuery.of(context).size.width,
-                              margin: EdgeInsets.symmetric(horizontal: 5.0),
-                              decoration: BoxDecoration(color: Colors.amber),
-                              child: GestureDetector(
+                              margin: new EdgeInsets.symmetric(horizontal: 5.0),
+                              decoration:
+                                  new BoxDecoration(color: Colors.amber),
+                              child: new GestureDetector(
                                 child: Image.network(
                                   listData[index].getImage(),
                                   fit: BoxFit.cover,
                                 ),
                                 onTap: () {
                                   ToastUtil.showMsg("点击了图片" + index.toString());
-                                  Navigator.of(context).push(MaterialPageRoute(
-                                      builder: (BuildContext context) {
-                                    return WebViewPage(
+                                  Navigator.of(context).push(
+                                      new MaterialPageRoute(
+                                          builder: (BuildContext context) {
+                                    return new WebViewPage(
                                       listData[index].getUrl(),
                                       object: null,
                                     );
@@ -111,7 +112,7 @@ class _HomeTabOnePageState extends State<HomeTabOnePage> {
                       initialPage: currentIndex,
                       height: 230.0,
                       autoPlay: true)),
-              Container(
+               Container(
                 height: 20.0,
                 width: MediaQuery.of(context).size.width,
                 //背景颜色
@@ -119,7 +120,7 @@ class _HomeTabOnePageState extends State<HomeTabOnePage> {
                 //显示在中间
                 alignment: Alignment.center,
 //                constraints: BoxConstraints.expand(width: 200, height: 20),
-                child: Row(
+                child: new Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: _renderIndicatorTag(),
                 ),
@@ -148,9 +149,9 @@ class _HomeTabOnePageState extends State<HomeTabOnePage> {
 //          Flatbutton最普通，RaisedButton还能配置ButtonTheme，是Flatbutton的一个升级版本，RawMaterialButton是他们两个的升级版本。
               onPressed: () {
                 //点击事件回调
-                Navigator.of(context)
-                    .push(MaterialPageRoute(builder: (BuildContext context) {
-                  return BoxTestPage();
+                Navigator.of(context).push(
+                    new MaterialPageRoute(builder: (BuildContext context) {
+                  return new BoxTestPage();
                 }));
               },
               //RaisedButton无法设置大小所以可以用控件把它撑大=》但是不能设置外边距
@@ -184,7 +185,6 @@ class _HomeTabOnePageState extends State<HomeTabOnePage> {
             ),
           ),
           Container(
-            //FlatButton(它会跟随Container的尺寸属性适应)
             width: MediaQuery.of(context).size.width,
             padding: const EdgeInsets.fromLTRB(20.0, 0, 20.0, 0),
             child: RaisedButton(
@@ -202,13 +202,12 @@ class _HomeTabOnePageState extends State<HomeTabOnePage> {
             ),
           ),
           Container(
-            //FlatButton(它会跟随Container的尺寸属性适应)
             width: MediaQuery.of(context).size.width,
             padding: const EdgeInsets.fromLTRB(20.0, 0, 20.0, 0),
             child: RaisedButton(
               onPressed: () {
-                Navigator.of(context)
-                    .push(MaterialPageRoute(builder: (BuildContext context) {
+                Navigator.of(context).push(
+                    new MaterialPageRoute(builder: (BuildContext context) {
                   return APage();
                 }));
               },
@@ -218,7 +217,6 @@ class _HomeTabOnePageState extends State<HomeTabOnePage> {
           ),
 
           Container(
-            //FlatButton(它会跟随Container的尺寸属性适应)
             width: MediaQuery.of(context).size.width,
             padding: const EdgeInsets.fromLTRB(20.0, 0, 20.0, 0),
             child: RaisedButton(
@@ -244,7 +242,7 @@ class _HomeTabOnePageState extends State<HomeTabOnePage> {
           ? IndicatorUtil.generateIndicatorItem(normal: false)
           : IndicatorUtil.generateIndicatorItem(normal: true));
       if (index != len - 1) {
-        indicators.add(SizedBox(
+        indicators.add(new SizedBox(
           width: 10,
         ));
       }

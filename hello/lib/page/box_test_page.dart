@@ -14,8 +14,8 @@ class _BoxTestPageState extends State<BoxTestPage> {
   Widget build(BuildContext context) {
     // TODO: implement build
     return Scaffold(
-      appBar: AppBar(
-        title: Text('这是个测试弹框的页面'),
+      appBar: new AppBar(
+        title: new Text('这是个测试弹框的页面'),
         actions: <Widget>[
           GestureDetector(
             //触摸事件（包裹需要交互的控件）
@@ -27,7 +27,7 @@ class _BoxTestPageState extends State<BoxTestPage> {
                 context: context,
                 position: RelativeRect.fromLTRB(1, 80.0, 0, 0),
                 items: <PopupMenuEntry<String>>[
-                  PopupMenuItem<String>(
+                  new PopupMenuItem<String>(
                     value: '一',
                     child: Container(
                       color: Colors.red,
@@ -35,22 +35,22 @@ class _BoxTestPageState extends State<BoxTestPage> {
                       child: Text('第一个'),
                     ),
                   ),
-                  PopupMenuDivider(height: 1.0),
-                  PopupMenuItem<String>(
+                  new PopupMenuDivider(height: 1.0),
+                  new PopupMenuItem<String>(
                     value: '二',
                     child: Center(
                       child: Text('第二个'),
                     ),
                   ),
-                  PopupMenuDivider(height: 1.0),
-                  PopupMenuItem<String>(
+                  new PopupMenuDivider(height: 1.0),
+                  new PopupMenuItem<String>(
                     value: '三',
                     child: Center(
                       child: Text('第三个'),
                     ),
                   ),
-                  PopupMenuDivider(height: 1.0),
-                  PopupMenuItem<String>(
+                  new PopupMenuDivider(height: 1.0),
+                  new PopupMenuItem<String>(
                     value: '四',
                     child: Center(
                       child: Text('第四个'),
@@ -96,19 +96,19 @@ class _BoxTestPageState extends State<BoxTestPage> {
   void showAlertDialog(BuildContext context) {
     showDialog(
         context: context,
-        builder: (_) => AlertDialog(
-                title: Text("标题"),
-                content: Text("内容"),
+        builder: (_) => new AlertDialog(
+                title: new Text("标题"),
+                content: new Text("内容"),
                 actions: <Widget>[
-                  FlatButton(
-                    child: Text("左边按钮"),
+                  new FlatButton(
+                    child: new Text("左边按钮"),
                     onPressed: () {
                       Navigator.of(context).pop();
                       ToastUtil.showMsg("点击了左边按钮");
                     },
                   ),
-                  FlatButton(
-                    child: Text("右边按钮"),
+                  new FlatButton(
+                    child: new Text("右边按钮"),
                     onPressed: () {
                       Navigator.of(context).pop();
                       ToastUtil.showMsg("点击了右边按钮");
@@ -118,18 +118,18 @@ class _BoxTestPageState extends State<BoxTestPage> {
   }
 
   Widget _dividerPopMenu() {
-    return PopupMenuButton<String>(
+    return new PopupMenuButton<String>(
         child: Center(
           child: Text("点击弹出选择框"),
         ),
         itemBuilder: (BuildContext context) => <PopupMenuEntry<String>>[
-              PopupMenuItem<String>(value: '一', child: Text('第一个')),
-              PopupMenuDivider(height: 1.0),
-              PopupMenuItem<String>(value: '二', child: Text('第二个')),
-              PopupMenuDivider(height: 1.0),
-              PopupMenuItem<String>(value: '三', child: Text('第三个')),
-              PopupMenuDivider(height: 1.0),
-              PopupMenuItem<String>(value: '四', child: Text('第四个'))
+              new PopupMenuItem<String>(value: '一', child: new Text('第一个')),
+              new PopupMenuDivider(height: 1.0),
+              new PopupMenuItem<String>(value: '二', child: new Text('第二个')),
+              new PopupMenuDivider(height: 1.0),
+              new PopupMenuItem<String>(value: '三', child: new Text('第三个')),
+              new PopupMenuDivider(height: 1.0),
+              new PopupMenuItem<String>(value: '四', child: new Text('第四个'))
             ],
         onSelected: (String value) {
           ToastUtil.showMsg("点到了");
@@ -141,12 +141,12 @@ class _BoxTestPageState extends State<BoxTestPage> {
   }
 
   Widget _bottomSheetBuilder(BuildContext context) {
-    return Container(
+    return new Container(
         height: 182.0,
         color: Colors.white,
-        child: Padding(
+        child: new Padding(
           padding: const EdgeInsets.fromLTRB(0.0, 30.0, 0.0, 30.0),
-          child: Column(
+          child: new Column(
             children: <Widget>[
               GestureDetector(
                 child: Container(

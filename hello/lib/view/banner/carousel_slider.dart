@@ -55,14 +55,14 @@ class CarouselSlider extends StatefulWidget {
       this.autoPlayDuration: const Duration(milliseconds: 800),
       this.updateCallback,
       this.csOnPageChanged})
-      : pageController = PageController(
+      : pageController = new PageController(
           viewportFraction: viewportFraction,
           initialPage: realPage + initialPage,
         );
 
   @override
   _CarouselSliderState createState() {
-    return _CarouselSliderState();
+    return new _CarouselSliderState();
   }
 
   Future<Null> nextPage({Duration duration, Curve curve}) {
@@ -100,7 +100,7 @@ class _CarouselSliderState extends State<CarouselSlider>
     super.initState();
     currentPage = widget.initialPage;
     if (widget.autoPlay) {
-      timer = Timer.periodic(widget.interval, (_) {
+      timer = new Timer.periodic(widget.interval, (_) {
         widget.pageController.nextPage(
             duration: widget.autoPlayDuration, curve: widget.autoPlayCurve);
       });
@@ -109,9 +109,9 @@ class _CarouselSliderState extends State<CarouselSlider>
 
   getWrapper(Widget child) {
     if (widget.height != null) {
-      return Container(height: widget.height, child: child);
+      return new Container(height: widget.height, child: child);
     } else {
-      return AspectRatio(aspectRatio: widget.aspectRatio, child: child);
+      return new AspectRatio(aspectRatio: widget.aspectRatio, child: child);
     }
   }
 
@@ -123,11 +123,10 @@ class _CarouselSliderState extends State<CarouselSlider>
 
   @override
   Widget build(BuildContext context) {
-    return getWrapper(PageView.builder(
+    return getWrapper(new PageView.builder(
       onPageChanged: (int index) {
         if (widget.csOnPageChanged != null) {
-          widget.csOnPageChanged(
-              _getRealIndex(index, widget.realPage, widget.items.length));
+          widget.csOnPageChanged(_getRealIndex(index, widget.realPage, widget.items.length));
         }
 
         currentPage =
@@ -139,16 +138,16 @@ class _CarouselSliderState extends State<CarouselSlider>
       itemBuilder: (BuildContext context, int i) {
         final int index =
             _getRealIndex(i, widget.realPage, widget.items.length);
-        return AnimatedBuilder(
+        return new AnimatedBuilder(
             animation: widget.pageController,
             builder: (BuildContext context, child) {
               // 第一个渲染时，pageController.page为null，
               if (widget.pageController.position.minScrollExtent == null ||
                   widget.pageController.position.maxScrollExtent == null) {
-                Future.delayed(Duration(microseconds: 1), () {
+                new Future.delayed(new Duration(microseconds: 1), () {
                   setState(() {});
                 });
-                return Container();
+                return new Container();
               }
               double value = widget.pageController.page - i;
 //              //屏外不缩放
@@ -157,12 +156,13 @@ class _CarouselSliderState extends State<CarouselSlider>
               final double height = widget.height ??
                   MediaQuery.of(context).size.width * (1 / widget.aspectRatio);
 
-              return Center(
-                  child: SizedBox(
+              return new Center(
+                  child: new SizedBox(
                       height: Curves.easeOut.transform(value) * height,
                       child: child));
             },
             child: widget.items[index]);
+
       },
     ));
   }

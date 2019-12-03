@@ -1,3 +1,4 @@
+import 'package:hello/utils/text_utils.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 /**
@@ -7,7 +8,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 class CacheUtils {
   //缓存
   static setString(String key, String data) async {
-    if (data.isNotEmpty) {
+    if (!TextUtils.isEmpty(data)) {
       SharedPreferences sp = await SharedPreferences.getInstance();
       await sp.setString(key, data);
     }
@@ -20,10 +21,9 @@ class CacheUtils {
   }
 
   // 获取
-  static Future<String> getString(String key) async {
+  static Future<String> getString(String key) async{
     SharedPreferences sp = await SharedPreferences.getInstance();
-    String loginToken = sp.getString(key);
-    loginToken = loginToken == null ? "": loginToken;
+    String loginToken = await sp.getString(key);
     return loginToken;
   }
 

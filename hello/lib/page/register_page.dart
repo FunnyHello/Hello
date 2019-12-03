@@ -4,11 +4,13 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:hello/utils/constant.dart';
 import 'package:hello/utils/http/net_connection.dart';
+import 'package:hello/utils/text_utils.dart';
 import 'package:hello/utils/toast_util.dart';
 
 class RegisterPage extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
+    // TODO: implement createState
     return _RegisterPageState();
   }
 }
@@ -16,18 +18,19 @@ class RegisterPage extends StatefulWidget {
 class _RegisterPageState extends State<RegisterPage> {
   var leftRightPadding = 30.0;
   var topBottomPadding = 4.0;
-  var textTips = TextStyle(fontSize: 16.0, color: Colors.black);
-  var hintTips = TextStyle(fontSize: 15.0, color: Colors.black26);
+  var textTips = new TextStyle(fontSize: 16.0, color: Colors.black);
+  var hintTips = new TextStyle(fontSize: 15.0, color: Colors.black26);
 
-  var _userPassController = TextEditingController();
-  var _userNameController = TextEditingController();
+  var _userPassController = new TextEditingController();
+  var _userNameController = new TextEditingController();
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text("注册", style: TextStyle(color: Colors.white)),
-        iconTheme: IconThemeData(color: Colors.white),
+    // TODO: implement build
+    return new Scaffold(
+      appBar: new AppBar(
+        title: new Text("注册", style: new TextStyle(color: Colors.white)),
+        iconTheme: new IconThemeData(color: Colors.white),
       ),
       body: initView(),
     );
@@ -38,43 +41,43 @@ class _RegisterPageState extends State<RegisterPage> {
       mainAxisSize: MainAxisSize.max,
       mainAxisAlignment: MainAxisAlignment.start,
       children: <Widget>[
-        Padding(
-          padding: EdgeInsets.fromLTRB(
+        new Padding(
+          padding: new EdgeInsets.fromLTRB(
               leftRightPadding, 50.0, leftRightPadding, topBottomPadding),
-          child: TextField(
+          child: new TextField(
             style: hintTips,
             controller: _userNameController,
-            decoration: InputDecoration(hintText: "请输入用户名"),
+            decoration: new InputDecoration(hintText: "请输入用户名"),
           ),
         ),
-        Padding(
-          padding: EdgeInsets.fromLTRB(
+        new Padding(
+          padding: new EdgeInsets.fromLTRB(
               leftRightPadding, 30.0, leftRightPadding, topBottomPadding),
-          child: TextField(
+          child: new TextField(
             style: hintTips,
             controller: _userPassController,
-            decoration: InputDecoration(hintText: "请输入用户密码"),
+            decoration: new InputDecoration(hintText: "请输入用户密码"),
             obscureText: true,
           ),
         ),
         new Container(
           width: 360.0,
-          margin: EdgeInsets.fromLTRB(10.0, 40.0, 10.0, 0.0),
-          padding: EdgeInsets.fromLTRB(leftRightPadding, topBottomPadding,
+          margin: new EdgeInsets.fromLTRB(10.0, 40.0, 10.0, 0.0),
+          padding: new EdgeInsets.fromLTRB(leftRightPadding, topBottomPadding,
               leftRightPadding, topBottomPadding),
-          child: Card(
+          child: new Card(
             color: Colors.green,
             elevation: 6.0,
-            child: FlatButton(
+            child: new FlatButton(
                 onPressed: () {
                   ToastUtil.showMsg("注册了");
                   register();
                 },
-                child: Padding(
-                  padding: EdgeInsets.all(10.0),
-                  child: Text(
+                child: new Padding(
+                  padding: new EdgeInsets.all(10.0),
+                  child: new Text(
                     '马上注册',
-                    style: TextStyle(color: Colors.white, fontSize: 16.0),
+                    style: new TextStyle(color: Colors.white, fontSize: 16.0),
                   ),
                 )),
           ),
@@ -84,21 +87,18 @@ class _RegisterPageState extends State<RegisterPage> {
   }
 
   register() {
-    if (_userNameController.text.isEmpty) {
+    if(TextUtils.isEmpty(_userNameController.text)){
       ToastUtil.showMsg("用户名不能为空");
       return;
     }
-    if (_userPassController.text.isEmpty) {
+    if(TextUtils.isEmpty(_userPassController.text)){
       ToastUtil.showMsg("密码不能为空");
       return;
     }
-    String string = json.encode({
-      "userName": _userNameController.text,
-      "password": _userPassController.text
-    });
+    String string = json.encode({"userName": _userNameController.text, "password":_userPassController.text});
     NetConnection.getInstance().post(
       Constant.TEST_REGISTER,
-      (data) {
+          (data) {
         //UserDetail userDetail = UserDetail.fromJson(data);
         //var name = userDetail.username;
         setState(() {
@@ -107,8 +107,9 @@ class _RegisterPageState extends State<RegisterPage> {
           Navigator.pop(context);
         });
       },
-      errorCallBack: (Function errorCallBack, String error) {},
-      formData: FormData.from({'data': string}),
+      errorCallBack: (Function errorCallBack, String error) {
+      },
+      formData: FormData.from({'data':string}),
     );
   }
 }
