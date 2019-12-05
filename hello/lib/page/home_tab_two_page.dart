@@ -2,6 +2,8 @@ import 'dart:convert';
 import 'dart:io';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:hello/base/page/base_state.dart';
+import 'package:hello/base/page/base_stateful_widget.dart';
 import 'package:hello/bean/movie.dart';
 import 'package:hello/page/movie_detail_page.dart';
 import 'package:hello/utils/constant.dart';
@@ -10,7 +12,7 @@ import 'package:dio/dio.dart';
 import 'package:hello/utils/toast_util.dart';
 
 
-class HomeTabTwoPage extends StatefulWidget {
+class HomeTabTwoPage extends BaseStatefulWidget {
   @override
   State<StatefulWidget> createState() {
     // TODO: implement createState
@@ -18,7 +20,7 @@ class HomeTabTwoPage extends StatefulWidget {
   }
 }
 
-class _HomeTabTwoPageState extends State<HomeTabTwoPage> {
+class _HomeTabTwoPageState extends BaseState<HomeTabTwoPage> {
   List<Movie> movies = [];
 
   GlobalKey<EasyRefreshState> _easyRefreshKey = new GlobalKey<

@@ -2,13 +2,15 @@ import 'dart:async';
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:hello/base/page/base_state.dart';
+import 'package:hello/base/page/base_stateful_widget.dart';
 import 'package:hello/utils/cache_utils.dart';
 import 'package:hello/utils/constant.dart';
 import 'package:hello/utils/text_utils.dart';
 import 'package:hello/utils/toast_util.dart';
 import 'package:image_picker/image_picker.dart';
 
-class ReleaseDynamicsPage extends StatefulWidget {
+class ReleaseDynamicsPage extends BaseStatefulWidget {
   final String id;
   final Object object;
 
@@ -24,7 +26,7 @@ class ReleaseDynamicsPage extends StatefulWidget {
   }
 }
 
-class _ReleaseDynamicsPageState extends State<ReleaseDynamicsPage> {
+class _ReleaseDynamicsPageState extends BaseState<ReleaseDynamicsPage> {
   TextEditingController _controller = new TextEditingController();
   List<File> fileList = new List();
 

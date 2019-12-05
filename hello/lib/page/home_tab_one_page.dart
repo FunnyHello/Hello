@@ -1,6 +1,8 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:hello/base/page/base_state.dart';
+import 'package:hello/base/page/base_stateful_widget.dart';
 import 'package:hello/bean/home_banner.dart';
 import 'package:hello/page/a_page.dart';
 import 'package:hello/page/box_test_page.dart';
@@ -12,14 +14,16 @@ import 'package:hello/utils/toast_util.dart';
 import 'package:hello/view/banner/carousel_slider.dart';
 import 'package:hello/view/banner/indicator_util.dart';
 
-class HomeTabOnePage extends StatefulWidget {
+import 'map_view_page.dart';
+
+class HomeTabOnePage extends BaseStatefulWidget {
   @override
   State<StatefulWidget> createState() {
     return _HomeTabOnePageState();
   }
 }
 
-class _HomeTabOnePageState extends State<HomeTabOnePage> {
+class _HomeTabOnePageState extends BaseState<HomeTabOnePage> {
   //banner数据
   List<HomeBanner> listData = <HomeBanner>[];
 
@@ -145,7 +149,6 @@ class _HomeTabOnePageState extends State<HomeTabOnePage> {
 //          RaisedButton 和 FlatButton 基于当前Theme和ButtonThem配置一个RawMaterialButton。
 //          Flatbutton最普通，RaisedButton还能配置ButtonTheme，是Flatbutton的一个升级版本，RawMaterialButton是他们两个的升级版本。
               onPressed: () {
-                //点击事件回调
                 Navigator.of(context)
                     .push(MaterialPageRoute(builder: (BuildContext context) {
                   return BoxTestPage();
@@ -222,6 +225,21 @@ class _HomeTabOnePageState extends State<HomeTabOnePage> {
               },
               //RaisedButton无法设置大小所以可以用控件把它撑大=》但是不能设置外边距
               child: Text('开始闪烁'),
+            ),
+          ),
+
+          Container(
+            width: MediaQuery.of(context).size.width,
+            padding: const EdgeInsets.fromLTRB(20.0, 0, 20.0, 0),
+            child: RaisedButton(
+              onPressed: () {
+                Navigator.of(context)
+                    .push(MaterialPageRoute(builder: (BuildContext context) {
+                  return MapViewPage();
+                }));
+              },
+              //RaisedButton无法设置大小所以可以用控件把它撑大=》但是不能设置外边距
+              child: Text('演示地图'),
             ),
           ),
 

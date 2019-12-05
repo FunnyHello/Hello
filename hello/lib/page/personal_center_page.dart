@@ -1,8 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:hello/base/page/base_state.dart';
+import 'package:hello/base/page/base_stateful_widget.dart';
 import 'package:hello/utils/toast_util.dart';
 
-class PersonalCenterPage extends StatefulWidget {
+class PersonalCenterPage extends BaseStatefulWidget {
   final String id;
   final Object object;
 
@@ -18,7 +20,7 @@ class PersonalCenterPage extends StatefulWidget {
   }
 }
 
-class _PersonalCenterPageState extends State<PersonalCenterPage> {
+class _PersonalCenterPageState extends BaseState<PersonalCenterPage> {
   @override
   Widget build(BuildContext context) {
     // TODO: implement build

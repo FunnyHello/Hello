@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:hello/base/page/base_state.dart';
+import 'package:hello/base/page/base_stateful_widget.dart';
 import 'package:hello/page/home_page.dart';
 
-class BPage extends StatefulWidget {
+class BPage extends BaseStatefulWidget {
   @override
   State<StatefulWidget> createState() {
     // TODO: implement createState
@@ -9,7 +11,7 @@ class BPage extends StatefulWidget {
   }
 }
 
-class _BPageState extends State<BPage> {
+class _BPageState extends BaseState<BPage> {
   @override
   Widget build(BuildContext context) {
     // TODO: implement build

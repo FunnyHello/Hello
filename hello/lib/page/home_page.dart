@@ -1,5 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:hello/base/page/base_state.dart';
+import 'package:hello/base/page/base_stateful_widget.dart';
 import 'package:hello/bean/home_banner.dart';
 import 'package:hello/page/home_tab_one_page.dart';
 import 'package:hello/page/home_tab_three_page.dart';
@@ -8,11 +10,6 @@ import 'package:hello/page/personal_center_page.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:hello/view/my_drawer.dart';
 
-/**
- * StatelessWidget
- * 用于定义不需要可变状态控件（无状态控件）
- * 通过构建其它控件来实现ui效果
- */
 //class HomePage extends StatelessWidget {
 //  @override
 //  Widget build(BuildContext context) {
@@ -25,13 +22,7 @@ import 'package:hello/view/my_drawer.dart';
 //  }
 //}
 
-/**
- * StatefulWidget
- * 用于定义可变状态控件
- * 在生命周期内状态可改变
- * 在状态发生改变时调用State.setState方法通知框架状态改变
- */
-class HomePage extends StatefulWidget {
+class HomePage extends BaseStatefulWidget {
   @override
   State<StatefulWidget> createState() {
     // TODO: implement createState
@@ -39,7 +30,7 @@ class HomePage extends StatefulWidget {
   }
 }
 
-class _HomePageState extends State<HomePage> {
+class _HomePageState extends BaseState<HomePage> {
   //banner数据
   List<HomeBanner> listData = <HomeBanner>[];
 

@@ -1,8 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_webview_plugin/flutter_webview_plugin.dart';
+import 'package:hello/base/page/base_state.dart';
+import 'package:hello/base/page/base_stateful_widget.dart';
 
-class WebViewPage extends StatefulWidget {
+class WebViewPage extends BaseStatefulWidget {
   final String stringUrl;
   final Object object;
 
@@ -19,7 +21,7 @@ class WebViewPage extends StatefulWidget {
 
 }
 
-class _WebViewPageState extends State<WebViewPage> {
+class _WebViewPageState extends BaseState<WebViewPage> {
 
   TextEditingController controller = TextEditingController();
   FlutterWebviewPlugin flutterWebviewPlugin = FlutterWebviewPlugin();

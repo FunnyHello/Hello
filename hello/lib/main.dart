@@ -4,7 +4,6 @@ import 'package:hello/language/globalization.dart';
 import 'package:hello/page/home_page.dart';
 
 import 'base/page/base_stateless_widget.dart';
-
 void main() => runApp(MyApp());
 
 class MyApp extends BaseStatelessWidget {

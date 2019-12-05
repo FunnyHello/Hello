@@ -1,9 +1,11 @@
+import 'dart:ui';
+
 import 'package:fluttertoast/fluttertoast.dart';
 
-
-showToast(String str){
-
+showToast(String str) {
+  ToastUtil.showMsg(str);
 }
+
 class ToastUtil {
   static void showMsg(String msg) {
     Fluttertoast.showToast(

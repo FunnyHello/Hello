@@ -1,11 +1,9 @@
-import 'package:flutter/material.dart';
-import 'package:hello/utils/toast_util.dart';
-
-abstract class BaseStatelessWidget extends StatelessWidget{
-  @override
-  Widget build(BuildContext context) {
-    // TODO: implement build
-    return null;
-  }
+import 'package:flutter/cupertino.dart';
+/**
+ * StatelessWidget
+ * 用于定义不需要可变状态控件（无状态控件）
+ * 通过构建其它控件来实现ui效果
+ */
+abstract class BaseStatelessWidget extends StatelessWidget {
 
 }

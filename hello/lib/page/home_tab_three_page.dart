@@ -1,11 +1,13 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:hello/base/page/base_state.dart';
+import 'package:hello/base/page/base_stateful_widget.dart';
 import 'package:hello/utils/toast_util.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 
-class HomeTabThreePage extends StatefulWidget {
+class HomeTabThreePage extends BaseStatefulWidget {
   @override
   State<StatefulWidget> createState() {
     // TODO: implement createState
@@ -13,7 +15,7 @@ class HomeTabThreePage extends StatefulWidget {
   }
 }
 
-class _HomeTabThreePageState extends State<HomeTabThreePage> {
+class _HomeTabThreePageState extends BaseState<HomeTabThreePage> {
   String phone = "18577744694";
   String showPhone;
 

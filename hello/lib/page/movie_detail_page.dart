@@ -3,12 +3,14 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:hello/base/page/base_state.dart';
+import 'package:hello/base/page/base_stateful_widget.dart';
 import 'package:hello/bean/movie.dart';
 import 'package:hello/bean/movie_detail.dart';
 import 'package:hello/utils/constant.dart';
 import 'package:meta/meta.dart';
 
-class MovieDetailPage extends StatefulWidget {
+class MovieDetailPage extends BaseStatefulWidget {
   final Movie movie;
   final Object imageTag;
 
@@ -25,7 +27,7 @@ class MovieDetailPage extends StatefulWidget {
 
 }
 
-class _MovieDetailPageState extends State<MovieDetailPage> {
+class _MovieDetailPageState extends BaseState<MovieDetailPage> {
   MovieDetail movieDetail;
 
   @override

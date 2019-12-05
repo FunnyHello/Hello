@@ -23,7 +23,7 @@ class CacheUtils {
   // 获取
   static Future<String> getString(String key) async{
     SharedPreferences sp = await SharedPreferences.getInstance();
-    String loginToken = await sp.getString(key);
+    String loginToken = sp.getString(key);
     return loginToken;
   }
 

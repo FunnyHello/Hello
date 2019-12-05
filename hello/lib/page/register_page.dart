@@ -2,12 +2,14 @@ import 'dart:convert';
 
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:hello/base/page/base_state.dart';
+import 'package:hello/base/page/base_stateful_widget.dart';
 import 'package:hello/utils/constant.dart';
 import 'package:hello/utils/http/net_connection.dart';
 import 'package:hello/utils/text_utils.dart';
 import 'package:hello/utils/toast_util.dart';
 
-class RegisterPage extends StatefulWidget {
+class RegisterPage extends BaseStatefulWidget {
   @override
   State<StatefulWidget> createState() {
     // TODO: implement createState
@@ -15,7 +17,7 @@ class RegisterPage extends StatefulWidget {
   }
 }
 
-class _RegisterPageState extends State<RegisterPage> {
+class _RegisterPageState extends BaseState<RegisterPage> {
   var leftRightPadding = 30.0;
   var topBottomPadding = 4.0;
   var textTips = new TextStyle(fontSize: 16.0, color: Colors.black);
