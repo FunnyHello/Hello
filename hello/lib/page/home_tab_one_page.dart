@@ -15,7 +15,6 @@ import 'package:hello/view/banner/indicator_util.dart';
 class HomeTabOnePage extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
-    // TODO: implement createState
     return _HomeTabOnePageState();
   }
 }
@@ -225,6 +224,7 @@ class _HomeTabOnePageState extends State<HomeTabOnePage> {
               child: Text('开始闪烁'),
             ),
           ),
+
         ],
       ),
     );

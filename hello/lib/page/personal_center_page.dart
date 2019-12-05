@@ -72,7 +72,7 @@ class _PersonalCenterPageState extends State<PersonalCenterPage> {
 
   //显示一个横向ui
   Widget transverseUi() {
-    return new Row(
+    return Row(
       //横向显示控件
 //      mainAxisSize: MainAxisSize.max, //撑满
 //      mainAxisSize: MainAxisSize.min, //包裹

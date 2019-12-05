@@ -513,7 +513,7 @@ class _HomeTabThreePageState extends State<HomeTabThreePage> {
                   ),
                 ),
                 onTap: () {
-                  cameraToSelectPictures();
+                  toSelectPictures(ImageSource.gallery);
                   Navigator.of(context).pop();
                 },
                 behavior: HitTestBehavior.translucent,
@@ -527,7 +527,7 @@ class _HomeTabThreePageState extends State<HomeTabThreePage> {
                   ),
                 ),
                 onTap: () {
-                  galleryToSelectPictures();
+                  toSelectPictures(ImageSource.camera);
                   Navigator.of(context).pop();
                 },
                 behavior: HitTestBehavior.translucent,
@@ -537,15 +537,8 @@ class _HomeTabThreePageState extends State<HomeTabThreePage> {
         ));
   }
 
-  galleryToSelectPictures() async {
-    var image = await ImagePicker.pickImage(source: ImageSource.gallery);
-    setState(() {
-      imageFile = image;
-    });
-  }
-
-  cameraToSelectPictures() async {
-    var image = await ImagePicker.pickImage(source: ImageSource.camera);
+  toSelectPictures(ImageSource imageSource) async {
+    var image = await ImagePicker.pickImage(source: imageSource);
     setState(() {
       imageFile = image;
     });

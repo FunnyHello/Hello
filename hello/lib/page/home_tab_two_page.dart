@@ -45,8 +45,6 @@ class _HomeTabTwoPageState extends State<HomeTabTwoPage> {
     } else {
       twoContentUi = initView();
     }
-
-    // TODO: implement build
     return twoContentUi;
   }
 
@@ -89,21 +87,21 @@ class _HomeTabTwoPageState extends State<HomeTabTwoPage> {
         ),
       );
 
-      var movieMsg = new Column(
+      var movieMsg =  Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisSize: MainAxisSize.min,
         children: <Widget>[
-          new Text(
+           Text(
             movie.title,
             textAlign: TextAlign.left,
-            style: new TextStyle(fontWeight: FontWeight.bold, fontSize: 14.0),
+            style:  TextStyle(fontWeight: FontWeight.bold, fontSize: 14.0),
           ),
-          new Text('导演：' + movie.director),
-          new Text('主演：' + movie.cast),
-          new Text('评分：' + movie.average),
-          new Text(
+           Text('导演：' + movie.director),
+           Text('主演：' + movie.cast),
+           Text('评分：' + movie.average),
+           Text(
             movie.collectCount.toString() + '人看过',
-            style: new TextStyle(
+            style:  TextStyle(
               fontSize: 12.0,
               color: Colors.redAccent,
             ),
@@ -111,29 +109,29 @@ class _HomeTabTwoPageState extends State<HomeTabTwoPage> {
         ],
       );
 
-      var movieItem = new GestureDetector(
+      var movieItem =  GestureDetector(
         //点击事件
         //onTap: () => navigateToMovieDetailPage(movie, i),
         behavior: HitTestBehavior.translucent,
         onTap: () {
           Navigator.of(context)
-              .push(new MaterialPageRoute(builder: (BuildContext context) {
-            return new MovieDetailPage(movie, imageTag: i);
+              .push( MaterialPageRoute(builder: (BuildContext context) {
+            return  MovieDetailPage(movie, imageTag: i);
           }));
         },
-        child: new Column(
+        child:  Column(
           children: <Widget>[
-            new Row(
+             Row(
               children: <Widget>[
                 movieImage,
                 //Expanded 均分
-                new Expanded(
+                 Expanded(
                   child: movieMsg,
                 ),
                 const Icon(Icons.keyboard_arrow_right),
               ],
             ),
-            new Divider(),
+             Divider(),
           ],
         ),
       );

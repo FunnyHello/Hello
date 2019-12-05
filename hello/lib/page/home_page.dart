@@ -48,10 +48,10 @@ class _HomePageState extends State<HomePage> {
 
   //首页tab
   int _currentPageIndex = 0;
-  var _pageController = new PageController(initialPage: 0);
+  var _pageController = PageController(initialPage: 0);
 
-  final tabTextStyleNormal = new TextStyle(color: const Color(0xff969696));
-  final tabTextStyleSelected = new TextStyle(color: const Color(0xff63ca6c));
+  final tabTextStyleNormal = TextStyle(color: const Color(0xff969696));
+  final tabTextStyleSelected = TextStyle(color: const Color(0xff63ca6c));
   var appBarTitles = ['资讯', '发现', '我的'];
   var tabImages;
   var _pageList;
@@ -149,15 +149,26 @@ class _HomePageState extends State<HomePage> {
       appBar: AppBar(
         centerTitle: true,
         title: Text('这是个首页'),
+        //添加左边按钮
+//        leading: IconButton(icon: Icon(Icons.star)),
+        //左边栏按钮呼出侧滑菜单
+        leading: Builder(builder: (BuildContext context) {
+          return IconButton(
+            icon: const Icon(Icons.face),
+            onPressed: () {
+              Scaffold.of(context).openDrawer();
+            },
+          );
+        }),
         actions: <Widget>[
           //标题右边添加menu按钮
-//            new IconButton(
-//                icon: new Icon(Icons.list), onPressed: _rightOnPressed),
+//            IconButton(
+//                icon: Icon(Icons.list), onPressed: _rightOnPressed),
         ],
       ),
       body: PageView.builder(
 //        //禁止滑动
-//        physics: new NeverScrollableScrollPhysics(),
+//        physics: NeverScrollableScrollPhysics(),
         //页面切换时调用
         onPageChanged: _pageChange,
         //PageView的控制器
@@ -168,7 +179,7 @@ class _HomePageState extends State<HomePage> {
         //设置页数
         itemCount: 3,
       ),
-      bottomNavigationBar: new BottomNavigationBar(
+      bottomNavigationBar: BottomNavigationBar(
         items: [
           BottomNavigationBarItem(
 //              //自己定义icon但是颜色会丢失
@@ -189,7 +200,7 @@ class _HomePageState extends State<HomePage> {
 //      //右边侧滑抽屉控件
 //      endDrawer: new MyDrawer(),
       //左边侧滑抽屉控件
-      drawer: new MyDrawer(),
+      drawer: MyDrawer(),
     );
   }
 

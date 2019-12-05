@@ -42,16 +42,16 @@ class MyDrawer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return new ConstrainedBox(
+    return  ConstrainedBox(
       constraints: const BoxConstraints.expand(width: 304.0),
-      child: new Material(
+      child:  Material(
         elevation: 16.0,
-        child: new Container(
-          decoration: new BoxDecoration(
+        child:  Container(
+          decoration:  BoxDecoration(
             color: const Color(0xFFFFFFFF),
           ),
-          child: new Container(
-            child: new ListView.builder(
+          child:  Container(
+            child:  ListView.builder(
               itemCount: menuTitles.length * 2 + 1,
               itemBuilder: renderRow,
             ),
@@ -64,7 +64,7 @@ class MyDrawer extends StatelessWidget {
   Widget getIconImage(path) {
     return new Padding(
       padding: const EdgeInsets.fromLTRB(2.0, 0.0, 6.0, 0.0),
-      child: new Image.asset(path, width: 28.0, height: 28.0),
+      child: Image.asset(path, width: 28.0, height: 28.0),
     );
   }
 
