@@ -114,6 +114,7 @@ class _HomeTabTwoPageState extends State<HomeTabTwoPage> {
       var movieItem = new GestureDetector(
         //点击事件
         //onTap: () => navigateToMovieDetailPage(movie, i),
+        behavior: HitTestBehavior.translucent,
         onTap: () {
           Navigator.of(context)
               .push(new MaterialPageRoute(builder: (BuildContext context) {

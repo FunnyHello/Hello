@@ -3,9 +3,11 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:hello/language/globalization.dart';
 import 'package:hello/page/home_page.dart';
 
+import 'base/page/base_stateless_widget.dart';
+
 void main() => runApp(MyApp());
 
-class MyApp extends StatelessWidget {
+class MyApp extends BaseStatelessWidget {
   // 应用入口
   @override
   Widget build(BuildContext context) {

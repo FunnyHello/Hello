@@ -1,16 +1,16 @@
 name: hello
-description: A new Flutter application.
+description: a new flutter application.
 
-# The following defines the version and build number for your application.
-# A version number is three numbers separated by dots, like 1.2.43
+# the following defines the version and build number for your application.
+# a version number is three numbers separated by dots, like 1.2.43
 # followed by an optional build number separated by a +.
-# Both the version and the builder number may be overridden in flutter
+# both the version and the builder number may be overridden in flutter
 # build by specifying --build-name and --build-number, respectively.
-# In Android, build-name is used as versionName while build-number used as versionCode.
-# Read more about Android versioning at https://developer.android.com/studio/publish/versioning
-# In iOS, build-name is used as CFBundleShortVersionString while build-number used as CFBundleVersion.
-# Read more about iOS versioning at
-# https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/CoreFoundationKeys.html
+# in android, build-name is used as versionname while build-number used as versioncode.
+# read more about android versioning at https://developer.android.com/studio/publish/versioning
+# in ios, build-name is used as cfbundleshortversionstring while build-number used as cfbundleversion.
+# read more about ios versioning at
+# https://developer.apple.com/library/archive/documentation/general/reference/infoplistkeyreference/articles/corefoundationkeys.html
 version: 1.0.0+1
 
 environment:
@@ -20,8 +20,8 @@ dependencies:
   flutter:
     sdk: flutter
 
-  # The following adds the Cupertino Icons font to your application.
-  # Use with the CupertinoIcons class for iOS style icons.
+  # the following adds the cupertino icons font to your application.
+  # use with the cupertinoicons class for ios style icons.
   cupertino_icons: ^0.1.2
 
   # 一个第三方库
@@ -33,7 +33,7 @@ dependencies:
   transparent_image: ^0.1.0
   # webview 库
   flutter_webview_plugin: ^0.2.1+2
-  # 图片选择
+  # 图片选择（很多bug，最新版0.6.2+1与kotlin冲突）
   image_picker: ^0.4.1
   # 缓存数据工具
   shared_preferences: ^0.4.2
@@ -59,46 +59,46 @@ dev_dependencies:
     sdk: flutter
 
 
-# For information on the generic Dart part of this file, see the
+# for information on the generic dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
 
-# The following section is specific to Flutter.
+# the following section is specific to flutter.
 flutter:
 
-  # The following line ensures that the Material Icons font is
+  # the following line ensures that the material icons font is
   # included with your application, so that you can use the icons in
-  # the material Icons class.
+  # the material icons class.
   uses-material-design: true
 
-  # To add assets to your application, add an assets section, like this:
+  # to add assets to your application, add an assets section, like this:
   # assets:
   #  - images/a_dot_burr.jpeg
   #  - images/a_dot_ham.jpeg
 
-  # An image asset can refer to one or more resolution-specific "variants", see
+  # an image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
 
-  # For details regarding adding assets from package dependencies, see
+  # for details regarding adding assets from package dependencies, see
   # https://flutter.dev/assets-and-images/#from-packages
 
-  # To add custom fonts to your application, add a fonts section here,
-  # in this "flutter" section. Each entry in this list should have a
+  # to add custom fonts to your application, add a fonts section here,
+  # in this "flutter" section. each entry in this list should have a
   # "family" key with the font family name, and a "fonts" key with a
-  # list giving the asset and other descriptors for the font. For
+  # list giving the asset and other descriptors for the font. for
   # example:
   # fonts:
-  #   - family: Schyler
+  #   - family: schyler
   #     fonts:
-  #       - asset: fonts/Schyler-Regular.ttf
-  #       - asset: fonts/Schyler-Italic.ttf
+  #       - asset: fonts/schyler-regular.ttf
+  #       - asset: fonts/schyler-italic.ttf
   #         style: italic
-  #   - family: Trajan Pro
+  #   - family: trajan pro
   #     fonts:
-  #       - asset: fonts/TrajanPro.ttf
-  #       - asset: fonts/TrajanPro_Bold.ttf
+  #       - asset: fonts/trajanpro.ttf
+  #       - asset: fonts/trajanpro_bold.ttf
   #         weight: 700
   #
-  # For details regarding fonts from package dependencies,
+  # for details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
 
 

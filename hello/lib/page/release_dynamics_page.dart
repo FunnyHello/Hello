@@ -27,6 +27,8 @@ class ReleaseDynamicsPage extends StatefulWidget {
 class _ReleaseDynamicsPageState extends State<ReleaseDynamicsPage> {
   TextEditingController _controller = new TextEditingController();
   List<File> fileList = new List();
+
+  //选中后的图片
   Future<File> _imageFile;
   bool isLoading = false;
   String msg = "";
@@ -47,10 +49,10 @@ class _ReleaseDynamicsPageState extends State<ReleaseDynamicsPage> {
     // gridView用来显示选择的图片
     var gridView = new Builder(
       builder: (ctx) {
-        return new GridView.count(
+        return GridView.count(
           // 分4列显示
           crossAxisCount: 4,
-          children: new List.generate(fileList.length + 1, (index) {
+          children: List.generate(fileList.length + 1, (index) {
             // 这个方法体用于生成GridView中的一个item
             var content;
             if (index == 0) {
@@ -61,7 +63,7 @@ class _ReleaseDynamicsPageState extends State<ReleaseDynamicsPage> {
                 width: 80.0,
                 height: 80.0,
               ));
-              content = new GestureDetector(
+              content = GestureDetector(
                 onTap: () {
                   // 添加图片
                   pickImage(ctx);
@@ -123,8 +125,8 @@ class _ReleaseDynamicsPageState extends State<ReleaseDynamicsPage> {
     // 如果已添加了9张图片，则提示不允许添加更多
     num size = fileList.length;
     if (size >= 9) {
-      Scaffold.of(ctx).showSnackBar(new SnackBar(
-        content: new Text("最多只能添加9张图片！"),
+      Scaffold.of(ctx).showSnackBar(SnackBar(
+        content: Text("最多只能添加9张图片！"),
       ));
       return;
     }
@@ -132,14 +134,14 @@ class _ReleaseDynamicsPageState extends State<ReleaseDynamicsPage> {
   }
 
   Widget _bottomSheetBuilder(BuildContext context) {
-    return new Container(
+    return Container(
         height: 182.0,
         child: new Padding(
           padding: const EdgeInsets.fromLTRB(0.0, 30.0, 0.0, 30.0),
           child: new Column(
             children: <Widget>[
               _renderBottomMenuItem("相机拍照", ImageSource.camera),
-              new Divider(
+              Divider(
                 height: 2.0,
               ),
               _renderBottomMenuItem("图库选择照片", ImageSource.gallery)
@@ -149,11 +151,11 @@ class _ReleaseDynamicsPageState extends State<ReleaseDynamicsPage> {
   }
 
   _renderBottomMenuItem(title, ImageSource source) {
-    var item = new Container(
+    var item = Container(
       height: 60.0,
-      child: new Center(child: new Text(title)),
+      child: Center(child: Text(title)),
     );
-    return new InkWell(
+    return InkWell(
       child: item,
       onTap: () {
         Navigator.of(context).pop();
@@ -163,7 +165,6 @@ class _ReleaseDynamicsPageState extends State<ReleaseDynamicsPage> {
       },
     );
   }
-
 
   @override
   Widget build(BuildContext context) {
@@ -180,7 +181,6 @@ class _ReleaseDynamicsPageState extends State<ReleaseDynamicsPage> {
                     //因为缓存和读取都用了异步暂时怀疑有时效问题
                     CacheUtils.getString(Constant.LOGIN_TOKEN).then((onValue) {
                       if (!TextUtils.isEmpty(onValue)) {
-
                       } else {
                         ToastUtil.showMsg("冇登陆");
                       }
@@ -191,10 +191,12 @@ class _ReleaseDynamicsPageState extends State<ReleaseDynamicsPage> {
         ],
       ),
       // 在这里接收选择的图片
-      body: new FutureBuilder(
+      body: FutureBuilder(
         future: _imageFile,
         builder: (BuildContext context, AsyncSnapshot<File> snapshot) {
-          if (snapshot.connectionState == ConnectionState.done && snapshot.data != null && _imageFile != null) {
+          if (snapshot.connectionState == ConnectionState.done &&
+              snapshot.data != null &&
+              _imageFile != null) {
             // 选择了图片（拍照或图库选择），添加到List中
             fileList.add(snapshot.data);
             _imageFile = null;

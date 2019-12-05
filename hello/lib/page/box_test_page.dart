@@ -141,12 +141,12 @@ class _BoxTestPageState extends State<BoxTestPage> {
   }
 
   Widget _bottomSheetBuilder(BuildContext context) {
-    return new Container(
+    return Container(
         height: 182.0,
         color: Colors.white,
-        child: new Padding(
+        child: Padding(
           padding: const EdgeInsets.fromLTRB(0.0, 30.0, 0.0, 30.0),
-          child: new Column(
+          child: Column(
             children: <Widget>[
               GestureDetector(
                 child: Container(

@@ -179,8 +179,8 @@ class MyDrawer extends StatelessWidget {
             //点击后收起侧边栏(要在跳转之前执行)
             Navigator.of(context).pop();
             Navigator.of(context)
-                .push(new MaterialPageRoute(builder: (BuildContext context) {
-              return new ReleaseDynamicsPage(
+                .push(MaterialPageRoute(builder: (BuildContext context) {
+              return ReleaseDynamicsPage(
                 "",
                 object: null,
               );

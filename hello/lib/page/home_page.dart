@@ -55,6 +55,7 @@ class _HomePageState extends State<HomePage> {
   var appBarTitles = ['资讯', '发现', '我的'];
   var tabImages;
   var _pageList;
+
   //在这里初始化数据
   @override
   void initState() {
@@ -101,7 +102,7 @@ class _HomePageState extends State<HomePage> {
     // appbar 高度
     double _kLeadingWidth = kToolbarHeight;
 
-    return new Scaffold(
+    return Scaffold(
 //      //PreferredSize可以实现自定义appBar
 //      appBar: new MyAppBar(
 //        child: new Container(
@@ -145,15 +146,16 @@ class _HomePageState extends State<HomePage> {
 //        preferredSize: const Size.fromHeight(48.0),
 //      ),
 
-      appBar: new AppBar(
-        title: new Text('这是个首页'),
+      appBar: AppBar(
+        centerTitle: true,
+        title: Text('这是个首页'),
         actions: <Widget>[
           //标题右边添加menu按钮
 //            new IconButton(
 //                icon: new Icon(Icons.list), onPressed: _rightOnPressed),
         ],
       ),
-      body: new PageView.builder(
+      body: PageView.builder(
 //        //禁止滑动
 //        physics: new NeverScrollableScrollPhysics(),
         //页面切换时调用
@@ -165,7 +167,6 @@ class _HomePageState extends State<HomePage> {
         },
         //设置页数
         itemCount: 3,
-
       ),
       bottomNavigationBar: new BottomNavigationBar(
         items: [
@@ -180,9 +181,7 @@ class _HomePageState extends State<HomePage> {
 //          title: new Text("我的"),
               icon: getTabIcon(1),
               title: getTabTitle(1)),
-          BottomNavigationBarItem(
-              icon: getTabIcon(2),
-              title: getTabTitle(2)),
+          BottomNavigationBarItem(icon: getTabIcon(2), title: getTabTitle(2)),
         ],
         currentIndex: _currentPageIndex,
         onTap: onTap,

@@ -68,32 +68,30 @@ class _HomeTabOnePageState extends State<HomeTabOnePage> {
             //偏移量（可为负数）
             alignment: const Alignment(0, 1),
             children: <Widget>[
-              new Container(
+              Container(
                   width: double.infinity,
                   height: 230,
                   color: Colors.lightBlueAccent,
-                  child: new CarouselSlider(
+                  child: CarouselSlider(
                       items: map<Widget>(listData, (index, i) {
-                        return new Builder(
+                        return Builder(
                           builder: (BuildContext context) {
                             //页面切换时调用
-                            return new Container(
+                            return Container(
                               //宽度撑满
                               width: MediaQuery.of(context).size.width,
-                              margin: new EdgeInsets.symmetric(horizontal: 5.0),
-                              decoration:
-                                  new BoxDecoration(color: Colors.amber),
-                              child: new GestureDetector(
+                              margin: EdgeInsets.symmetric(horizontal: 5.0),
+                              decoration: BoxDecoration(color: Colors.amber),
+                              child: GestureDetector(
                                 child: Image.network(
                                   listData[index].getImage(),
                                   fit: BoxFit.cover,
                                 ),
                                 onTap: () {
                                   ToastUtil.showMsg("点击了图片" + index.toString());
-                                  Navigator.of(context).push(
-                                      new MaterialPageRoute(
-                                          builder: (BuildContext context) {
-                                    return new WebViewPage(
+                                  Navigator.of(context).push(MaterialPageRoute(
+                                      builder: (BuildContext context) {
+                                    return WebViewPage(
                                       listData[index].getUrl(),
                                       object: null,
                                     );
@@ -112,7 +110,7 @@ class _HomeTabOnePageState extends State<HomeTabOnePage> {
                       initialPage: currentIndex,
                       height: 230.0,
                       autoPlay: true)),
-               Container(
+              Container(
                 height: 20.0,
                 width: MediaQuery.of(context).size.width,
                 //背景颜色
@@ -149,9 +147,9 @@ class _HomeTabOnePageState extends State<HomeTabOnePage> {
 //          Flatbutton最普通，RaisedButton还能配置ButtonTheme，是Flatbutton的一个升级版本，RawMaterialButton是他们两个的升级版本。
               onPressed: () {
                 //点击事件回调
-                Navigator.of(context).push(
-                    new MaterialPageRoute(builder: (BuildContext context) {
-                  return new BoxTestPage();
+                Navigator.of(context)
+                    .push(MaterialPageRoute(builder: (BuildContext context) {
+                  return BoxTestPage();
                 }));
               },
               //RaisedButton无法设置大小所以可以用控件把它撑大=》但是不能设置外边距
@@ -206,8 +204,8 @@ class _HomeTabOnePageState extends State<HomeTabOnePage> {
             padding: const EdgeInsets.fromLTRB(20.0, 0, 20.0, 0),
             child: RaisedButton(
               onPressed: () {
-                Navigator.of(context).push(
-                    new MaterialPageRoute(builder: (BuildContext context) {
+                Navigator.of(context)
+                    .push(MaterialPageRoute(builder: (BuildContext context) {
                   return APage();
                 }));
               },
@@ -242,7 +240,7 @@ class _HomeTabOnePageState extends State<HomeTabOnePage> {
           ? IndicatorUtil.generateIndicatorItem(normal: false)
           : IndicatorUtil.generateIndicatorItem(normal: true));
       if (index != len - 1) {
-        indicators.add(new SizedBox(
+        indicators.add(SizedBox(
           width: 10,
         ));
       }
