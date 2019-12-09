@@ -7,4 +7,5 @@ import 'package:flutter/material.dart';
  * 在状态发生改变时调用State.setState方法通知框架状态改变
  */
 abstract class BaseStatefulWidget extends StatefulWidget{
+  const BaseStatefulWidget({ Key key }) : super(key: key);
 }

@@ -23,49 +23,54 @@ class _APageState extends BaseState<APage> {
       body: Column(
         children: <Widget>[
           Container(
-            //FlatButton(它会跟随Container的尺寸属性适应)
             width: MediaQuery.of(context).size.width,
             padding: const EdgeInsets.fromLTRB(20.0, 0, 20.0, 0),
             child: RaisedButton(
               onPressed: () {
-                Navigator.of(context).push(
-                    new MaterialPageRoute(builder: (BuildContext context) {
+//                Navigator.push(context,
+//                    MaterialPageRoute(builder: (BuildContext context) {
+//                  return BPage();
+//                }));
+
+                Navigator.of(context)
+                    .push(MaterialPageRoute(builder: (BuildContext context) {
                   return BPage();
                 }));
               },
-              //RaisedButton无法设置大小所以可以用控件把它撑大=》但是不能设置外边距
               child: Text('跳转B页面'),
             ),
           ),
           Container(
-            //FlatButton(它会跟随Container的尺寸属性适应)
+            width: MediaQuery.of(context).size.width,
+            padding: const EdgeInsets.fromLTRB(20.0, 0, 20.0, 0),
+            child: RaisedButton(
+              onPressed: () {
+                //跳转B并销毁前面所有页面
+                Navigator.pushAndRemoveUntil(context,
+                    MaterialPageRoute(builder: (BuildContext context) {
+                      return BPage();
+                    }), (route) => route == null);
+              },
+              child: Text('跳转B并销毁前面所有页面'),
+            ),
+          ),
+          Container(
             width: MediaQuery.of(context).size.width,
             padding: const EdgeInsets.fromLTRB(20.0, 0, 20.0, 0),
             child: RaisedButton(
               onPressed: () {
                 //跳转并销毁当前页
-                Navigator.pushAndRemoveUntil(context, MaterialPageRoute(
-                  builder: (BuildContext context) {
-                    return BPage();
-                  },
-                ), (route) => route == null);
+                Navigator.pushReplacement(context,
+                    MaterialPageRoute(builder: (BuildContext context) {
+                      return BPage();
+                    }), result: '{result: pushReplacement}');
+
+
               },
-              //RaisedButton无法设置大小所以可以用控件把它撑大=》但是不能设置外边距
               child: Text('跳转B并销毁当前页面'),
             ),
           ),
-          Container(
-            //FlatButton(它会跟随Container的尺寸属性适应)
-            width: MediaQuery.of(context).size.width,
-            padding: const EdgeInsets.fromLTRB(20.0, 0, 20.0, 0),
-            child: RaisedButton(
-              onPressed: () {
-                //测试国际化
-                showToast(getLanguage().hello_world);
-              },
-              child: Text('测试'),
-            ),
-          ),
+
         ],
       ),
     );

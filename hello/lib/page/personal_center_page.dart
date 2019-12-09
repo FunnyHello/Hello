@@ -203,7 +203,7 @@ class _PersonalCenterPageState extends BaseState<PersonalCenterPage> {
         child: Container(
       //创造一个盒子装饰
       decoration: BoxDecoration(
-          //盒子边框
+          //盒子边框(不能与背景颜色color同时使用)
           border: Border.all(width: 10.0, color: Colors.black38),
           //弧角矩阵
           borderRadius: const BorderRadius.all(const Radius.circular(10.0))),

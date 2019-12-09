@@ -27,6 +27,15 @@ class _RegisterPageState extends BaseState<RegisterPage> {
   var _userNameController = new TextEditingController();
 
   @override
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
+    //销毁文本控制器
+    _userPassController.dispose();
+    _userNameController.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     // TODO: implement build
     return new Scaffold(

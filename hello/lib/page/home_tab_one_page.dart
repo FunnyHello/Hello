@@ -6,6 +6,7 @@ import 'package:hello/base/page/base_stateful_widget.dart';
 import 'package:hello/bean/home_banner.dart';
 import 'package:hello/page/a_page.dart';
 import 'package:hello/page/box_test_page.dart';
+import 'package:hello/page/video_player_page.dart';
 import 'package:hello/page/web_view_page.dart';
 import 'package:hello/utils/constant.dart';
 import 'package:hello/utils/http/net_connection.dart';
@@ -23,7 +24,8 @@ class HomeTabOnePage extends BaseStatefulWidget {
   }
 }
 
-class _HomeTabOnePageState extends BaseState<HomeTabOnePage> {
+
+class _HomeTabOnePageState extends BaseState<HomeTabOnePage>{
   //banner数据
   List<HomeBanner> listData = <HomeBanner>[];
 
@@ -242,7 +244,20 @@ class _HomeTabOnePageState extends BaseState<HomeTabOnePage> {
               child: Text('演示地图'),
             ),
           ),
-
+          Container(
+            width: MediaQuery.of(context).size.width,
+            padding: const EdgeInsets.fromLTRB(20.0, 0, 20.0, 0),
+            child: RaisedButton(
+              onPressed: () {
+                Navigator.of(context)
+                    .push(MaterialPageRoute(builder: (BuildContext context) {
+                  return VideoPlayerPage();
+                }));
+              },
+              //RaisedButton无法设置大小所以可以用控件把它撑大=》但是不能设置外边距
+              child: Text('视频演示'),
+            ),
+          ),
         ],
       ),
     );
@@ -286,4 +301,8 @@ class _HomeTabOnePageState extends BaseState<HomeTabOnePage> {
       errorCallBack: (Function errorCallBack, String error) {},
     );
   }
+
+  @override
+  // TODO: implement wantKeepAlive
+  bool get wantKeepAlive => true;
 }

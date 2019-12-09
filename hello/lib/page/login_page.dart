@@ -1,4 +1,6 @@
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:hello/base/page/base_state.dart';
 import 'package:hello/base/page/base_stateful_widget.dart';
 import 'package:hello/page/register_page.dart';
@@ -20,6 +22,23 @@ class _LoginPageState extends BaseState<LoginPage> {
 
   var _userPassController = new TextEditingController();
   var _userNameController = new TextEditingController();
+
+  @override
+  void initState(){
+    super.initState();
+    //监听文本控制器
+    _userPassController.addListener((){
+    });
+  }
+
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
+    //销毁文本控制器
+    _userPassController.dispose();
+    _userNameController.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -53,7 +72,24 @@ class _LoginPageState extends BaseState<LoginPage> {
           child: new TextField(
             style: hintTips,
             controller: _userPassController,
-            decoration: new InputDecoration(hintText: "请输入用户密码"),
+            decoration: new InputDecoration(
+              hintText: "请输入用户密码",
+              //去掉下划线
+//              border: InputBorder.none,
+            ),
+//            keyboardType: TextInputType.number,//键盘类型，数字键盘
+//            inputFormatters: <TextInputFormatter>[
+//              WhitelistingTextInputFormatter.digitsOnly, //只输入数字
+//              LengthLimitingTextInputFormatter(11) //限制长度
+//            ],
+          //限制输入数字，字母，汉字
+//            inputFormatters: <TextInputFormatter>[
+//              WhitelistingTextInputFormatter(RegExp(
+//                  "[a-zA-Z]|[\u4e00-\u9fa5]|[0-9]")),
+//              LengthLimitingTextInputFormatter(3)
+//            ],
+          //文本居中
+//            textAlign: TextAlign.center,
             obscureText: true,
           ),
         ),
@@ -102,7 +138,46 @@ class _LoginPageState extends BaseState<LoginPage> {
                   ),
                 )),
           ),
-        )
+        ),
+        Container(
+          height: 40,
+        ),
+        Text.rich(TextSpan(children: [
+          TextSpan(
+            style: TextStyle(
+              fontSize: 14.0,
+              color: const Color(0xFF101010),
+            ),
+            text: '登录即表明您同意我们的 ',
+          ),
+          TextSpan(
+              text: '服务条款',
+              style: TextStyle(
+                fontSize: 14.0,
+                color: Colors.green,
+              ),
+              recognizer: TapGestureRecognizer()
+                ..onTap = () {
+                  showToast("服务条款");
+                }),
+          TextSpan(
+            text: ' 和 ',
+            style: TextStyle(
+              fontSize: 14.0,
+              color: const Color(0xFF101010),
+            ),
+          ),
+          TextSpan(
+              text: '隐私策略',
+              style: TextStyle(
+                fontSize: 14.0,
+                color: Colors.green,
+              ),
+              recognizer: TapGestureRecognizer()
+                ..onTap = () {
+                  showToast("隐私策略");
+                })
+        ])),
       ],
     );
   }

@@ -19,8 +19,13 @@ class HomeTabTwoPage extends BaseStatefulWidget {
     return _HomeTabTwoPageState();
   }
 }
-
-class _HomeTabTwoPageState extends BaseState<HomeTabTwoPage> {
+/**
+ *  设置with AutomaticKeepAliveClientMixin
+ *  bool get wantKeepAlive => true;
+ *  最后在build中加入super.build(context);
+ *  防止tab切换时initState反复执行
+ */
+class _HomeTabTwoPageState extends BaseState<HomeTabTwoPage>{
   List<Movie> movies = [];
 
   GlobalKey<EasyRefreshState> _easyRefreshKey = new GlobalKey<
@@ -163,4 +168,6 @@ class _HomeTabTwoPageState extends BaseState<HomeTabTwoPage> {
       });
     }
   }
+
+
 }

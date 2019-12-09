@@ -28,6 +28,15 @@ class _WebViewPageState extends BaseState<WebViewPage> {
 
   var urlString;
 
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
+    //销毁文本控制器
+    controller.dispose();
+  }
+
+
   launchUrl() {
     setState(() {
       urlString = controller.text;

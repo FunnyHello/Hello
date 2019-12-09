@@ -35,6 +35,14 @@ class _ReleaseDynamicsPageState extends BaseState<ReleaseDynamicsPage> {
   bool isLoading = false;
   String msg = "";
 
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
+    //销毁文本控制器
+    _controller.dispose();
+  }
+
   Widget getBody() {
     // 输入框
     var textField = new TextField(

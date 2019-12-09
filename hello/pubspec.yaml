@@ -48,8 +48,10 @@ dependencies:
   fluttertoast: ^2.2.6
   # # 轮播图
   # flutter_swiper: ^1.0.6
-  # 地图https://pub.dev/packages/flutter_map#-readme-tab-
-  flutter_map: ^0.7.3
+  # 地图
+#  google_maps_flutter: ^0.5.21+13
+  # 视频播放插件
+  video_player: ^0.10.4+1
 
 
   #国际化依赖
