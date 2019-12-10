@@ -1,9 +1,8 @@
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:hello/base/page/base_state.dart';
-import 'package:hello/base/page/base_stateful_widget.dart';
-import 'package:hello/utils/toast_util.dart';
+import 'package:hello/view/toast.dart';
 
-class BoxTestPage extends BaseStatefulWidget {
+class BoxTestPage extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
     // TODO: implement createState
@@ -11,7 +10,7 @@ class BoxTestPage extends BaseStatefulWidget {
   }
 }
 
-class _BoxTestPageState extends BaseState<BoxTestPage> {
+class _BoxTestPageState extends State<BoxTestPage> {
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
@@ -71,22 +70,26 @@ class _BoxTestPageState extends BaseState<BoxTestPage> {
       body: Column(
         children: <Widget>[
           Container(
+            //FlatButton(它会跟随Container的尺寸属性适应)
             width: MediaQuery.of(context).size.width,
             padding: const EdgeInsets.fromLTRB(20.0, 0, 20.0, 0),
             child: RaisedButton(
               onPressed: () {
                 showAlertDialog(context);
               },
+              //RaisedButton无法设置大小所以可以用控件把它撑大=》但是不能设置外边距
               child: Text('测试原生弹框'),
             ),
           ),
           Container(
+            //FlatButton(它会跟随Container的尺寸属性适应)
             width: MediaQuery.of(context).size.width,
             padding: const EdgeInsets.fromLTRB(20.0, 0, 20.0, 0),
             child: RaisedButton(
               onPressed: () {
                 showBottomFrame();
               },
+              //RaisedButton无法设置大小所以可以用控件把它撑大=》但是不能设置外边距
               child: Text('测试底部弹框'),
             ),
           ),
@@ -106,14 +109,14 @@ class _BoxTestPageState extends BaseState<BoxTestPage> {
                     child: new Text("左边按钮"),
                     onPressed: () {
                       Navigator.of(context).pop();
-                      ToastUtil.showMsg("点击了左边按钮");
+                      Toast.toast(context, "点击了左边按钮");
                     },
                   ),
                   new FlatButton(
                     child: new Text("右边按钮"),
                     onPressed: () {
                       Navigator.of(context).pop();
-                      ToastUtil.showMsg("点击了右边按钮");
+                      Toast.toast(context, "点击了右边按钮");
                     },
                   )
                 ]));
@@ -134,7 +137,7 @@ class _BoxTestPageState extends BaseState<BoxTestPage> {
               new PopupMenuItem<String>(value: '四', child: new Text('第四个'))
             ],
         onSelected: (String value) {
-          ToastUtil.showMsg("点到了");
+          Toast.toast(context, "点到了" + value);
         });
   }
 
@@ -143,30 +146,31 @@ class _BoxTestPageState extends BaseState<BoxTestPage> {
   }
 
   Widget _bottomSheetBuilder(BuildContext context) {
-    return Container(
+    return new Container(
         height: 182.0,
         color: Colors.white,
-        child: Padding(
+        child: new Padding(
           padding: const EdgeInsets.fromLTRB(0.0, 30.0, 0.0, 30.0),
-          child: Column(
+          child: new Column(
             children: <Widget>[
               GestureDetector(
-                child: Container(
-                  width: MediaQuery.of(context).size.width,
-                  height: 50,
-                  color: Colors.lightBlueAccent,
-                  child: Center(
-                    child: Text("这里可以点"),
+                  //触摸事件（包裹需要交互的控件）
+                  child: Container(
+                    width: MediaQuery.of(context).size.width,
+                    height: 50,
+                    color: Colors.lightBlueAccent,
+                    child: Center(
+                      child: Text("这里可以点"),
+                    ),
                   ),
-                ),
-                onTap: () {
-                  ToastUtil.showMsg("点到了");
-                  Navigator.of(context).pop();
-                },
-                behavior: HitTestBehavior.translucent,
-              ),
+                  onTap: () {
+                    Toast.toast(context, "点到了");
+                    Navigator.of(context).pop();
+                  },
+                  behavior: HitTestBehavior.translucent,),
             ],
           ),
         ));
   }
 }
+
