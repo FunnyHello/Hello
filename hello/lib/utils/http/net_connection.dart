@@ -1,9 +1,10 @@
 import 'package:dio/dio.dart';
 
+import '../constant.dart';
+
 class NetConnection {
   static final String GET = "get";
   static final String POST = "post";
-  static final String SERVER = "http://10.10.10.229:8080/";
 
   Dio dio;
   static NetConnection _instance;
@@ -41,7 +42,7 @@ class NetConnection {
       {FormData formData}) async {
     try {
       //拼接服务器地址
-      url = SERVER + url;
+//      url = SERVER + url;
       Response response;
       _addStartHttpInterceptor(dio); //添加请求之前的拦截器
       print("+++++++++++请求参数：" + formData.toString());

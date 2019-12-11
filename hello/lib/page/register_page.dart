@@ -108,7 +108,7 @@ class _RegisterPageState extends BaseState<RegisterPage> {
     }
     String string = json.encode({"userName": _userNameController.text, "password":_userPassController.text});
     NetConnection.getInstance().post(
-      Constant.TEST_REGISTER,
+      TEST_REGISTER,
           (data) {
         //UserDetail userDetail = UserDetail.fromJson(data);
         //var name = userDetail.username;

@@ -46,12 +46,16 @@ dependencies:
   flutter_easyrefresh: ^1.1.0
   # toast工具
   fluttertoast: ^2.2.6
-  # # 轮播图
+  # 轮播图
   # flutter_swiper: ^1.0.6
   # 地图
-#  google_maps_flutter: ^0.5.21+13
+  #  google_maps_flutter: ^0.5.21+13
   # 视频播放插件
   video_player: ^0.10.4+1
+  # 获取硬件信息
+  device_info: 0.4.0
+  # 汉字转拼音
+  lpinyin: ^1.0.7
 
 
   #国际化依赖
@@ -109,21 +113,24 @@ flutter:
 
 
   assets:
-    - images/fuchsia.jpg
-    - images/icon.png
+    - assets/images/fuchsia.jpg
+    - assets/images/icon.png
 
-    - images/icon_news_on.png
-    - images/icon_news_off.png
+    - assets/images/icon_news_on.png
+    - assets/images/icon_news_off.png
 
-    - images/icon_find_on.png
-    - images/icon_find_off.png
+    - assets/images/icon_find_on.png
+    - assets/images/icon_find_off.png
 
-    - images/icon_mine_on.png
-    - images/icon_mine_off.png
+    - assets/images/icon_mine_on.png
+    - assets/images/icon_mine_off.png
 
-    - images/icon_dynamic_on.png
-    - images/icon_dynamic_off.png
+    - assets/images/icon_dynamic_on.png
+    - assets/images/icon_dynamic_off.png
 
-    - images/icon_arrow_right.png
+    - assets/images/icon_arrow_right.png
 
-    - images/icon_avatar_default.png
+    - assets/images/icon_avatar_default.png
+
+
+    - assets/data/country.json

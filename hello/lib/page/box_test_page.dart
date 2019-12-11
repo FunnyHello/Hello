@@ -1,6 +1,6 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:hello/view/toast.dart';
+import 'package:hello/utils/toast_util.dart';
 
 class BoxTestPage extends StatefulWidget {
   @override
@@ -109,14 +109,14 @@ class _BoxTestPageState extends State<BoxTestPage> {
                     child: new Text("左边按钮"),
                     onPressed: () {
                       Navigator.of(context).pop();
-                      Toast.toast(context, "点击了左边按钮");
+                      showToast("点击了左边按钮");
                     },
                   ),
                   new FlatButton(
                     child: new Text("右边按钮"),
                     onPressed: () {
                       Navigator.of(context).pop();
-                      Toast.toast(context, "点击了右边按钮");
+                      showToast("点击了右边按钮");
                     },
                   )
                 ]));
@@ -137,7 +137,7 @@ class _BoxTestPageState extends State<BoxTestPage> {
               new PopupMenuItem<String>(value: '四', child: new Text('第四个'))
             ],
         onSelected: (String value) {
-          Toast.toast(context, "点到了" + value);
+          showToast("点到了");
         });
   }
 
@@ -164,7 +164,7 @@ class _BoxTestPageState extends State<BoxTestPage> {
                     ),
                   ),
                   onTap: () {
-                    Toast.toast(context, "点到了");
+                    showToast("点到了");
                     Navigator.of(context).pop();
                   },
                   behavior: HitTestBehavior.translucent,),

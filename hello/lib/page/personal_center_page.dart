@@ -98,9 +98,9 @@ class _PersonalCenterPageState extends BaseState<PersonalCenterPage> {
 //    crossAxisAlignment: CrossAxisAlignment.baseline, //子控件的baseline在交叉轴方向对齐
 
       children: <Widget>[
-        Image.asset('images/icon.png'),
-        Image.asset('images/icon.png'),
-        Image.asset('images/icon.png'),
+        Image.asset('assets/images/icon.png'),
+        Image.asset('assets/images/icon.png'),
+        Image.asset('assets/images/icon.png'),
       ],
     );
   }
@@ -131,9 +131,9 @@ class _PersonalCenterPageState extends BaseState<PersonalCenterPage> {
 //    crossAxisAlignment: CrossAxisAlignment.stretch, //子控件完全填充交叉轴方向的空间。
 //    crossAxisAlignment: CrossAxisAlignment.baseline, //子控件的baseline在交叉轴方向对齐
       children: <Widget>[
-        Image.asset('images/icon.png'),
-        Image.asset('images/fuchsia.jpg'),
-        Image.asset('images/icon.png'),
+        Image.asset('assets/images/icon.png'),
+        Image.asset('assets/images/fuchsia.jpg'),
+        Image.asset('assets/images/icon.png'),
       ],
     );
   }
@@ -143,9 +143,9 @@ class _PersonalCenterPageState extends BaseState<PersonalCenterPage> {
       //权重ui测试
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        buildImage("images/icon.png", color: Colors.blue),
-        buildImage("images/icon.png", flex: 2, color: Colors.pinkAccent),
-        buildImage("images/icon.png", flex: 3, color: Colors.cyanAccent),
+        buildImage("assets/images/icon.png", color: Colors.blue),
+        buildImage("assets/images/icon.png", flex: 2, color: Colors.pinkAccent),
+        buildImage("assets/images/icon.png", flex: 3, color: Colors.cyanAccent),
       ],
     );
   }
@@ -174,20 +174,20 @@ class _PersonalCenterPageState extends BaseState<PersonalCenterPage> {
         children: <Widget>[
           new Row(
             children: <Widget>[
-              imageExpanded('images/icon.png'),
-              imageExpanded('images/icon.png'),
+              imageExpanded('assets/images/icon.png'),
+              imageExpanded('assets/images/icon.png'),
             ],
           ),
           new Row(
             children: <Widget>[
-              imageExpanded('images/icon.png'),
-              imageExpanded('images/icon.png'),
+              imageExpanded('assets/images/icon.png'),
+              imageExpanded('assets/images/icon.png'),
             ],
           ),
           new Row(
             children: <Widget>[
-              imageExpanded('images/icon.png'),
-              imageExpanded('images/icon.png'),
+              imageExpanded('assets/images/icon.png'),
+              imageExpanded('assets/images/icon.png'),
             ],
           )
         ],
@@ -264,7 +264,7 @@ class _PersonalCenterPageState extends BaseState<PersonalCenterPage> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
-                  Image.asset('images/icon.png'),
+                  Image.asset('assets/images/icon.png'),
                   Text("滑稽" + index.toString()),
                 ],
               ),
@@ -288,7 +288,7 @@ class _PersonalCenterPageState extends BaseState<PersonalCenterPage> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
-                  Image.asset('images/icon.png'),
+                  Image.asset('assets/images/icon.png'),
                   Text("滑稽" + index.toString()),
                 ],
               ),
@@ -309,7 +309,7 @@ class _PersonalCenterPageState extends BaseState<PersonalCenterPage> {
 //            ),
             GestureDetector(
               //触摸事件（包裹需要交互的控件）
-              child: Image.asset('images/fuchsia.jpg'),
+              child: Image.asset('assets/images/fuchsia.jpg'),
               onTap: () {
                 ToastUtil.showMsg("点击了卡片" + i.toString());
               },
@@ -321,7 +321,7 @@ class _PersonalCenterPageState extends BaseState<PersonalCenterPage> {
                     child: Column(
                       children: <Widget>[
                         GestureDetector(
-                          child: Image.asset('images/icon.png'),
+                          child: Image.asset('assets/images/icon.png'),
                           onTap: () {
                             ToastUtil.showMsg("点击了图片" + i.toString());
                           },
@@ -360,7 +360,7 @@ class _PersonalCenterPageState extends BaseState<PersonalCenterPage> {
       children: <Widget>[
         //圆形控件
         CircleAvatar(
-          backgroundImage: AssetImage('images/fuchsia.jpg'),
+          backgroundImage: AssetImage('assets/images/fuchsia.jpg'),
           radius: 100.0,
         ),
         Container(
@@ -374,7 +374,7 @@ class _PersonalCenterPageState extends BaseState<PersonalCenterPage> {
           decoration: BoxDecoration(color: Colors.transparent),
           padding: const EdgeInsets.fromLTRB(0.0, 0.0, 100.0, 0.0),
           child: CircleAvatar(
-            backgroundImage: AssetImage('images/icon.png'),
+            backgroundImage: AssetImage('assets/images/icon.png'),
             backgroundColor: Colors.transparent,
             radius: 10.0,
           ),

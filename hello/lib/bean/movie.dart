@@ -48,7 +48,7 @@ class Movie {
         c = c + '/' + casts[i]['name'];
       }
     }
-    return new Movie(
+    return Movie(
       title: map['title'],
       average: map['rating']['average'].toString(),
       collectCount: map['collect_count'],

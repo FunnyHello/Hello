@@ -9,8 +9,9 @@ import 'package:hello/page/movie_detail_page.dart';
 import 'package:hello/utils/constant.dart';
 import 'package:flutter_easyrefresh/easy_refresh.dart';
 import 'package:dio/dio.dart';
+import 'package:hello/utils/http/net_connection.dart';
 import 'package:hello/utils/toast_util.dart';
-
+import 'dart:convert' as convert;
 
 class HomeTabTwoPage extends BaseStatefulWidget {
   @override
@@ -19,21 +20,22 @@ class HomeTabTwoPage extends BaseStatefulWidget {
     return _HomeTabTwoPageState();
   }
 }
+
 /**
  *  设置with AutomaticKeepAliveClientMixin
  *  bool get wantKeepAlive => true;
  *  最后在build中加入super.build(context);
  *  防止tab切换时initState反复执行
  */
-class _HomeTabTwoPageState extends BaseState<HomeTabTwoPage>{
+class _HomeTabTwoPageState extends BaseState<HomeTabTwoPage> {
   List<Movie> movies = [];
 
-  GlobalKey<EasyRefreshState> _easyRefreshKey = new GlobalKey<
-      EasyRefreshState>();
-  GlobalKey<RefreshHeaderState> _headerKey = new GlobalKey<
-      RefreshHeaderState>();
-  GlobalKey<RefreshFooterState> _footerKey = new GlobalKey<
-      RefreshFooterState>();
+  GlobalKey<EasyRefreshState> _easyRefreshKey =
+      new GlobalKey<EasyRefreshState>();
+  GlobalKey<RefreshHeaderState> _headerKey =
+      new GlobalKey<RefreshHeaderState>();
+  GlobalKey<RefreshFooterState> _footerKey =
+      new GlobalKey<RefreshFooterState>();
   bool isShowPullDown = true;
 
   @override
@@ -94,21 +96,21 @@ class _HomeTabTwoPageState extends BaseState<HomeTabTwoPage>{
         ),
       );
 
-      var movieMsg =  Column(
+      var movieMsg = Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisSize: MainAxisSize.min,
         children: <Widget>[
-           Text(
+          Text(
             movie.title,
             textAlign: TextAlign.left,
-            style:  TextStyle(fontWeight: FontWeight.bold, fontSize: 14.0),
+            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 14.0),
           ),
-           Text('导演：' + movie.director),
-           Text('主演：' + movie.cast),
-           Text('评分：' + movie.average),
-           Text(
+          Text('导演：' + movie.director),
+          Text('主演：' + movie.cast),
+          Text('评分：' + movie.average),
+          Text(
             movie.collectCount.toString() + '人看过',
-            style:  TextStyle(
+            style: TextStyle(
               fontSize: 12.0,
               color: Colors.redAccent,
             ),
@@ -116,29 +118,29 @@ class _HomeTabTwoPageState extends BaseState<HomeTabTwoPage>{
         ],
       );
 
-      var movieItem =  GestureDetector(
+      var movieItem = GestureDetector(
         //点击事件
         //onTap: () => navigateToMovieDetailPage(movie, i),
         behavior: HitTestBehavior.translucent,
         onTap: () {
           Navigator.of(context)
-              .push( MaterialPageRoute(builder: (BuildContext context) {
-            return  MovieDetailPage(movie, imageTag: i);
+              .push(MaterialPageRoute(builder: (BuildContext context) {
+            return MovieDetailPage(movie, imageTag: i);
           }));
         },
-        child:  Column(
+        child: Column(
           children: <Widget>[
-             Row(
+            Row(
               children: <Widget>[
                 movieImage,
                 //Expanded 均分
-                 Expanded(
+                Expanded(
                   child: movieMsg,
                 ),
                 const Icon(Icons.keyboard_arrow_right),
               ],
             ),
-             Divider(),
+            Divider(),
           ],
         ),
       );
@@ -150,24 +152,41 @@ class _HomeTabTwoPageState extends BaseState<HomeTabTwoPage>{
 
   //网络请求
   getMovieListData() async {
+//    /*将字符串转成json  返回的是键值对的形式*/
+//    Map<String, dynamic> news = jsonDecode("");
+//    /*取值*/
+//    String sats = news['result']['stat'];
+//    /*将Json转成实体类*/
+//    NewsBean newsBean=NewsBean.fromJson(news);
+//    /*取值*/
+//    String sats = newsBean.result.stat;
+
+//    NetConnection.getInstance().get(
+//     DOUBAN_MOVIE,
+//      (data) {
+//        setState(() {
+//          movies.addAll(Movie.decodeData(convert.jsonEncode(data)));
+//        });
+//      },
+//      errorCallBack: (Function errorCallBack, String error) {},
+//    );
     //请求成功，但是解析数据失败，暂时不知道什么原因
 //    Dio dio = new Dio();
-//    Response response = await dio.post(Constant.DOUBAN_MOVIE);
+//    Response response = await dio.post(DOUBAN_MOVIE);
 //    setState(() {
 //        movies.addAll(Movie.decodeData(response.data.toString()));
 //      });
 
     var httpClient = new HttpClient();
-    var request = await httpClient.getUrl(Uri.parse(Constant.DOUBAN_MOVIE));
+    var request = await httpClient.getUrl(Uri.parse(DOUBAN_MOVIE));
     var response = await request.close();
     if (response.statusCode == HttpStatus.OK) {
       var jsonData = await response.transform(utf8.decoder).join();
       // setState 相当于 runOnUiThread
       setState(() {
+        print("++++++++++" + jsonData.toString());
         movies.addAll(Movie.decodeData(jsonData.toString()));
       });
     }
   }
-
-
 }

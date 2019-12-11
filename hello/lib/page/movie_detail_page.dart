@@ -38,7 +38,7 @@ class _MovieDetailPageState extends BaseState<MovieDetailPage> {
 
   getMovieDetailData() async {
     var httpClient = new HttpClient();
-    var url = Constant.MOVIE_SUBJECT + widget.movie.movieId;
+    var url = MOVIE_SUBJECT + widget.movie.movieId;
     var request = await httpClient.getUrl(Uri.parse(url));
     var response = await request.close();
     if (response.statusCode == HttpStatus.OK) {

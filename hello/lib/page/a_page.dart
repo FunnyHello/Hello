@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:hello/base/page/base_state.dart';
 import 'package:hello/base/page/base_stateful_widget.dart';
 import 'package:hello/page/b_page.dart';
-import 'package:hello/utils/toast_util.dart';
+import 'dart:convert' as convert;
 
 class APage extends BaseStatefulWidget {
   @override
@@ -15,6 +15,7 @@ class APage extends BaseStatefulWidget {
 class _APageState extends BaseState<APage> {
   @override
   Widget build(BuildContext context) {
+
     // TODO: implement build
     return Scaffold(
       appBar: new AppBar(
@@ -48,8 +49,8 @@ class _APageState extends BaseState<APage> {
                 //跳转B并销毁前面所有页面
                 Navigator.pushAndRemoveUntil(context,
                     MaterialPageRoute(builder: (BuildContext context) {
-                      return BPage();
-                    }), (route) => route == null);
+                  return BPage();
+                }), (route) => route == null);
               },
               child: Text('跳转B并销毁前面所有页面'),
             ),
@@ -62,15 +63,12 @@ class _APageState extends BaseState<APage> {
                 //跳转并销毁当前页
                 Navigator.pushReplacement(context,
                     MaterialPageRoute(builder: (BuildContext context) {
-                      return BPage();
-                    }), result: '{result: pushReplacement}');
-
-
+                  return BPage();
+                }), result: '{result: pushReplacement}');
               },
               child: Text('跳转B并销毁当前页面'),
             ),
           ),
-
         ],
       ),
     );

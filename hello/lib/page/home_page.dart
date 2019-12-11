@@ -60,16 +60,16 @@ class _HomePageState extends BaseState<HomePage> {
     if (tabImages == null) {
       tabImages = [
         [
-          getTabImage('images/icon_news_off.png'),
-          getTabImage('images/icon_news_on.png'),
+          getTabImage('assets/images/icon_news_off.png'),
+          getTabImage('assets/images/icon_news_on.png'),
         ],
         [
-          getTabImage('images/icon_find_off.png'),
-          getTabImage('images/icon_find_on.png'),
+          getTabImage('assets/images/icon_find_off.png'),
+          getTabImage('assets/images/icon_find_on.png'),
         ],
         [
-          getTabImage('images/icon_mine_off.png'),
-          getTabImage('images/icon_mine_on.png'),
+          getTabImage('assets/images/icon_mine_off.png'),
+          getTabImage('assets/images/icon_mine_on.png'),
         ]
       ];
     }

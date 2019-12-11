@@ -187,14 +187,19 @@ class _ReleaseDynamicsPageState extends BaseState<ReleaseDynamicsPage> {
             builder: (ctx) {
               return new IconButton(
                   icon: new Icon(Icons.send),
-                  onPressed: () {
-                    //因为缓存和读取都用了异步暂时怀疑有时效问题
-                    CacheUtils.getString(Constant.LOGIN_TOKEN).then((onValue) {
-                      if (!TextUtils.isEmpty(onValue)) {
-                      } else {
-                        ToastUtil.showMsg("冇登陆");
-                      }
-                    });
+                  onPressed: () async {
+//                    CacheUtils.getString(LOGIN_TOKEN).then((onValue) {
+//                      if (!TextUtils.isEmpty(onValue)) {
+//                      } else {
+//                        ToastUtil.showMsg("冇登陆");
+//                      }
+//                    });
+
+                    String str = await CacheUtils.getString(LOGIN_TOKEN);
+                    if (!TextUtils.isEmpty(str)) {
+                    } else {
+                      ToastUtil.showMsg("冇登陆");
+                    }
                   });
             },
           )

@@ -15,6 +15,7 @@ import 'package:hello/utils/toast_util.dart';
 import 'package:hello/view/banner/carousel_slider.dart';
 import 'package:hello/view/banner/indicator_util.dart';
 
+import 'country_code_page.dart';
 import 'map_view_page.dart';
 
 class HomeTabOnePage extends BaseStatefulWidget {
@@ -24,8 +25,7 @@ class HomeTabOnePage extends BaseStatefulWidget {
   }
 }
 
-
-class _HomeTabOnePageState extends BaseState<HomeTabOnePage>{
+class _HomeTabOnePageState extends BaseState<HomeTabOnePage> {
   //banner数据
   List<HomeBanner> listData = <HomeBanner>[];
 
@@ -199,7 +199,6 @@ class _HomeTabOnePageState extends BaseState<HomeTabOnePage>{
                   ToastUtil.showMsg("这是android设备");
                 }
               },
-              //RaisedButton无法设置大小所以可以用控件把它撑大=》但是不能设置外边距
               child: Text('这是什么设备？？？'),
             ),
           ),
@@ -213,7 +212,6 @@ class _HomeTabOnePageState extends BaseState<HomeTabOnePage>{
                   return APage();
                 }));
               },
-              //RaisedButton无法设置大小所以可以用控件把它撑大=》但是不能设置外边距
               child: Text('测试页面跳转'),
             ),
           ),
@@ -225,7 +223,6 @@ class _HomeTabOnePageState extends BaseState<HomeTabOnePage>{
               onPressed: () {
                 turnOnTheLight();
               },
-              //RaisedButton无法设置大小所以可以用控件把它撑大=》但是不能设置外边距
               child: Text('开始闪烁'),
             ),
           ),
@@ -240,7 +237,6 @@ class _HomeTabOnePageState extends BaseState<HomeTabOnePage>{
                   return MapViewPage();
                 }));
               },
-              //RaisedButton无法设置大小所以可以用控件把它撑大=》但是不能设置外边距
               child: Text('演示地图'),
             ),
           ),
@@ -254,8 +250,21 @@ class _HomeTabOnePageState extends BaseState<HomeTabOnePage>{
                   return VideoPlayerPage();
                 }));
               },
-              //RaisedButton无法设置大小所以可以用控件把它撑大=》但是不能设置外边距
               child: Text('视频演示'),
+            ),
+          ),
+
+          Container(
+            width: MediaQuery.of(context).size.width,
+            padding: const EdgeInsets.fromLTRB(20.0, 0, 20.0, 0),
+            child: RaisedButton(
+              onPressed: () {
+                Navigator.of(context)
+                    .push(MaterialPageRoute(builder: (BuildContext context) {
+                  return CountryCodePage();
+                }));
+              },
+              child: Text('字母分类效果演示'),
             ),
           ),
         ],
@@ -292,7 +301,7 @@ class _HomeTabOnePageState extends BaseState<HomeTabOnePage>{
 
   turnOnTheLight() {
     NetConnection.getInstance().post(
-      Constant.TEST_TURN_ON_THE_LIGHT,
+      SERVER + TEST_TURN_ON_THE_LIGHT,
       (data) {
         setState(() {
           ToastUtil.showMsg("请求成功");
@@ -301,8 +310,4 @@ class _HomeTabOnePageState extends BaseState<HomeTabOnePage>{
       errorCallBack: (Function errorCallBack, String error) {},
     );
   }
-
-  @override
-  // TODO: implement wantKeepAlive
-  bool get wantKeepAlive => true;
 }

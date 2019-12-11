@@ -102,7 +102,7 @@ class _HomeTabThreePageState extends BaseState<HomeTabThreePage> {
             child: Row(
               children: <Widget>[
                 Image.asset(
-                  'images/icon.png',
+                  'assets/images/icon.png',
                   width: 32.0,
                   height: 32.0,
                   fit: BoxFit.cover,
@@ -143,7 +143,7 @@ class _HomeTabThreePageState extends BaseState<HomeTabThreePage> {
             child: Row(
               children: <Widget>[
                 Image.asset(
-                  'images/icon.png',
+                  'assets/images/icon.png',
                   width: 32.0,
                   height: 32.0,
                   fit: BoxFit.cover,
@@ -184,7 +184,7 @@ class _HomeTabThreePageState extends BaseState<HomeTabThreePage> {
             child: Row(
               children: <Widget>[
                 Image.asset(
-                  'images/icon.png',
+                  'assets/images/icon.png',
                   width: 32.0,
                   height: 32.0,
                   fit: BoxFit.cover,
@@ -225,7 +225,7 @@ class _HomeTabThreePageState extends BaseState<HomeTabThreePage> {
             child: Row(
               children: <Widget>[
                 Image.asset(
-                  'images/icon.png',
+                  'assets/images/icon.png',
                   width: 32.0,
                   height: 32.0,
                   fit: BoxFit.cover,
@@ -266,7 +266,7 @@ class _HomeTabThreePageState extends BaseState<HomeTabThreePage> {
             child: Row(
               children: <Widget>[
                 Image.asset(
-                  'images/icon.png',
+                  'assets/images/icon.png',
                   width: 32.0,
                   height: 32.0,
                   fit: BoxFit.cover,
@@ -307,7 +307,7 @@ class _HomeTabThreePageState extends BaseState<HomeTabThreePage> {
             child: Row(
               children: <Widget>[
                 Image.asset(
-                  'images/icon.png',
+                  'assets/images/icon.png',
                   width: 32.0,
                   height: 32.0,
                   fit: BoxFit.cover,
@@ -348,7 +348,7 @@ class _HomeTabThreePageState extends BaseState<HomeTabThreePage> {
             child: Row(
               children: <Widget>[
                 Image.asset(
-                  'images/icon.png',
+                  'assets/images/icon.png',
                   width: 32.0,
                   height: 32.0,
                   fit: BoxFit.cover,
@@ -549,7 +549,7 @@ class _HomeTabThreePageState extends BaseState<HomeTabThreePage> {
   Widget headPortrait() {
     if (imageFile == null) {
       return Image.asset(
-        'images/icon.png',
+        'assets/images/icon.png',
         width: 42.0,
         height: 42.0,
         fit: BoxFit.cover,

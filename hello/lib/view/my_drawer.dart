@@ -19,7 +19,7 @@ class MyDrawer extends StatelessWidget {
 
   // 菜单后面的箭头图片
   var rightArrowIcon = new Image.asset(
-    'images/ic_arrow_right.png',
+    'assets/images/ic_arrow_right.png',
     width: ARROW_ICON_WIDTH,
     height: ARROW_ICON_WIDTH,
   );
@@ -29,10 +29,10 @@ class MyDrawer extends StatelessWidget {
 
   // 菜单文本前面的图标
   List menuIcons = [
-    './images/icon.png',
-    './images/icon.png',
-    './images/icon.png',
-    './images/icon.png'
+    './assets/images/icon.png',
+    './assets/images/icon.png',
+    './assets/images/icon.png',
+    './assets/images/icon.png'
   ];
 
   // 菜单文本的样式
@@ -80,7 +80,7 @@ class MyDrawer extends StatelessWidget {
             width: 304.0,
             height: 200.0,
             child: new Image.asset(
-              './images/fuchsia.jpg',
+              './assets/images/fuchsia.jpg',
               width: 304.0,
               height: 200.0,
               fit: BoxFit.cover,
@@ -98,7 +98,7 @@ class MyDrawer extends StatelessWidget {
                   children: <Widget>[
                     userAvatar == null
                         ? new Image.asset(
-                            "images/icon_avatar_default.png",
+                            "assets/images/icon_avatar_default.png",
                             width: 60.0,
                           )
                         : new Container(
