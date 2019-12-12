@@ -143,7 +143,7 @@ class CountryCodePageState extends BaseState<CountryCodePage> {
                   model.code +
                   " 区号：" +
                   model.dialCode);
-//              Navigator.pop(context, model);
+              Navigator.pop(context, model);
             },
           ),
         )

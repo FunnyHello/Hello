@@ -29,18 +29,14 @@ class HomeTabTwoPage extends BaseStatefulWidget {
  */
 class _HomeTabTwoPageState extends BaseState<HomeTabTwoPage> {
   List<Movie> movies = [];
+  EasyRefreshController _controller;
 
-  GlobalKey<EasyRefreshState> _easyRefreshKey =
-      new GlobalKey<EasyRefreshState>();
-  GlobalKey<RefreshHeaderState> _headerKey =
-      new GlobalKey<RefreshHeaderState>();
-  GlobalKey<RefreshFooterState> _footerKey =
-      new GlobalKey<RefreshFooterState>();
   bool isShowPullDown = true;
 
   @override
   void initState() {
     super.initState();
+    _controller = EasyRefreshController();
     getMovieListData();
   }
 
@@ -59,21 +55,17 @@ class _HomeTabTwoPageState extends BaseState<HomeTabTwoPage> {
 
   Widget initView() {
     return new EasyRefresh(
-      key: _easyRefreshKey,
-      refreshHeader: ClassicsHeader(
-        key: _headerKey,
-      ),
-      refreshFooter: ClassicsFooter(
-        key: _footerKey,
-      ),
+      controller: _controller,
+      header: ClassicalHeader(),
+      footer: ClassicalFooter(),
       child: new ListView(
         children: buildMovieItems(),
       ),
       onRefresh: () async {
-        ToastUtil.showMsg("下拉");
+        showToast("下拉");
       },
-      loadMore: () async {
-        ToastUtil.showMsg("上拉");
+      onLoad: () async {
+        showToast("上拉");
       },
     );
   }

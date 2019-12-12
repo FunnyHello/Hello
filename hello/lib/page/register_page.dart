@@ -98,29 +98,30 @@ class _RegisterPageState extends BaseState<RegisterPage> {
   }
 
   register() {
-    if(TextUtils.isEmpty(_userNameController.text)){
+    if (TextUtils.isEmpty(_userNameController.text)) {
       ToastUtil.showMsg("用户名不能为空");
       return;
     }
-    if(TextUtils.isEmpty(_userPassController.text)){
+    if (TextUtils.isEmpty(_userPassController.text)) {
       ToastUtil.showMsg("密码不能为空");
       return;
     }
-    String string = json.encode({"userName": _userNameController.text, "password":_userPassController.text});
+
+    var param = {
+      "userName": _userNameController.text,
+      "password": _userPassController.text
+    };
     NetConnection.getInstance().post(
       TEST_REGISTER,
-          (data) {
-        //UserDetail userDetail = UserDetail.fromJson(data);
-        //var name = userDetail.username;
+      (data) {
         setState(() {
           ToastUtil.showMsg("请求成功");
           //销毁当前页面
           Navigator.pop(context);
         });
       },
-      errorCallBack: (Function errorCallBack, String error) {
-      },
-      formData: FormData.from({'data':string}),
+      errorCallBack: (Function errorCallBack, String error) {},
+      param: param,
     );
   }
 }

@@ -17,7 +17,7 @@ class NetConnection {
   }
 
   NetConnection() {
-    dio = Dio(Options(
+    dio = Dio(BaseOptions (
       //添加Header参数
       headers: {'platform': 'android', 'version': 1.0},
       connectTimeout: 15000,
@@ -27,34 +27,33 @@ class NetConnection {
 
   //get请求
   get(String url, Function successCallBack,
-      {Function errorCallBack, formData}) async {
-    _requstHttp(url, GET, successCallBack, errorCallBack, formData: formData);
+      {Function errorCallBack, param}) async {
+    _requstHttp(url, GET, successCallBack, errorCallBack, param: param);
   }
 
   //post请求
   post(String url, Function successCallBack,
-      {Function errorCallBack, formData}) async {
-    _requstHttp(url, POST, successCallBack, errorCallBack, formData: formData);
+      {Function errorCallBack, param}) async {
+    _requstHttp(url, POST, successCallBack, errorCallBack, param: param);
   }
 
   _requstHttp(String url, String method, Function successCallBack,
-      Function errorCallBack,
-      {FormData formData}) async {
+      Function errorCallBack, {param}) async {
     try {
       //拼接服务器地址
 //      url = SERVER + url;
       Response response;
       _addStartHttpInterceptor(dio); //添加请求之前的拦截器
-      print("+++++++++++请求参数：" + formData.toString());
+      print("+++++++++++请求参数：" + param.toString());
       if (method == GET) {
-        if (formData != null && formData.isNotEmpty) {
-          response = await dio.get(url, data: formData);
+        if (param != null) {
+          response = await dio.get(url, queryParameters: param);
         } else {
           response = await dio.get(url);
         }
       } else if (method == POST) {
-        if (formData != null && formData.isNotEmpty) {
-          response = await dio.post(url, data: formData);
+        if (param != null) {
+          response = await dio.post(url, data: param);
         } else {
           response = await dio.post(url);
         }
@@ -78,11 +77,23 @@ class NetConnection {
   }
 
   _addStartHttpInterceptor(Dio dio) {
-    dio.interceptor.request.onSend = (Options options) {
-      //请求前处理
-      Map<String, dynamic> headers = options.headers;
-      Map<String, dynamic> body = options.data;
-      return options;
-    };
+    dio.interceptors.add(InterceptorsWrapper(
+        onRequest:(RequestOptions options) async {
+          //请求前搞点啥子
+          return options; //continue
+          // If you want to resolve the request with some custom data，
+          // you can return a `Response` object or return `dio.resolve(data)`.
+          // If you want to reject the request with a error message,
+          // you can return a `DioError` object or return `dio.reject(errMsg)`
+        },
+        onResponse:(Response response) async {
+          // Do something with response data
+          return response; // continue
+        },
+        onError: (DioError e) async {
+          // Do something with response error
+          return  e;//continue
+        }
+    ));
   }
 }

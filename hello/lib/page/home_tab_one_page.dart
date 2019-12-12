@@ -14,6 +14,7 @@ import 'package:hello/utils/map_utils.dart';
 import 'package:hello/utils/toast_util.dart';
 import 'package:hello/view/banner/carousel_slider.dart';
 import 'package:hello/view/banner/indicator_util.dart';
+import 'package:hello/view/country/country_code.dart';
 
 import 'country_code_page.dart';
 import 'map_view_page.dart';
@@ -259,10 +260,11 @@ class _HomeTabOnePageState extends BaseState<HomeTabOnePage> {
             padding: const EdgeInsets.fromLTRB(20.0, 0, 20.0, 0),
             child: RaisedButton(
               onPressed: () {
-                Navigator.of(context)
-                    .push(MaterialPageRoute(builder: (BuildContext context) {
-                  return CountryCodePage();
-                }));
+//                Navigator.of(context)
+//                    .push(MaterialPageRoute(builder: (BuildContext context) {
+//                  return CountryCodePage();
+//                }));
+                toCountryPage();
               },
               child: Text('字母分类效果演示'),
             ),
@@ -309,5 +311,33 @@ class _HomeTabOnePageState extends BaseState<HomeTabOnePage> {
       },
       errorCallBack: (Function errorCallBack, String error) {},
     );
+  }
+
+  void toCountryPage() async {
+    final result = await    Navigator.of(context)
+        .push(MaterialPageRoute(builder: (BuildContext context) {
+      return CountryCodePage();
+    }));
+
+    CountryCode countryCode = result as CountryCode;
+
+    /*弹窗显示返回的数据*/
+    showDialog(
+        context: context,
+        barrierDismissible: false,
+        builder: (context) {
+          return AlertDialog(
+            title: Text("返回的结果"),
+            content: Text(
+                "${countryCode.name},${countryCode.code},${countryCode.dialCode}"),
+            actions: <Widget>[
+              FlatButton(
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                  child: Text("确定"))
+            ],
+          );
+        });
   }
 }
