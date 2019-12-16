@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:hello/page/login_page.dart';
+import 'package:hello/page/account/login_page.dart';
 import 'package:hello/page/release_dynamics_page.dart';
 import 'package:barcode_scan/barcode_scan.dart';
 import 'package:hello/utils/toast_util.dart';

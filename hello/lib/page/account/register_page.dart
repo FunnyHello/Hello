@@ -6,8 +6,8 @@ import 'package:hello/base/page/base_state.dart';
 import 'package:hello/base/page/base_stateful_widget.dart';
 import 'package:hello/utils/constant.dart';
 import 'package:hello/utils/http/net_connection.dart';
-import 'package:hello/utils/text_utils.dart';
 import 'package:hello/utils/toast_util.dart';
+import 'package:hello/utils/type_utils.dart';
 
 class RegisterPage extends BaseStatefulWidget {
   @override
@@ -98,11 +98,11 @@ class _RegisterPageState extends BaseState<RegisterPage> {
   }
 
   register() {
-    if (TextUtils.isEmpty(_userNameController.text)) {
+    if (isEmpty(_userNameController.text)) {
       ToastUtil.showMsg("用户名不能为空");
       return;
     }
-    if (TextUtils.isEmpty(_userPassController.text)) {
+    if (isEmpty(_userPassController.text)) {
       ToastUtil.showMsg("密码不能为空");
       return;
     }

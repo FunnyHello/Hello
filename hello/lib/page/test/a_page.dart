@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hello/base/page/base_state.dart';
 import 'package:hello/base/page/base_stateful_widget.dart';
-import 'package:hello/page/b_page.dart';
+import 'package:hello/page/test/b_page.dart';
 import 'dart:convert' as convert;
 
 class APage extends BaseStatefulWidget {

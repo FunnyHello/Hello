@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:hello/base/page/base_state.dart';
 import 'package:hello/base/page/base_stateful_widget.dart';
-import 'package:hello/page/register_page.dart';
+import 'package:hello/page/account/register_page.dart';
 import 'package:hello/utils/toast_util.dart';
 
 class LoginPage extends BaseStatefulWidget {

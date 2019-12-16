@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:hello/base/page/base_state.dart';
 import 'package:hello/base/page/base_stateful_widget.dart';
 import 'package:hello/bean/movie.dart';
-import 'package:hello/page/movie_detail_page.dart';
+import 'package:hello/page/test/movie_detail_page.dart';
 import 'package:hello/utils/constant.dart';
 import 'package:flutter_easyrefresh/easy_refresh.dart';
 import 'package:dio/dio.dart';

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hello/base/page/base_state.dart';
 import 'package:hello/base/page/base_stateful_widget.dart';
-import 'package:hello/page/home_page.dart';
+import 'package:hello/page/home/home_page.dart';
 
 class BPage extends BaseStatefulWidget {
   const BPage({Key key, @required this.initValue: 0}) : super(key: key);

@@ -1,4 +1,4 @@
-import 'package:hello/utils/text_utils.dart';
+import 'package:hello/utils/type_utils.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 /**
@@ -8,7 +8,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 class CacheUtils {
   //缓存
   static setString(String key, String data) async {
-    if (!TextUtils.isEmpty(data)) {
+    if (!isEmpty(data)) {
       SharedPreferences sp = await SharedPreferences.getInstance();
       await sp.setString(key, data);
     }
@@ -24,7 +24,7 @@ class CacheUtils {
   static Future<String> getString(String key) async{
     SharedPreferences sp = await SharedPreferences.getInstance();
     String str = sp.getString(key);
-    return TextUtils.isEmpty(str) ? "" : str;
+    return isEmpty(str) ? "" : str;
   }
 
   // 清除

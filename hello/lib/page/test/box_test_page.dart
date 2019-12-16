@@ -1,8 +1,9 @@
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:hello/base/page/base_state.dart';
+import 'package:hello/base/page/base_stateful_widget.dart';
 import 'package:hello/utils/toast_util.dart';
 
-class BoxTestPage extends StatefulWidget {
+class BoxTestPage extends BaseStatefulWidget {
   @override
   State<StatefulWidget> createState() {
     // TODO: implement createState
@@ -10,7 +11,7 @@ class BoxTestPage extends StatefulWidget {
   }
 }
 
-class _BoxTestPageState extends State<BoxTestPage> {
+class _BoxTestPageState extends BaseState<BoxTestPage> {
   @override
   Widget build(BuildContext context) {
     // TODO: implement build

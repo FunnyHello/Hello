@@ -4,20 +4,21 @@ import 'package:flutter/material.dart';
 import 'package:hello/base/page/base_state.dart';
 import 'package:hello/base/page/base_stateful_widget.dart';
 import 'package:hello/bean/home_banner.dart';
-import 'package:hello/page/a_page.dart';
-import 'package:hello/page/box_test_page.dart';
-import 'package:hello/page/video_player_page.dart';
-import 'package:hello/page/web_view_page.dart';
+import 'package:hello/page/test/a_page.dart';
+import 'package:hello/page/test/box_test_page.dart';
+import 'package:hello/page/test/choice_chip_page.dart';
+import 'package:hello/page/test/video_player_page.dart';
+import 'package:hello/page/test/web_view_page.dart';
 import 'package:hello/utils/constant.dart';
 import 'package:hello/utils/http/net_connection.dart';
-import 'package:hello/utils/map_utils.dart';
 import 'package:hello/utils/toast_util.dart';
+import 'package:hello/utils/type_utils.dart';
 import 'package:hello/view/banner/carousel_slider.dart';
 import 'package:hello/view/banner/indicator_util.dart';
 import 'package:hello/view/country/country_code.dart';
 
-import 'country_code_page.dart';
-import 'map_view_page.dart';
+import '../country/country_code_page.dart';
+import '../test/map_view_page.dart';
 
 class HomeTabOnePage extends BaseStatefulWidget {
   @override
@@ -224,7 +225,7 @@ class _HomeTabOnePageState extends BaseState<HomeTabOnePage> {
               onPressed: () {
                 turnOnTheLight();
               },
-              child: Text('开始闪烁'),
+              child: Text('树莓派小灯闪烁'),
             ),
           ),
 
@@ -267,6 +268,20 @@ class _HomeTabOnePageState extends BaseState<HomeTabOnePage> {
                 toCountryPage();
               },
               child: Text('字母分类效果演示'),
+            ),
+          ),
+
+          Container(
+            width: MediaQuery.of(context).size.width,
+            padding: const EdgeInsets.fromLTRB(20.0, 0, 20.0, 0),
+            child: RaisedButton(
+              onPressed: () {
+                Navigator.of(context)
+                    .push(MaterialPageRoute(builder: (BuildContext context) {
+                  return ChoiceChipPage();
+                }));
+              },
+              child: Text('标签选择控件演示'),
             ),
           ),
         ],
@@ -319,25 +334,28 @@ class _HomeTabOnePageState extends BaseState<HomeTabOnePage> {
       return CountryCodePage();
     }));
 
-    CountryCode countryCode = result as CountryCode;
+    if(result != null){
+      CountryCode countryCode = result as CountryCode;
 
-    /*弹窗显示返回的数据*/
-    showDialog(
-        context: context,
-        barrierDismissible: false,
-        builder: (context) {
-          return AlertDialog(
-            title: Text("返回的结果"),
-            content: Text(
-                "${countryCode.name},${countryCode.code},${countryCode.dialCode}"),
-            actions: <Widget>[
-              FlatButton(
-                  onPressed: () {
-                    Navigator.of(context).pop();
-                  },
-                  child: Text("确定"))
-            ],
-          );
-        });
+      /*弹窗显示返回的数据*/
+      showDialog(
+          context: context,
+          barrierDismissible: false,
+          builder: (context) {
+            return AlertDialog(
+              title: Text("返回的结果"),
+              content: Text(
+                  "${countryCode.name},${countryCode.code},${countryCode.dialCode}"),
+              actions: <Widget>[
+                FlatButton(
+                    onPressed: () {
+                      Navigator.of(context).pop();
+                    },
+                    child: Text("确定"))
+              ],
+            );
+          });
+    }
+
   }
 }

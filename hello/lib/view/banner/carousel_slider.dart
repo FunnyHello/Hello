@@ -1,4 +1,4 @@
-library carousel_slider;
+//library carousel_slider;
 
 import 'dart:async';
 import 'package:flutter/material.dart';

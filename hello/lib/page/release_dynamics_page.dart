@@ -6,8 +6,8 @@ import 'package:hello/base/page/base_state.dart';
 import 'package:hello/base/page/base_stateful_widget.dart';
 import 'package:hello/utils/cache_utils.dart';
 import 'package:hello/utils/constant.dart';
-import 'package:hello/utils/text_utils.dart';
 import 'package:hello/utils/toast_util.dart';
+import 'package:hello/utils/type_utils.dart';
 import 'package:image_picker/image_picker.dart';
 
 class ReleaseDynamicsPage extends BaseStatefulWidget {
@@ -196,7 +196,7 @@ class _ReleaseDynamicsPageState extends BaseState<ReleaseDynamicsPage> {
 //                    });
 
                     String str = await CacheUtils.getString(LOGIN_TOKEN);
-                    if (!TextUtils.isEmpty(str)) {
+                    if (!isEmpty(str)) {
                     } else {
                       ToastUtil.showMsg("冇登陆");
                     }
