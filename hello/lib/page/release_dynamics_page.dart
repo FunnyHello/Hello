@@ -179,6 +179,8 @@ class _ReleaseDynamicsPageState extends BaseState<ReleaseDynamicsPage> {
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
+      //防止键盘顶起控件
+      resizeToAvoidBottomPadding: false,
       appBar: new AppBar(
         title: new Text("发布动态", style: new TextStyle(color: Colors.white)),
         iconTheme: new IconThemeData(color: Colors.white),

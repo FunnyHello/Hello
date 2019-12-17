@@ -68,7 +68,6 @@ class _HomeTabOnePageState extends BaseState<HomeTabOnePage> {
       //double.infinity为撑满父控件
       width: double.infinity,
       height: double.infinity,
-      color: Colors.cyanAccent,
       child: new Column(
         children: <Widget>[
           new Stack(

@@ -75,7 +75,7 @@ class CountryCodePageState extends BaseState<CountryCodePage> {
       });
       _handleList(_elements);
 
-      _hotCityList.add(CountryCode(name: "中国", tagIndex: "★"));
+      _hotCityList.add(CountryCode(name: "中国", tagIndex: "★",code:"CN", dialCode: "+86"));
 
       setState(() {
         _suspensionTag = _hotCityList[0].getSuspensionTag();

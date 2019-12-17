@@ -42,19 +42,14 @@ class MyDrawer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return  ConstrainedBox(
+    return ConstrainedBox(
       constraints: const BoxConstraints.expand(width: 304.0),
-      child:  Material(
+      child: Material(
         elevation: 16.0,
-        child:  Container(
-          decoration:  BoxDecoration(
-            color: const Color(0xFFFFFFFF),
-          ),
-          child:  Container(
-            child:  ListView.builder(
-              itemCount: menuTitles.length * 2 + 1,
-              itemBuilder: renderRow,
-            ),
+        child: Container(
+          child: ListView.builder(
+            itemCount: menuTitles.length * 2 + 1,
+            itemBuilder: renderRow,
           ),
         ),
       ),
@@ -118,7 +113,7 @@ class MyDrawer extends StatelessWidget {
                           ),
                     new Text(
                       userName == null ? "点击头像登录" : userName,
-                      style: new TextStyle(color: Colors.white, fontSize: 16.0),
+                      style: new TextStyle(fontSize: 16.0),
                     ),
                   ],
                 ),

@@ -17,6 +17,8 @@ class ChoiceChipPageState extends BaseState<ChoiceChipPage> {
   List<SelectEntity> allList = List();
   List<SelectEntity> allListCheckbox = List();
 
+  bool checkValue1 = true;
+
   @override
   Widget build(BuildContext context) {
     allList.clear();
@@ -56,7 +58,7 @@ class ChoiceChipPageState extends BaseState<ChoiceChipPage> {
       width: MediaQuery.of(context).size.width,
       height: MediaQuery.of(context).size.height,
       color: Colors.white,
-      child: Column(
+      child: ListView(
         children: <Widget>[
           Container(
             padding: const EdgeInsets.fromLTRB(10.0, 10.0, 10.0, 0),
@@ -79,6 +81,58 @@ class ChoiceChipPageState extends BaseState<ChoiceChipPage> {
               isCheckbox: true,
             ),
           ),
+          Switch(
+              value: checkValue1,
+              //回调，改变状态
+              onChanged: (value) {
+                setState(() {
+                  checkValue1 = value;
+                });
+              }),
+          SwitchListTile(
+              title: Text("开关"),
+              value: checkValue1,
+              onChanged: (value) {
+                setState(() {
+                  checkValue1 = value;
+                });
+              }),
+          Checkbox(
+              //选中的✔ 颜色
+              checkColor: Colors.yellowAccent,
+              //选中的框框背景颜色
+              activeColor: Colors.grey,
+              value: checkValue1,
+              onChanged: (value) {
+                setState(() {
+                  checkValue1 = value;
+                });
+              }),
+          CheckboxListTile(
+              title: Text("复选按钮"),
+              value: checkValue1,
+              onChanged: (value) {
+                setState(() {
+                  checkValue1 = value;
+                });
+              }),
+          Radio(
+              value: 1,
+              groupValue: checkValue1,
+              onChanged: (value) {
+                setState(() {
+                  checkValue1 = value;
+                });
+              }),
+          RadioListTile(
+              title: Text("单选按钮"),
+              value: 2,
+              groupValue: checkValue1,
+              onChanged: (value) {
+                setState(() {
+                  checkValue1 = value;
+                });
+              }),
         ],
       ),
     );

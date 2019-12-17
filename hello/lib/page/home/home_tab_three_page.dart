@@ -1,8 +1,10 @@
 import 'dart:io';
 
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:hello/base/page/base_state.dart';
 import 'package:hello/base/page/base_stateful_widget.dart';
+import 'package:hello/utils/http/net_connection.dart';
 import 'package:hello/utils/toast_util.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:qr_flutter/qr_flutter.dart';
@@ -71,7 +73,6 @@ class _HomeTabThreePageState extends BaseState<HomeTabThreePage> {
                           showPhone,
                           style: TextStyle(
                             fontSize: 14,
-                            color: const Color(0xFF514F4F),
                           ),
                         ),
                       ],
@@ -114,7 +115,6 @@ class _HomeTabThreePageState extends BaseState<HomeTabThreePage> {
                       '我的包裹',
                       style: TextStyle(
                         fontSize: 16,
-                        color: const Color(0xFF101010),
                       ),
                     ),
                   ),
@@ -155,7 +155,6 @@ class _HomeTabThreePageState extends BaseState<HomeTabThreePage> {
                       '我的优惠券',
                       style: TextStyle(
                         fontSize: 16,
-                        color: const Color(0xFF101010),
                       ),
                     ),
                   ),
@@ -237,7 +236,6 @@ class _HomeTabThreePageState extends BaseState<HomeTabThreePage> {
                       '我的账单',
                       style: TextStyle(
                         fontSize: 16,
-                        color: const Color(0xFF101010),
                       ),
                     ),
                   ),
@@ -278,7 +276,6 @@ class _HomeTabThreePageState extends BaseState<HomeTabThreePage> {
                       '我的收藏',
                       style: TextStyle(
                         fontSize: 16,
-                        color: const Color(0xFF101010),
                       ),
                     ),
                   ),
@@ -319,7 +316,6 @@ class _HomeTabThreePageState extends BaseState<HomeTabThreePage> {
                       '帮助',
                       style: TextStyle(
                         fontSize: 16,
-                        color: const Color(0xFF101010),
                       ),
                     ),
                   ),
@@ -360,7 +356,6 @@ class _HomeTabThreePageState extends BaseState<HomeTabThreePage> {
                       '设置',
                       style: TextStyle(
                         fontSize: 16,
-                        color: const Color(0xFF101010),
                       ),
                     ),
                   ),
@@ -396,7 +391,6 @@ class _HomeTabThreePageState extends BaseState<HomeTabThreePage> {
                       '我的客服',
                       style: TextStyle(
                         fontSize: 16,
-                        color: const Color(0xFF101010),
                       ),
                     ),
                   ),
@@ -428,7 +422,6 @@ class _HomeTabThreePageState extends BaseState<HomeTabThreePage> {
                       '退换&售后',
                       style: TextStyle(
                         fontSize: 16,
-                        color: const Color(0xFF101010),
                       ),
                     ),
                   ),
@@ -460,7 +453,6 @@ class _HomeTabThreePageState extends BaseState<HomeTabThreePage> {
                       '发起电商退件',
                       style: TextStyle(
                         fontSize: 16,
-                        color: const Color(0xFF101010),
                       ),
                     ),
                   ),
@@ -501,7 +493,6 @@ class _HomeTabThreePageState extends BaseState<HomeTabThreePage> {
   Widget _bottomSheetBuilder(BuildContext context) {
     return Container(
         height: 182.0,
-        color: Colors.white,
         child: Padding(
           padding: const EdgeInsets.fromLTRB(0.0, 30.0, 0.0, 30.0),
           child: Column(
@@ -541,9 +532,30 @@ class _HomeTabThreePageState extends BaseState<HomeTabThreePage> {
 
   toSelectPictures(ImageSource imageSource) async {
     var image = await ImagePicker.pickImage(source: imageSource);
+    uploadImg(image);
     setState(() {
       imageFile = image;
     });
+  }
+
+  uploadImg(imgfile) async {
+    String path = imgfile.path;
+    var name = path.substring(path.lastIndexOf("/") + 1, path.length);
+    FormData formdata = FormData.fromMap(
+        {"file": await MultipartFile.fromFile(path, filename: name)});
+
+    NetConnection().post(
+        "",
+        (data) {
+          print("上传成功");
+        },
+        errorCallBack: (errorCallBack, error) {
+          print("上传失败");
+        },
+        onSendProgress: (send, total) {
+          print('已发送：$send  总大小：$total');
+        },
+        param: formdata);
   }
 
   Widget headPortrait() {

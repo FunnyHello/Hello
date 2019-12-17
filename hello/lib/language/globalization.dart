@@ -25,11 +25,13 @@ class MyLocalizations {
   static Map<String, Map<String, String>> _localizedValues = {
     'en': {
       'title': 'My App',
+      'home': 'Home',
       'home_title': 'My Demo',
       'hello_world':'Hello world',
     },
     'zh': {
       'title': 'Hello的app',
+      'home': '首页',
       'home_title': 'Hello的Demo',
       'hello_world':'你好世界',
     },
@@ -37,6 +39,9 @@ class MyLocalizations {
 
   String get title {
     return _localizedValues[locale.languageCode]['title'];
+  }
+  String get home {
+    return _localizedValues[locale.languageCode]['home'];
   }
 
   String get home_title {

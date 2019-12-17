@@ -18,7 +18,9 @@ class _VideoPlayerPageState extends BaseState<VideoPlayerPage> {
 
   @override
   Widget build(BuildContext context) {
-    return initView();
+    return Scaffold(
+      body: initView(),
+    );
   }
 
   @override

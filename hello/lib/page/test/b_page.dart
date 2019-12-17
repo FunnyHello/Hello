@@ -80,45 +80,49 @@ class _BPageState extends BaseState<BPage> {
       appBar: new AppBar(
         title: new Text('测试页面B'),
       ),
-      body: Column(
-        children: <Widget>[
-          Container(
-            width: MediaQuery.of(context).size.width,
-            padding: const EdgeInsets.fromLTRB(20.0, 0, 20.0, 0),
-            child: RaisedButton(
-              onPressed: () {
-                //跳转并销毁当前页
-                Navigator.pushAndRemoveUntil(context, new MaterialPageRoute(
-                  builder: (BuildContext context) {
-                    return HomePage();
-                  },
-                ), (route) => route == null);
-              },
-              child: Text('跳转首页'),
-            ),
-          ),
-          Container(
-            //FlatButton(它会跟随Container的尺寸属性适应)
-            width: MediaQuery.of(context).size.width,
-            padding: const EdgeInsets.fromLTRB(20.0, 0, 20.0, 0),
-            child: RaisedButton(
-              onPressed: () {
-                //销毁当前页面
-                Navigator.pop(context);
-              },
-              child: Text('销毁当前页面'),
-            ),
-          ),
-          FlatButton(
-            child: Text('$_couter'),
+      body: initView(),
+    );
+  }
+
+  initView() {
+    return Column(
+      children: <Widget>[
+        Container(
+          width: MediaQuery.of(context).size.width,
+          padding: const EdgeInsets.fromLTRB(20.0, 0, 20.0, 0),
+          child: RaisedButton(
             onPressed: () {
-              setState(() {
-                ++_couter;
-              });
+              //跳转并销毁当前页
+              Navigator.pushAndRemoveUntil(context, new MaterialPageRoute(
+                builder: (BuildContext context) {
+                  return HomePage();
+                },
+              ), (route) => route == null);
             },
+            child: Text('跳转首页'),
           ),
-        ],
-      ),
+        ),
+        Container(
+          //FlatButton(它会跟随Container的尺寸属性适应)
+          width: MediaQuery.of(context).size.width,
+          padding: const EdgeInsets.fromLTRB(20.0, 0, 20.0, 0),
+          child: RaisedButton(
+            onPressed: () {
+              //销毁当前页面
+              Navigator.pop(context);
+            },
+            child: Text('销毁当前页面'),
+          ),
+        ),
+        FlatButton(
+          child: Text('$_couter'),
+          onPressed: () {
+            setState(() {
+              ++_couter;
+            });
+          },
+        ),
+      ],
     );
   }
 }

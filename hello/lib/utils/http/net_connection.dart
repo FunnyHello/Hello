@@ -17,7 +17,7 @@ class NetConnection {
   }
 
   NetConnection() {
-    dio = Dio(BaseOptions (
+    dio = Dio(BaseOptions(
       //添加Header参数
       headers: {'platform': 'android', 'version': 1.0},
       connectTimeout: 15000,
@@ -28,17 +28,19 @@ class NetConnection {
   //get请求
   get(String url, Function successCallBack,
       {Function errorCallBack, param}) async {
-    _requstHttp(url, GET, successCallBack, errorCallBack, param: param);
+    _requstHttp(url, GET, successCallBack, errorCallBack,
+        param: param);
   }
 
   //post请求
   post(String url, Function successCallBack,
-      {Function errorCallBack, param}) async {
-    _requstHttp(url, POST, successCallBack, errorCallBack, param: param);
+      {Function errorCallBack, param,onSendProgress}) async {
+    _requstHttp(url, POST, successCallBack, errorCallBack, param: param, onSendProgress: onSendProgress);
   }
 
   _requstHttp(String url, String method, Function successCallBack,
-      Function errorCallBack, {param}) async {
+      Function errorCallBack,
+      {param, onSendProgress}) async {
     try {
       //拼接服务器地址
 //      url = SERVER + url;
@@ -53,7 +55,8 @@ class NetConnection {
         }
       } else if (method == POST) {
         if (param != null) {
-          response = await dio.post(url, data: param);
+          response =
+              await dio.post(url, data: param, onSendProgress: onSendProgress);
         } else {
           response = await dio.post(url);
         }
@@ -77,23 +80,20 @@ class NetConnection {
   }
 
   _addStartHttpInterceptor(Dio dio) {
-    dio.interceptors.add(InterceptorsWrapper(
-        onRequest:(RequestOptions options) async {
-          //请求前搞点啥子
-          return options; //continue
-          // If you want to resolve the request with some custom data，
-          // you can return a `Response` object or return `dio.resolve(data)`.
-          // If you want to reject the request with a error message,
-          // you can return a `DioError` object or return `dio.reject(errMsg)`
-        },
-        onResponse:(Response response) async {
-          // Do something with response data
-          return response; // continue
-        },
-        onError: (DioError e) async {
-          // Do something with response error
-          return  e;//continue
-        }
-    ));
+    dio.interceptors
+        .add(InterceptorsWrapper(onRequest: (RequestOptions options) async {
+      //请求前搞点啥子
+      return options; //continue
+      // If you want to resolve the request with some custom data，
+      // you can return a `Response` object or return `dio.resolve(data)`.
+      // If you want to reject the request with a error message,
+      // you can return a `DioError` object or return `dio.reject(errMsg)`
+    }, onResponse: (Response response) async {
+      // Do something with response data
+      return response; // continue
+    }, onError: (DioError e) async {
+      // Do something with response error
+      return e; //continue
+    }));
   }
 }

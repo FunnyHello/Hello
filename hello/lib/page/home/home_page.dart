@@ -104,10 +104,11 @@ class _HomePageState extends BaseState<HomePage> {
     return WillPopScope(
       onWillPop: () {
         // 点击返回键的操作
-        if(lastPopTime == null || DateTime.now().difference(lastPopTime) > Duration(seconds: 2)){
+        if (lastPopTime == null ||
+            DateTime.now().difference(lastPopTime) > Duration(seconds: 2)) {
           lastPopTime = DateTime.now();
           showToast("再按一次退出");
-        }else{
+        } else {
           lastPopTime = DateTime.now();
           SystemNavigator.pop();
           // 退出app
@@ -161,7 +162,7 @@ class _HomePageState extends BaseState<HomePage> {
 
         appBar: AppBar(
           centerTitle: true,
-          title: Text('这是个首页'),
+          title: Text(getLanguage().home.toString()),
           //添加左边按钮
 //        leading: IconButton(icon: Icon(Icons.star)),
           //左边栏按钮呼出侧滑菜单

@@ -68,34 +68,7 @@ class _BoxTestPageState extends BaseState<BoxTestPage> {
 //          _dividerPopMenu(),
 //        ],
       ),
-      body: Column(
-        children: <Widget>[
-          Container(
-            //FlatButton(它会跟随Container的尺寸属性适应)
-            width: MediaQuery.of(context).size.width,
-            padding: const EdgeInsets.fromLTRB(20.0, 0, 20.0, 0),
-            child: RaisedButton(
-              onPressed: () {
-                showAlertDialog(context);
-              },
-              //RaisedButton无法设置大小所以可以用控件把它撑大=》但是不能设置外边距
-              child: Text('测试原生弹框'),
-            ),
-          ),
-          Container(
-            //FlatButton(它会跟随Container的尺寸属性适应)
-            width: MediaQuery.of(context).size.width,
-            padding: const EdgeInsets.fromLTRB(20.0, 0, 20.0, 0),
-            child: RaisedButton(
-              onPressed: () {
-                showBottomFrame();
-              },
-              //RaisedButton无法设置大小所以可以用控件把它撑大=》但是不能设置外边距
-              child: Text('测试底部弹框'),
-            ),
-          ),
-        ],
-      ),
+      body: initView(),
     );
   }
 
@@ -172,6 +145,37 @@ class _BoxTestPageState extends BaseState<BoxTestPage> {
             ],
           ),
         ));
+  }
+
+  initView() {
+    return Column(
+      children: <Widget>[
+        Container(
+          //FlatButton(它会跟随Container的尺寸属性适应)
+          width: MediaQuery.of(context).size.width,
+          padding: const EdgeInsets.fromLTRB(20.0, 0, 20.0, 0),
+          child: RaisedButton(
+            onPressed: () {
+              showAlertDialog(context);
+            },
+            //RaisedButton无法设置大小所以可以用控件把它撑大=》但是不能设置外边距
+            child: Text('测试原生弹框'),
+          ),
+        ),
+        Container(
+          //FlatButton(它会跟随Container的尺寸属性适应)
+          width: MediaQuery.of(context).size.width,
+          padding: const EdgeInsets.fromLTRB(20.0, 0, 20.0, 0),
+          child: RaisedButton(
+            onPressed: () {
+              showBottomFrame();
+            },
+            //RaisedButton无法设置大小所以可以用控件把它撑大=》但是不能设置外边距
+            child: Text('测试底部弹框'),
+          ),
+        ),
+      ],
+    );
   }
 }
 

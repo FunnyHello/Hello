@@ -38,10 +38,10 @@ class _RegisterPageState extends BaseState<RegisterPage> {
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
-    return new Scaffold(
-      appBar: new AppBar(
-        title: new Text("注册", style: new TextStyle(color: Colors.white)),
-        iconTheme: new IconThemeData(color: Colors.white),
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("注册", style: new TextStyle(color: Colors.white)),
+        iconTheme: IconThemeData(color: Colors.white),
       ),
       body: initView(),
     );
