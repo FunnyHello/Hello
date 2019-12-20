@@ -506,7 +506,7 @@ class _HomeTabThreePageState extends BaseState<HomeTabThreePage> {
                   ),
                 ),
                 onTap: () {
-                  toSelectPictures(ImageSource.gallery);
+                  toSelectPictures(ImageSource.camera);
                   Navigator.of(context).pop();
                 },
                 behavior: HitTestBehavior.translucent,
@@ -520,7 +520,7 @@ class _HomeTabThreePageState extends BaseState<HomeTabThreePage> {
                   ),
                 ),
                 onTap: () {
-                  toSelectPictures(ImageSource.camera);
+                  toSelectPictures(ImageSource.gallery);
                   Navigator.of(context).pop();
                 },
                 behavior: HitTestBehavior.translucent,

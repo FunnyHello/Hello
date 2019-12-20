@@ -225,6 +225,6 @@ class _AzListViewState extends State<AzListView> {
       ));
     }
 
-    return new Stack(children: children);
+    return Stack(children: children);
   }
 }

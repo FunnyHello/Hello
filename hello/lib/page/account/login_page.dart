@@ -24,11 +24,10 @@ class _LoginPageState extends BaseState<LoginPage> {
   var _userNameController = new TextEditingController();
 
   @override
-  void initState(){
+  void initState() {
     super.initState();
     //监听文本控制器
-    _userPassController.addListener((){
-    });
+    _userPassController.addListener(() {});
   }
 
   @override
@@ -57,22 +56,37 @@ class _LoginPageState extends BaseState<LoginPage> {
       mainAxisSize: MainAxisSize.max,
       mainAxisAlignment: MainAxisAlignment.start,
       children: <Widget>[
-        new Padding(
-          padding: new EdgeInsets.fromLTRB(
-              leftRightPadding, 50.0, leftRightPadding, topBottomPadding),
-          child: new TextField(
-            style: hintTips,
-            controller: _userNameController,
-            decoration: new InputDecoration(hintText: "请输入用户名"),
+        Container(
+          width: double.infinity,
+          padding: const EdgeInsets.fromLTRB(85.0, 50.0, 85.0, 0.0),
+          child: Text(
+            "We sent you a code to verify your phone number",
+            //文字居中
+            textAlign: TextAlign.center,
+            style: TextStyle(
+              //字体：粗体
+              fontWeight: FontWeight.w500,
+              fontSize: 14.0,
+              color: const Color(0xFF333333),
+            ),
           ),
         ),
-        new Padding(
-          padding: new EdgeInsets.fromLTRB(
+        Padding(
+          padding: EdgeInsets.fromLTRB(
+              leftRightPadding, 20.0, leftRightPadding, topBottomPadding),
+          child: TextField(
+            style: hintTips,
+            controller: _userNameController,
+            decoration: InputDecoration(hintText: "请输入用户名"),
+          ),
+        ),
+        Padding(
+          padding: EdgeInsets.fromLTRB(
               leftRightPadding, 30.0, leftRightPadding, topBottomPadding),
-          child: new TextField(
+          child: TextField(
             style: hintTips,
             controller: _userPassController,
-            decoration: new InputDecoration(
+            decoration: InputDecoration(
               hintText: "请输入用户密码",
               //去掉下划线
 //              border: InputBorder.none,
@@ -82,47 +96,47 @@ class _LoginPageState extends BaseState<LoginPage> {
 //              WhitelistingTextInputFormatter.digitsOnly, //只输入数字
 //              LengthLimitingTextInputFormatter(11) //限制长度
 //            ],
-          //限制输入数字，字母，汉字
+            //限制输入数字，字母，汉字
 //            inputFormatters: <TextInputFormatter>[
 //              WhitelistingTextInputFormatter(RegExp(
 //                  "[a-zA-Z]|[\u4e00-\u9fa5]|[0-9]")),
 //              LengthLimitingTextInputFormatter(3)
 //            ],
-          //文本居中
+            //文本居中
 //            textAlign: TextAlign.center,
             obscureText: true,
           ),
         ),
-        new Container(
+        Container(
           width: 360.0,
-          margin: new EdgeInsets.fromLTRB(10.0, 40.0, 10.0, 0.0),
-          padding: new EdgeInsets.fromLTRB(leftRightPadding, topBottomPadding,
+          margin: EdgeInsets.fromLTRB(10.0, 40.0, 10.0, 0.0),
+          padding: EdgeInsets.fromLTRB(leftRightPadding, topBottomPadding,
               leftRightPadding, topBottomPadding),
-          child: new Card(
+          child: Card(
             color: Colors.green,
             elevation: 6.0,
-            child: new FlatButton(
+            child: FlatButton(
                 onPressed: () {
                   ToastUtil.showMsg(_userNameController.text + "登陆了");
                 },
-                child: new Padding(
-                  padding: new EdgeInsets.all(10.0),
-                  child: new Text(
+                child: Padding(
+                  padding: EdgeInsets.all(10.0),
+                  child: Text(
                     '登录',
-                    style: new TextStyle(color: Colors.white, fontSize: 16.0),
+                    style: TextStyle(color: Colors.white, fontSize: 16.0),
                   ),
                 )),
           ),
         ),
-        new Container(
+        Container(
           width: 360.0,
-          margin: new EdgeInsets.fromLTRB(10.0, 10.0, 10.0, 0.0),
-          padding: new EdgeInsets.fromLTRB(leftRightPadding, topBottomPadding,
+          margin: EdgeInsets.fromLTRB(10.0, 10.0, 10.0, 0.0),
+          padding: EdgeInsets.fromLTRB(leftRightPadding, topBottomPadding,
               leftRightPadding, topBottomPadding),
-          child: new Card(
+          child: Card(
             color: Colors.green,
             elevation: 6.0,
-            child: new FlatButton(
+            child: FlatButton(
                 onPressed: () {
                   ToastUtil.showMsg("点击注册");
                   Navigator.of(context)

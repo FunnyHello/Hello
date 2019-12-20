@@ -7,6 +7,10 @@ import 'package:hello/bean/home_banner.dart';
 import 'package:hello/page/test/a_page.dart';
 import 'package:hello/page/test/box_test_page.dart';
 import 'package:hello/page/test/choice_chip_page.dart';
+import 'package:hello/page/test/password_input_page.dart';
+import 'package:hello/page/test/sideslip_item_page.dart';
+import 'package:hello/page/test/skidding_deletion_page.dart';
+import 'package:hello/page/test/verification_code_page.dart';
 import 'package:hello/page/test/video_player_page.dart';
 import 'package:hello/page/test/web_view_page.dart';
 import 'package:hello/utils/constant.dart';
@@ -68,9 +72,9 @@ class _HomeTabOnePageState extends BaseState<HomeTabOnePage> {
       //double.infinity为撑满父控件
       width: double.infinity,
       height: double.infinity,
-      child: new Column(
+      child: ListView(
         children: <Widget>[
-          new Stack(
+          Stack(
             //偏移量（可为负数）
             alignment: const Alignment(0, 1),
             children: <Widget>[
@@ -283,6 +287,59 @@ class _HomeTabOnePageState extends BaseState<HomeTabOnePage> {
               child: Text('标签选择控件演示'),
             ),
           ),
+          Container(
+            width: MediaQuery.of(context).size.width,
+            padding: const EdgeInsets.fromLTRB(20.0, 0, 20.0, 0),
+            child: RaisedButton(
+              onPressed: () {
+                Navigator.of(context)
+                    .push(MaterialPageRoute(builder: (BuildContext context) {
+                  return SkiddingDeletionPage();
+                }));
+              },
+              child: Text('侧滑删除'),
+            ),
+          ),
+          Container(
+            width: MediaQuery.of(context).size.width,
+            padding: const EdgeInsets.fromLTRB(20.0, 0, 20.0, 0),
+            child: RaisedButton(
+              onPressed: () {
+                Navigator.of(context)
+                    .push(MaterialPageRoute(builder: (BuildContext context) {
+                  return SideslipItemPage();
+                }));
+              },
+              child: Text('侧滑Item'),
+            ),
+          ),
+          Container(
+            width: MediaQuery.of(context).size.width,
+            padding: const EdgeInsets.fromLTRB(20.0, 0, 20.0, 0),
+            child: RaisedButton(
+              onPressed: () {
+                Navigator.of(context)
+                    .push(MaterialPageRoute(builder: (BuildContext context) {
+                  return PasswordInputPage();
+                }));
+              },
+              child: Text('支付宝密码输入控件'),
+            ),
+          ),
+
+          Container(
+            width: MediaQuery.of(context).size.width,
+            padding: const EdgeInsets.fromLTRB(20.0, 0, 20.0, 0),
+            child: RaisedButton(
+              onPressed: () {
+                Navigator.of(context)
+                    .push(MaterialPageRoute(builder: (BuildContext context) {
+                  return VerificationCodePage();
+                }));
+              },
+              child: Text('验证码输入控件'),
+            ),
+          ),
         ],
       ),
     );
@@ -328,12 +385,12 @@ class _HomeTabOnePageState extends BaseState<HomeTabOnePage> {
   }
 
   void toCountryPage() async {
-    final result = await    Navigator.of(context)
+    final result = await Navigator.of(context)
         .push(MaterialPageRoute(builder: (BuildContext context) {
       return CountryCodePage();
     }));
 
-    if(result != null){
+    if (result != null) {
       CountryCode countryCode = result as CountryCode;
 
       /*弹窗显示返回的数据*/
@@ -355,6 +412,5 @@ class _HomeTabOnePageState extends BaseState<HomeTabOnePage> {
             );
           });
     }
-
   }
 }

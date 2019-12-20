@@ -25,8 +25,8 @@ class _PersonalCenterPageState extends BaseState<PersonalCenterPage> {
   Widget build(BuildContext context) {
     // TODO: implement build
     return new Scaffold(
-      appBar: new AppBar(
-        title: new Text('UI测试'),
+      appBar:  AppBar(
+        title:  Text('UI测试'),
       ),
       /**
        * 居中布局
@@ -155,7 +155,7 @@ class _PersonalCenterPageState extends BaseState<PersonalCenterPage> {
    * icon , 权重 , icon背景色
    */
   Widget buildImage(String image, {int flex = 1, Color color}) {
-    return new Expanded(
+    return Expanded(
       child: new Container(
         color: color, //背景颜色
         child: Image.asset(image),
