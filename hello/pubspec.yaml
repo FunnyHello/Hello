@@ -52,8 +52,6 @@ dependencies:
   fluttertoast: ^3.1.3
   # 轮播图
   # flutter_swiper: ^1.0.6
-  # 地图
-  #  google_maps_flutter: ^0.5.21+13
   # 视频播放插件
   video_player: ^0.10.5
   # 获取硬件信息

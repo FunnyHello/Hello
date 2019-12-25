@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:hello/base/page/base_state.dart';
 import 'package:hello/base/page/base_stateful_widget.dart';
-import 'package:hello/view/inputCode/verification_code_input.dart';
+import 'package:hello/view/inputCode/cell_input.dart';
 
 class VerificationCodePage extends BaseStatefulWidget {
   @override
@@ -13,20 +13,14 @@ class VerificationCodePage extends BaseStatefulWidget {
 }
 
 class VerificationCodePageState extends BaseState<VerificationCodePage> {
-  var underLineBorder;
+  String _groupValue = "密码";
+  InputType _inputType = InputType.password;
 
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
-
-     ///边框
-     underLineBorder = CustomRectInputBorder(
-        letterSpace: 30.0,
-        textSize: 50.0,
-        textLength: 4,
-        borderSide:
-            BorderSide(color: Colors.blue.withOpacity(0.6), width: 2.0));
     return Scaffold(
+      resizeToAvoidBottomPadding: false,
       appBar: AppBar(
         title: Text('测试验证码输入'),
       ),
@@ -36,10 +30,51 @@ class VerificationCodePageState extends BaseState<VerificationCodePage> {
 
   initView() {
     return Container(
-      child: VerificationCodeInput(
-        textSize: 50.0,
-        letterSpace: 30.0,
-        inputBorder: underLineBorder,
+      child: Column(
+        children: <Widget>[
+          SizedBox(
+            height: 20,
+          ),
+          CellInput(
+              key: UniqueKey(),
+              autofocus: true,
+              inputType: _inputType,
+              solidColor: Color(0xFFF5F6FB),
+              borderRadius: BorderRadius.circular(4),
+              inputCompleteCallback: (v) {
+                print(v);
+              }),
+          RadioListTile<String>(
+              value: '密码',
+              title: Text('密码'),
+              groupValue: _groupValue,
+              onChanged: (v) {
+                setState(() {
+                  _inputType = InputType.password;
+                  _groupValue = v;
+                });
+              }),
+          RadioListTile<String>(
+              value: '数字',
+              groupValue: _groupValue,
+              title: Text('数字'),
+              onChanged: (v) {
+                setState(() {
+                  _inputType = InputType.number;
+                  _groupValue = v;
+                });
+              }),
+          RadioListTile<String>(
+              value: '文本',
+              groupValue: _groupValue,
+              title: Text('文本'),
+              onChanged: (v) {
+                setState(() {
+                  _inputType = InputType.text;
+                  _groupValue = v;
+                });
+              }),
+        ],
       ),
     );
   }

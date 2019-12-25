@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:hello/base/page/base_state.dart';
 import 'package:hello/base/page/base_stateful_widget.dart';
 import 'package:hello/bean/home_banner.dart';
@@ -340,10 +341,26 @@ class _HomeTabOnePageState extends BaseState<HomeTabOnePage> {
               child: Text('验证码输入控件'),
             ),
           ),
+
         ],
       ),
     );
   }
+
+  static const platform =
+  const MethodChannel('com.example.hello');
+
+  Future<bool> startPutImage() async {
+    String result;
+    try {
+      result = await platform.invokeMethod("Method", {
+        "test": "Flutter传入的参数",});
+    } on PlatformException catch (e) {
+      print(e.message);
+    }
+    print("++++++++++++" + result);
+  }
+
 
   //banner下面的圆点指示器
   List<Widget> _renderIndicatorTag() {

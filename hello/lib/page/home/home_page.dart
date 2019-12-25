@@ -161,6 +161,8 @@ class _HomePageState extends BaseState<HomePage> {
 //      ),
 
         appBar: AppBar(
+          // 隐藏阴影
+          elevation: 0,
           centerTitle: true,
           title: Text(getLanguage().home.toString()),
           //添加左边按钮
@@ -218,6 +220,7 @@ class _HomePageState extends BaseState<HomePage> {
       ),
     );
   }
+
 
 //下部分tab图标++++++++++++++++++++++++
   Image getTabIcon(int curIndex) {

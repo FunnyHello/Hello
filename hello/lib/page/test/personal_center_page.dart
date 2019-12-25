@@ -25,8 +25,8 @@ class _PersonalCenterPageState extends BaseState<PersonalCenterPage> {
   Widget build(BuildContext context) {
     // TODO: implement build
     return new Scaffold(
-      appBar:  AppBar(
-        title:  Text('UI测试'),
+      appBar: AppBar(
+        title: Text('UI测试'),
       ),
       /**
        * 居中布局
@@ -203,10 +203,13 @@ class _PersonalCenterPageState extends BaseState<PersonalCenterPage> {
         child: Container(
       //创造一个盒子装饰
       decoration: BoxDecoration(
-          //盒子边框(不能与背景颜色color同时使用)
-          border: Border.all(width: 10.0, color: Colors.black38),
-          //弧角矩阵
-          borderRadius: const BorderRadius.all(const Radius.circular(10.0))),
+        //盒子边框(不能与背景颜色color同时使用)
+        border: Border.all(width: 10.0, color: Colors.black38),
+        //弧角矩阵
+        borderRadius: const BorderRadius.all(
+          const Radius.circular(10.0),
+        ),
+      ),
       //外边距
       margin: const EdgeInsets.all(10.0),
       //图片
@@ -382,5 +385,31 @@ class _PersonalCenterPageState extends BaseState<PersonalCenterPage> {
       ],
     );
     return stack;
+  }
+
+  //测试显示隐藏
+  isShow() {
+    Column(
+      children: <Widget>[
+        //不占位
+        Offstage(
+          //显示隐藏
+          offstage: true,
+          child: Text("测试"),
+        ),
+        //不占位
+        Visibility(
+          //显示隐藏
+          visible: true,
+          child: Text("测试"),
+        ),
+        //占位
+        Opacity(
+          //控制透明度，（0-1）0完全透明  1完全不透明
+          opacity: 0.1,
+          child: Text("测试"),
+        ),
+      ],
+    );
   }
 }
