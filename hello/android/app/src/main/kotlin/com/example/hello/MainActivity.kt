@@ -13,9 +13,11 @@ class MainActivity: FlutterActivity() {
     override fun configureFlutterEngine(@NonNull flutterEngine: FlutterEngine) {
         GeneratedPluginRegistrant.registerWith(flutterEngine)
 
-        FlutterPluginJumpToAct.registerWith(ShimPluginRegistry(flutterEngine).registrarFor(FlutterPluginJumpToAct.CHANNEL))
-        FlutterPluginCounter.registerWith(ShimPluginRegistry(flutterEngine).registrarFor(FlutterPluginCounter.CHANNEL))
+        registerCustomPlugin(ShimPluginRegistry(flutterEngine))
     }
-
+    private fun registerCustomPlugin(shimPluginRegistry: ShimPluginRegistry) {
+        FlutterPluginJumpToAct.registerWith(shimPluginRegistry.registrarFor(FlutterPluginJumpToAct.CHANNEL))
+//        FlutterPluginCounter.registerWith(shimPluginRegistry.registrarFor(FlutterPluginCounter.CHANNEL))
+    }
 
 }

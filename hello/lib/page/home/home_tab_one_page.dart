@@ -41,16 +41,16 @@ class _HomeTabOnePageState extends BaseState<HomeTabOnePage> {
   int currentIndex = 0;
   //SafeArea用于兼容刘海屏和iPhone X类似的底部bottom的区域
 
-  StreamSubscription _subscription = null;
+//  StreamSubscription _subscription = null;
 
-  static const counterPlugin = const EventChannel('com.example.hello');
+//  static const counterPlugin = const EventChannel('com.example.hello');
   @override
   void initState() {
     super.initState();
     //开启监听
-    if(_subscription == null){
-      _subscription =  counterPlugin.receiveBroadcastStream().listen(_onEvent,onError: _onError);
-    }
+//    if(_subscription == null){
+//      _subscription =  counterPlugin.receiveBroadcastStream().listen(_onEvent,onError: _onError);
+//    }
 
 
     addBanner(
@@ -73,26 +73,26 @@ class _HomeTabOnePageState extends BaseState<HomeTabOnePage> {
         "https://fuchsia-china.com/fuchsia-os-adds-support-for-kirin-970/");
   }
 
-  void _onEvent(Object event) {
-    setState(() {
-      showToast("activity界面的参数："+ event);
-    });
-  }
-
-  void _onError(Object error) {
-    setState(() {
-      showToast("滑稽");
-    });
-  }
-
-  @override
-  void dispose() {
-    super.dispose();
-    //取消监听
-    if(_subscription != null){
-      _subscription.cancel();
-    }
-  }
+//  void _onEvent(Object event) {
+//    setState(() {
+//      showToast("activity界面的参数："+ event);
+//    });
+//  }
+//
+//  void _onError(Object error) {
+//    setState(() {
+//      showToast("滑稽");
+//    });
+//  }
+//
+//  @override
+//  void dispose() {
+//    super.dispose();
+//    //取消监听
+//    if(_subscription != null){
+//      _subscription.cancel();
+//    }
+//  }
 
   @override
   Widget build(BuildContext context) {
