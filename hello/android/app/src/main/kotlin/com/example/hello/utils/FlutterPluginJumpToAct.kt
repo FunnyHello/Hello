@@ -31,7 +31,7 @@ class FlutterPluginJumpToAct(activity: Activity) : MethodCallHandler {
             val text: String? = call.argument("flutter")
             //这里滑稽
             Toast.makeText(activity, "" + text, Toast.LENGTH_SHORT).show()
-
+            //注意：activity必须在清单文件里面引用主题，否则activity没有主题参数（直接报错）
             val intent = Intent(activity, TestActivity::class.java)
             activity.startActivity(intent)
             //返回给flutter的参数

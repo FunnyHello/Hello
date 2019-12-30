@@ -30,8 +30,8 @@
         </activity>
 
         <activity
-            android:name=".ui.activity.TestActivity">
-        </activity>
+            android:name=".ui.activity.TestActivity"
+            android:theme="@style/AppTheme"/>
         <!-- Don't delete the meta-data below.
              This is used by the Flutter tool to generate GeneratedPluginRegistrant.java -->
         <meta-data
