@@ -23,11 +23,20 @@ class _LoginPageState extends BaseState<LoginPage> {
   var _userPassController = new TextEditingController();
   var _userNameController = new TextEditingController();
 
+  //控制TextField焦点
+  FocusNode _focusNode = FocusNode();
+
   @override
   void initState() {
     super.initState();
     //监听文本控制器
     _userPassController.addListener(() {});
+
+    _focusNode.addListener(() {
+      if (!_focusNode.hasFocus) {
+        ///TextField失去焦点
+      }
+    });
   }
 
   @override
@@ -43,6 +52,8 @@ class _LoginPageState extends BaseState<LoginPage> {
   Widget build(BuildContext context) {
     // TODO: implement build
     return Scaffold(
+      //防止键盘挤压界面（但是键盘会挡住输入框）
+      resizeToAvoidBottomPadding: false,
       appBar: AppBar(
         title: Text("登录", style: new TextStyle(color: Colors.white)),
         iconTheme: IconThemeData(color: Colors.white),
@@ -75,6 +86,9 @@ class _LoginPageState extends BaseState<LoginPage> {
           padding: EdgeInsets.fromLTRB(
               leftRightPadding, 20.0, leftRightPadding, topBottomPadding),
           child: TextField(
+            //自动获取焦点
+            autofocus: true,
+            focusNode: _focusNode,
             style: hintTips,
             controller: _userNameController,
             decoration: InputDecoration(hintText: "请输入用户名"),

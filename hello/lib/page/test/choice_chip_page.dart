@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:hello/base/page/base_state.dart';
@@ -89,6 +90,14 @@ class ChoiceChipPageState extends BaseState<ChoiceChipPage> {
                   checkValue1 = value;
                 });
               }),
+          CupertinoSwitch(
+              value: checkValue1,
+              //回调，改变状态
+              onChanged: (value) {
+                setState(() {
+                  checkValue1 = value;
+                });
+              }),
           SwitchListTile(
               title: Text("开关"),
               value: checkValue1,
@@ -97,6 +106,7 @@ class ChoiceChipPageState extends BaseState<ChoiceChipPage> {
                   checkValue1 = value;
                 });
               }),
+
           Checkbox(
               //选中的✔ 颜色
               checkColor: Colors.yellowAccent,

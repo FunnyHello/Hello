@@ -38,6 +38,7 @@ class _HomeTabOnePageState extends BaseState<HomeTabOnePage> {
 
   //当前指示器
   int currentIndex = 0;
+  //SafeArea用于兼容刘海屏和iPhone X类似的底部bottom的区域
 
   @override
   void initState() {
@@ -140,7 +141,8 @@ class _HomeTabOnePageState extends BaseState<HomeTabOnePage> {
           Container(
             //FlatButton(它会跟随Container的尺寸属性适应)
             //设置背景颜色方便观察布局展示原理
-            color: Colors.green,
+            color: Colors.blue,
+            margin:const EdgeInsets.fromLTRB(5.0, 5.0, 5.0, 5.0),
             width: MediaQuery.of(context).size.width,
             padding: const EdgeInsets.fromLTRB(20.0, 0, 20.0, 0),
             child: RaisedButton(
@@ -285,9 +287,10 @@ class _HomeTabOnePageState extends BaseState<HomeTabOnePage> {
                   return ChoiceChipPage();
                 }));
               },
-              child: Text('标签选择控件演示'),
+              child: Text('标签选择控件与选择按钮演示'),
             ),
           ),
+
           Container(
             width: MediaQuery.of(context).size.width,
             padding: const EdgeInsets.fromLTRB(20.0, 0, 20.0, 0),
@@ -341,26 +344,33 @@ class _HomeTabOnePageState extends BaseState<HomeTabOnePage> {
               child: Text('验证码输入控件'),
             ),
           ),
-
+          Container(
+            width: MediaQuery.of(context).size.width,
+            padding: const EdgeInsets.fromLTRB(20.0, 0, 20.0, 0),
+            child: RaisedButton(
+              onPressed: () {
+                startActivity();
+              },
+              child: Text('与原生沟通'),
+            ),
+          ),
         ],
       ),
     );
   }
 
-  static const platform =
-  const MethodChannel('com.example.hello');
-
-  Future<bool> startPutImage() async {
+  static const platform = const MethodChannel('com.example.hello');
+  Future<bool> startActivity() async {
     String result;
     try {
-      result = await platform.invokeMethod("Method", {
-        "test": "Flutter传入的参数",});
+      result = await platform.invokeMethod("startActivity", {
+        "flutter": "Flutter传入的参数",
+      });
     } on PlatformException catch (e) {
       print(e.message);
     }
-    print("++++++++++++" + result);
+    showToast(result.toString());
   }
-
 
   //banner下面的圆点指示器
   List<Widget> _renderIndicatorTag() {
